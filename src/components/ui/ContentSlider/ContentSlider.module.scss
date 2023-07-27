@@ -1,0 +1,78 @@
+@use "include-media" as *;
+
+@use "$/styles/colors";
+
+.contentSlider {
+  width: 100%;
+  height: 250px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-flow: row;
+  gap: 32px;
+  scroll-behavior: smooth;
+}
+
+.contentSliderItem {
+  height: 100%;
+  width: 450px;
+  position: relative;
+  border-radius: 6px;
+
+  &:hover {
+    .contentSliderItemOverlay {
+      background-position-y: 70%;
+    }
+
+    .contentSliderItemLabel {
+      margin-left: 6px;
+    }
+  }
+}
+
+.contentSliderItemLabel {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: #fafafacc;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 200ms ease-in-out;
+}
+
+.contentSliderItemImage {
+  max-width: inherit;
+  max-height: inherit;
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.contentSliderItemOverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 200ms ease-in-out;
+  background: linear-gradient(180deg, #21212148, #232228d7 100%);
+
+  background-size: 1px calc(200%);
+  background-position-y: 100%;
+  backdrop-filter: blur(1px);
+  border-radius: 6px;
+}
+
+@include media("<=tablet") {
+  .contentSlider {
+    height: 150px;
+  }
+
+  .contentSliderItem {
+    width: 250px;
+  }
+
+  .contentSliderItemLabel {
+    font-size: 1.6em;
+  }
+}

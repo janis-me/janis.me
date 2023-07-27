@@ -1,0 +1,62 @@
+@use "include-media" as *;
+
+@use "$/styles/colors";
+
+.home {
+  overflow: auto;
+}
+
+.title {
+  color: colors.$primary;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-size: 3em;
+  letter-spacing: 1px;
+}
+
+.tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  gap: 16px;
+}
+
+.tag {
+  padding: 6px 24px;
+  border-radius: 6px;
+  color: colors.$white;
+  background: #5e5e6454;
+  font-size: 1em;
+}
+
+.introText {
+  margin: 32px 0;
+}
+
+.content {
+  p {
+    color: colors.$white;
+    margin: 12px 0;
+  }
+}
+
+.contentSliders {
+  padding-top: 16px;
+}
+
+@include media("<=tablet") {
+  .tags {
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 0.9em;
+    padding: 6px 16px;
+  }
+
+  .contentSliders {
+    padding-top: 8px;
+  }
+}

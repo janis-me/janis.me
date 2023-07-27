@@ -1,0 +1,55 @@
+@use "include-media" as *;
+@use "$/styles/colors";
+
+@import "~sanitize.css";
+@import "~sanitize.css/forms.css";
+@import "~sanitize.css/typography.css";
+
+:root {
+  font-size: 16px;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(45deg, colors.$primary-bg, colors.$secondary-bg);
+  background-color: colors.$primary-bg;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+main {
+  padding: 120px 64px;
+}
+
+/*
+  Media queries for mobile kindness :)
+*/
+
+@include media(">phone", "<=tablet") {
+  :root {
+    font-size: 12px;
+  }
+
+  main {
+    padding: 64px 32px;
+  }
+}
+
+@include media("<phone") {
+  :root {
+    font-size: 10px;
+  }
+
+  main {
+    padding: 40px 16px;
+  }
+}

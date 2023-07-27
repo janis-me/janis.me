@@ -1,0 +1,62 @@
+@use "include-media" as *;
+@use "$/styles/colors";
+
+.header {
+  height: 72px;
+  width: 100%;
+  border-bottom: 1px solid #343441;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  transition: all 200ms ease-in-out;
+
+  position: fixed;
+  top: 0;
+}
+
+.headerBlurred {
+  background-color: #34344188;
+  backdrop-filter: blur(8px);
+}
+
+.title {
+  color: colors.$primary;
+  font-size: 1.5em;
+}
+
+.navItems {
+  list-style-type: none;
+  display: inline-flex;
+  gap: 16px;
+}
+
+.navItem {
+  color: colors.$grey-1;
+  cursor: pointer;
+}
+
+@include media(">phone", "<=tablet") {
+  .header {
+    height: 60px;
+
+    padding: 0 32px;
+  }
+
+  .navItems {
+    gap: 12px;
+  }
+}
+
+@include media("<phone") {
+  .header {
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  .navItems {
+    gap: 8px;
+  }
+}
