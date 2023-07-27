@@ -4,6 +4,8 @@ import { Header } from "$/components/ui/Header";
 
 import "$/styles/globals.scss";
 
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: "janis.me",
   description: "Janis Jansen - Home",

@@ -13,6 +13,8 @@ import thumbnailReactComponents from "../../public/images/thumbnails/dynamic-rea
 import thumbnailTs1 from "../../public/images/thumbnails/typescript-1-thumbnail.webp"
 import thumbnailTs2 from "../../public/images/thumbnails/typescript-2-thumbnail.webp"
 
+export const runtime = 'edge';
+
 const HOME = {
   TITLE: "Janis Jansen",
   TAGS: ["webdev", "design", "youtube", "music"],
