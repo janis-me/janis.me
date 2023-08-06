@@ -38,6 +38,9 @@ export function ContentSlider({ children }: PropsWithChildren) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = (e: WheelEvent) => {
+    // Div not scrollable
+    if(sliderRef.current?.scrollWidth === sliderRef.current?.clientWidth) return;
+    
     if (sliderRef.current && e.deltaY !== 0) {
       e.preventDefault();
       sliderRef.current.scrollLeft += e.deltaY * 10; // arbitrary multiplier for smoother scrolling

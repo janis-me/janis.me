@@ -6,7 +6,6 @@ import GLOBALS from "$/config/globals";
 
 import styles from "./Header.module.scss";
 import useScrollPosition from "$/hooks/useScrollPosition";
-import { useEffect } from "react";
 
 const navItems = [
   { label: "home", path: "/" },

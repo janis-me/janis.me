@@ -31,8 +31,12 @@
   font-size: 1em;
 }
 
+.intro {
+  margin: 120px 64px 0;
+}
+
 .introText {
-  margin: 32px 0;
+  padding: 8px 64px;
 }
 
 .content {
@@ -43,10 +47,41 @@
 }
 
 .contentSliders {
-  padding-top: 16px;
+  padding: 0 64px;
+  margin-bottom: 64px;
+
+  h2 {
+    color: colors.$white;
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 24px 0;
+  }
+}
+
+.resume {
+  background-color: colors.$primary;
+  padding: 64px;
+  margin-top: 32px;
+
+  h1 {
+    color: colors.$black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &Items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 }
 
 @include media("<=tablet") {
+  .intro {
+    margin: 80px 32px 0;
+  }
+
   .tags {
     gap: 8px;
   }
@@ -55,8 +90,24 @@
     font-size: 0.9em;
     padding: 6px 16px;
   }
+}
+
+@include media(">phone", "<=tablet") {
+  .introText {
+    padding: 8px 32px;
+  }
 
   .contentSliders {
-    padding-top: 8px;
+    padding: 0 32px;
+  }
+}
+
+@include media("<phone") {
+  .introText {
+    padding: 0 16px;
+  }
+
+  .contentSliders {
+    padding: 0 16px;
   }
 }

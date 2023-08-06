@@ -1,0 +1,27 @@
+@use "$/styles/colors";
+
+$offset-x: 8px;
+
+.timeline {
+  position: relative;
+  margin-left: 32px;
+}
+
+.beam {
+  width: 2px;
+  height: 100%;
+  background-color: colors.$black;
+  position: absolute;
+  transform: translateX($offset-x);
+}
+
+.items {
+  display: grid;
+  grid-auto-columns: 1fr;
+}
+
+.item {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+}

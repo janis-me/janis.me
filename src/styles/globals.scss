@@ -26,10 +26,6 @@ body {
   background-attachment: fixed;
 }
 
-main {
-  padding: 120px 64px;
-}
-
 /*
   Media queries for mobile kindness :)
 */
@@ -38,18 +34,10 @@ main {
   :root {
     font-size: 12px;
   }
-
-  main {
-    padding: 64px 32px;
-  }
 }
 
 @include media("<phone") {
   :root {
     font-size: 10px;
-  }
-
-  main {
-    padding: 40px 16px;
   }
 }
