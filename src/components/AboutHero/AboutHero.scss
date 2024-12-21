@@ -1,6 +1,8 @@
 .about-hero {
+  width: 30%;
+
   display: grid;
-  grid-template-areas: "title title" "badges badges" "intro timeline";
+  grid-template-areas: "title title" "badges badges" "intro timeline" "pages pages";
   grid-template-columns: 1fr 2fr;
 
   border: 1px solid c("grey-3");
@@ -65,6 +67,20 @@
     padding: 8px;
 
     h4 {
+      margin: 0;
+    }
+  }
+
+  &__pages {
+    grid-area: pages;
+
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid c("grey-3");
+
+    padding: 8px;
+
+    p {
       margin: 0;
     }
   }

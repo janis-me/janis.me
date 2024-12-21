@@ -23,7 +23,9 @@ export default function Nav() {
 
   return (
     <nav class="nav">
-      <h1 class="nav__title">janis.me</h1>
+      <h1 class="nav__title">
+        <a href="/">janis.me</a>
+      </h1>
 
       <button class="nav__toggle-theme-button" onClick={handleThemeToggle}>
         {currentTheme() === "light" ? <Moon /> : <Sun />}

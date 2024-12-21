@@ -1,22 +1,8 @@
 ---
 import Layout from "$layouts/Layout.astro";
 import AboutHero from "$components/AboutHero/AboutHero";
-
-import "$styles/global.scss";
 ---
 
 <Layout>
   <AboutHero />
 </Layout>
-
-<style lang="scss" is:global>
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .about-hero {
-    width: 800px;
-  }
-</style>

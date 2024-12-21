@@ -35,10 +35,34 @@ const previousWorkList = (
           Dive CAE
         </a>
       </b>{" "}
-      - built the leading cloud-native CAE platform <i>dive</i>.
+      - built the leading cloud-native CAE platform <i>dive</i>. Enabling users
+      to set-up and analyze massive fluid simulations in the browser
     </li>
     <li>
-      <a href="https://sms-digital.com"></a>
+      <b>
+        <a href="https://licensephobia.com" target="_blank" rel="noopener">
+          Licensephobia
+        </a>
+      </b>{" "}
+      - never be afraid of OpenSource licenses again. Check your dependency
+      files (npm, pip, cargo...) and know exactly what rights you have.
+    </li>
+    <li>
+      <b>
+        <a href="https://youtube.com/@roulzhq" target="_blank" rel="noopener">
+          ROULZ (youtube)
+        </a>
+      </b>{" "}
+      - Tech content, making easy to follow deep-dives into interesting topics.
+    </li>
+    <li>
+      <b>
+        <a href="https://sms-group.com" target="_blank" rel="noopener">
+          SMS Group
+        </a>
+      </b>{" "}
+      - enabled SMS's physical and mathmatical models to run in the cloud, built
+      new ML-based prediction models for steel plants
     </li>
   </ul>
 );
@@ -65,6 +89,10 @@ export default function AboutHero() {
       <div class="about-hero__timeline">
         <h4>Previously in my life:</h4>
         {previousWorkList}
+      </div>
+      <div class="about-hero__pages">
+        <a href="/imprint">Imprint</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
   );
