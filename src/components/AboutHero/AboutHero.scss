@@ -1,0 +1,71 @@
+.about-hero {
+  display: grid;
+  grid-template-areas: "title title" "badges badges" "intro timeline";
+  grid-template-columns: 1fr 2fr;
+
+  border: 1px solid c("grey-3");
+
+  &__title {
+    grid-area: title;
+
+    margin: 0;
+    padding: 8px;
+
+    border-bottom: 1px solid c("grey-3");
+  }
+
+  &__links {
+    margin-left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    a {
+      color: c("text");
+    }
+  }
+
+  &__badges {
+    grid-area: badges;
+
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+
+    border-bottom: 1px solid c("grey-3");
+  }
+
+  &__badge {
+    text-decoration: underline;
+    text-decoration-style: wavy;
+
+    &:not(:last-of-type) {
+      &:after {
+        content: "■";
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 12px;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__intro {
+    grid-area: intro;
+
+    margin: 0;
+    display: block;
+    padding: 8px;
+    border-right: 1px dashed c("grey-3");
+  }
+
+  &__timeline {
+    grid-area: timeline;
+
+    padding: 8px;
+
+    h4 {
+      margin: 0;
+    }
+  }
+}

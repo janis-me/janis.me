@@ -1,0 +1,35 @@
+@use "@fontsource/ibm-plex-mono";
+
+@use "sanitize.css";
+
+@use "./themes";
+
+html[data-theme="light"] {
+  @each $name, $color in themes.$light {
+    --color-#{$name}: #{$color};
+  }
+}
+
+html[data-theme="dark"] {
+  @each $name, $color in themes.$dark {
+    --color-#{$name}: #{$color};
+  }
+}
+
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  font-family: "IBM Plex Mono", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: c("background");
+  color: c("text");
+}
+
+a {
+  color: c("text");
+  text-decoration: underline;
+}

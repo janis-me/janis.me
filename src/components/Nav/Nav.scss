@@ -1,0 +1,25 @@
+$nav-height: 80px;
+
+.nav {
+  width: 100%;
+  height: $nav-height;
+  padding: 0 64px;
+  position: absolute;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid c("grey-3");
+
+  &__title {
+    margin: 0;
+  }
+
+  &__toggle-theme-button {
+    color: c("text");
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}

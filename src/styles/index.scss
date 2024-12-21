@@ -1,0 +1,14 @@
+@use "sass:meta";
+@use "sass:map";
+
+@use "./themes";
+
+@function c($name) {
+  @if meta.type-of($name) != "string" {
+    @error "'#{$name}' is not a string (should be quoted when passed into this function)";
+  } @else if map.has-key(themes.$light, $name) == false {
+    @error "'#{$name}' is not a valid color";
+  }
+
+  @return #{var(--color-#{$name})};
+}
