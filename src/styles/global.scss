@@ -4,16 +4,23 @@
 
 @use "./themes";
 
-html[data-theme="light"] {
-  @each $name, $color in themes.$light {
+@mixin applyTheme($theme) {
+  @each $name, $color in $theme {
     --color-#{$name}: #{$color};
   }
 }
 
-html[data-theme="dark"] {
-  @each $name, $color in themes.$dark {
-    --color-#{$name}: #{$color};
-  }
+html[data-theme="light"][data-colormode="false"] {
+  @include applyTheme(themes.$light);
+}
+html[data-theme="dark"][data-colormode="false"] {
+  @include applyTheme(themes.$dark);
+}
+html[data-theme="light"][data-colormode="true"] {
+  @include applyTheme(themes.$lucie-light);
+}
+html[data-theme="dark"][data-colormode="true"] {
+  @include applyTheme(themes.$lucie-dark);
 }
 
 html,

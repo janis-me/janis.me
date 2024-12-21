@@ -4,9 +4,15 @@ import "$styles/global.scss";
 ---
 
 <script>
-  import { getPreferredTheme, setTheme } from "$utils/theme.utils";
+  import {
+    getPreferredColorMode,
+    getPreferredTheme,
+    setColorMode,
+    setTheme,
+  } from "$utils/theme.utils";
 
   const initialTheme = getPreferredTheme();
+  const initialColorMode = getPreferredColorMode();
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
@@ -15,6 +21,7 @@ import "$styles/global.scss";
     });
 
   setTheme(initialTheme);
+  setColorMode(initialColorMode);
 </script>
 
 <html lang="en">
@@ -26,7 +33,7 @@ import "$styles/global.scss";
     <title>janis.me</title>
   </head>
 
-  <body data-theme="light">
+  <body data-theme="light" data-colormode="false">
     <Nav client:only />
 
     <main class="content">

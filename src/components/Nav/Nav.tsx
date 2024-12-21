@@ -1,9 +1,13 @@
 import Moon from "lucide-solid/icons/moon";
 import Sun from "lucide-solid/icons/sun";
+import Paintbrush from "lucide-solid/icons/paintbrush";
+import PaintbrushVertical from "lucide-solid/icons/paintbrush-vertical";
 
 import {
+  getPreferredColorMode,
   getPreferredTheme,
   getReverseTheme,
+  setColorMode,
   setTheme,
 } from "$utils/theme.utils";
 import { createSignal } from "solid-js";
@@ -14,11 +18,20 @@ export default function Nav() {
   const [currentTheme, setCurrentTheme] = createSignal<"dark" | "light">(
     getPreferredTheme()
   );
+  const [currentColorMode, setCurrentColorMode] = createSignal<boolean>(
+    getPreferredColorMode()
+  );
 
   const handleThemeToggle = () => {
     const newTheme = getReverseTheme(currentTheme());
     setTheme(newTheme, true);
     setCurrentTheme(newTheme);
+  };
+
+  const handleColorModeToggle = () => {
+    const newColorMode = !currentColorMode();
+    setColorMode(newColorMode, true);
+    setCurrentColorMode(newColorMode);
   };
 
   return (
@@ -27,9 +40,17 @@ export default function Nav() {
         <a href="/">janis.me</a>
       </h1>
 
-      <button class="nav__toggle-theme-button" onClick={handleThemeToggle}>
-        {currentTheme() === "light" ? <Moon /> : <Sun />}
-      </button>
+      <div>
+        <button class="nav__toggle-theme-button" onClick={handleThemeToggle}>
+          {currentTheme() === "light" ? <Moon /> : <Sun />}
+        </button>
+        <button
+          class="nav__toggle-theme-button"
+          onClick={handleColorModeToggle}
+        >
+          {currentColorMode() ? <Paintbrush /> : <PaintbrushVertical />}
+        </button>
+      </div>
     </nav>
   );
 }
