@@ -1,11 +1,15 @@
-.about-hero {
-  width: 30%;
+@use "$styles/mixins" as mixins;
 
+.about-hero {
   display: grid;
   grid-template-areas: "title title" "badges badges" "intro timeline" "pages pages";
   grid-template-columns: 1fr 2fr;
 
-  border: 1px solid c("grey-3");
+  @include mixins.contentContainer;
+
+  @include media("<tablet") {
+    grid-template-areas: "title title" "badges badges" "intro intro" "timeline timeline" "pages pages";
+  }
 
   &__title {
     grid-area: title;
@@ -59,6 +63,11 @@
     display: block;
     padding: 8px;
     border-right: 1px dashed c("grey-3");
+
+    @include media("<tablet") {
+      border-right: none;
+      border-bottom: 1px dashed c("grey-3");
+    }
   }
 
   &__timeline {

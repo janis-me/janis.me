@@ -1,16 +1,17 @@
-$nav-height: 80px;
+@use "$styles/config";
 
 .nav {
   width: 100%;
-  height: $nav-height;
+  height: config.$nav-height;
   padding: 0 64px;
-  position: absolute;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   border-bottom: 1px solid c("grey-3");
+
+  backdrop-filter: blur(100px);
 
   &__title {
     margin: 0;
@@ -21,5 +22,9 @@ $nav-height: 80px;
     background-color: transparent;
     border: none;
     cursor: pointer;
+  }
+
+  @include media("<=tablet") {
+    padding: 0 8px;
   }
 }

@@ -36,6 +36,13 @@ import "$styles/global.scss";
 </html>
 
 <style lang="scss">
+  @use "$styles/config";
+
+  body {
+    display: grid;
+    grid-template-rows: config.$nav-height auto;
+  }
+
   .content {
     height: 100vh;
     width: 100vw;

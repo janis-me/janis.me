@@ -14,9 +14,10 @@ import Layout from "$layouts/Layout.astro";
 </Layout>
 
 <style lang="scss">
+  @use "$styles/mixins" as mixins;
+
   .imprint {
-    border: 1px solid c("grey-3");
-    width: 30%;
+    @include mixins.contentContainer;
 
     h2 {
       margin: 0 0 0 8px;

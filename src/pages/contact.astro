@@ -27,9 +27,10 @@ import mailImage from "../assets/mail.png"; // Image is 1600x900
 </Layout>
 
 <style lang="scss">
+  @use "$styles/mixins" as mixins;
+
   .contact {
-    border: 1px solid c("grey-3");
-    width: 30%;
+    @include mixins.contentContainer;
 
     h2 {
       margin: 0 0 0 8px;
