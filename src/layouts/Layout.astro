@@ -51,11 +51,11 @@ import "$styles/global.scss";
   }
 
   .content {
-    height: 100vh;
-    width: 100vw;
+    max-height: calc(100vh - config.$nav-height);
 
     display: flex;
-    justify-content: center;
     align-items: center;
+
+    overflow: auto;
   }
 </style>

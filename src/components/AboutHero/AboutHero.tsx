@@ -19,11 +19,13 @@ const badges = [
 
 const introText = (
   <>
-    Hey! I'm Janis, a german fullstack dev focusing on making next-gen,
-    cutting-edge web technology actually useful to customers. <br />
-    Over the last couple of years (9 already, damn, time flies) I worked on
-    numerous projects in fields like cloud-based CAE software, HMIs, Applied
-    machine learning, 3D interfaces and more.
+    Hey there! I'm Janis, a full-stack developer from Germany, passionate about
+    turning next-gen web tech into something real and useful for customers.{" "}
+    <br />
+    It's been 9 years (wow, time flies!) of working on exciting projects, from
+    cloud-based CAE software and HMIs to applied machine learning and 3D
+    interfaces—just to name a few. Always looking for new ways to innovate and
+    make things happen!
   </>
 );
 
@@ -64,6 +66,14 @@ const previousWorkList = (
       - enabled SMS's physical and mathmatical models to run in the cloud, built
       new ML-based prediction models for steel plants
     </li>
+    <li>
+      <b>
+        <a href="https://caddly.roulz.com/" target="_blank" rel="noopener">
+          Caddly
+        </a>
+      </b>{" "}
+      - A config file builder for the caddy webserver
+    </li>
   </ul>
 );
 
@@ -87,7 +97,7 @@ export default function AboutHero() {
       </div>
       <p class="about-hero__intro">{introText}</p>
       <div class="about-hero__timeline">
-        <h4>Previously in my life:</h4>
+        <h4>Some stuff I worked on:</h4>
         {previousWorkList}
       </div>
       <div class="about-hero__pages">

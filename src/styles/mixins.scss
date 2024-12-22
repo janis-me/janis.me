@@ -1,7 +1,6 @@
 @use "include-media" as *;
 
 @use "$styles/index.scss" as *;
-@use "$styles/config.scss";
 
 $breakpoints: (
   ultrawide: 2000px,
@@ -11,18 +10,19 @@ $breakpoints: (
 );
 
 @mixin contentContainer {
-  width: 30%;
+  width: 40%;
   overflow: auto;
   border: 1px solid c("grey-3");
-  max-height: calc(100vh - config.$nav-height);
+
+  margin: auto;
 
   & {
     @include media(">=ultrawide") {
-      width: 30%;
+      width: 40%;
     }
 
     @include media(">desktop", "<ultrawide") {
-      width: 50%;
+      width: 60%;
     }
 
     @include media(">=tablet", "<desktop") {
@@ -39,11 +39,11 @@ $breakpoints: (
     }
 
     @include media("height<800px", ">tablet") {
-      width: 50%;
+      width: 80%;
     }
 
     @include media("height<600px", ">tablet") {
-      width: 80%;
+      width: 90%;
     }
 
     @include media("height<500px", ">tablet") {
