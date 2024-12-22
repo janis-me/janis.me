@@ -5,16 +5,20 @@ import Youtube from "lucide-solid/icons/youtube";
 import "./AboutHero.scss";
 
 const profileLinks = [
-  { icon: Github, url: "https://github.com/carnageous" },
-  { icon: Youtube, url: "https://www.youtube.com/@roulzhq" },
-  { icon: Linkedin, url: "https://www.linkedin.com/in/janis-jansen" },
+  { icon: Github, url: "https://github.com/carnageous", label: "Github" },
+  { icon: Youtube, url: "https://www.youtube.com/@roulzhq", label: "Youtube" },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/in/janis-jansen",
+    label: "Linkedin",
+  },
 ] as const;
 
 const badges = [
   "fullstack-dev",
   "ts-nerd",
   "wasm-fanatic",
-  "scss-user",
+  "scss-addict",
 ] as const;
 
 const introText = (
@@ -84,7 +88,7 @@ export default function AboutHero() {
         Janis Jansen
         <span class="about-hero__links">
           {profileLinks.map((i) => (
-            <a href={i.url} target="_blank" rel="noopener">
+            <a href={i.url} target="_blank" rel="noopener" aria-label={i.label}>
               {<i.icon size={20} />}
             </a>
           ))}
@@ -97,7 +101,7 @@ export default function AboutHero() {
       </div>
       <p class="about-hero__intro">{introText}</p>
       <div class="about-hero__timeline">
-        <h4>Some stuff I worked on:</h4>
+        <h3>Some stuff I worked on:</h3>
         {previousWorkList}
       </div>
       <div class="about-hero__pages">

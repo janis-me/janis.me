@@ -34,6 +34,8 @@ export default function Nav() {
     setCurrentColorMode(newColorMode);
   };
 
+  const isCurrentlyLightMode = () => currentTheme() === "light";
+
   return (
     <nav class="nav">
       <h1 class="nav__title">
@@ -41,12 +43,19 @@ export default function Nav() {
       </h1>
 
       <div>
-        <button class="nav__toggle-theme-button" onClick={handleThemeToggle}>
-          {currentTheme() === "light" ? <Moon /> : <Sun />}
+        <button
+          class="nav__toggle-theme-button"
+          onClick={handleThemeToggle}
+          name={isCurrentlyLightMode() ? "dark mode" : "light mode"}
+          title={isCurrentlyLightMode() ? "dark mode" : "light mode"}
+        >
+          {isCurrentlyLightMode() ? <Moon /> : <Sun />}
         </button>
         <button
           class="nav__toggle-theme-button"
           onClick={handleColorModeToggle}
+          name={currentColorMode() ? "less colors" : "more colors!"}
+          title={currentColorMode() ? "less colors" : "more colors"}
         >
           {currentColorMode() ? <Paintbrush /> : <PaintbrushVertical />}
         </button>
