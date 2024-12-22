@@ -54,6 +54,15 @@
         transform: rotate(45deg);
       }
     }
+
+    @include media("<tablet") {
+      font-size: 12px;
+
+      &:after {
+        content: "" !important;
+        margin-left: 8px !important;
+      }
+    }
   }
 
   &__intro {
