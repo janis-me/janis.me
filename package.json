@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
     "@fontsource/ibm-plex-mono": "^5.1.0",
     "include-media": "^2.0.0",
     "lucide-solid": "^0.469.0",

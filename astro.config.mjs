@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import solidJs from "@astrojs/solid-js";
+import sitemap from "@astrojs/sitemap";
 
 import path, { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,7 +11,8 @@ const __dirname = dirname(__filename);
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [solidJs()],
+  site: "https://janis.me",
+  integrations: [solidJs(), sitemap()],
   vite: {
     resolve: {
       alias: {
