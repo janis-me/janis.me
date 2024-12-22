@@ -23,11 +23,15 @@ html[data-theme="dark"][data-colormode="true"] {
   @include applyTheme(themes.$lucie-dark);
 }
 
+html {
+  font-size: 16px;
+}
+
 html,
 body {
   margin: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -40,4 +44,16 @@ body {
 a {
   color: c("text");
   text-decoration: underline;
+}
+
+@include media("<=tablet") {
+  html {
+    font-size: 14px;
+  }
+}
+
+@include media("<=phone") {
+  html {
+    font-size: 12px;
+  }
 }
