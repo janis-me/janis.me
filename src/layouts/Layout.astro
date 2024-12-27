@@ -30,9 +30,11 @@ import "$styles/global.scss";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Personal website of Janis Jansen">
+    <meta name="description" content="Janis Jansen - Fullstack dev & creator">
+    <meta name="keywords" content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf" />
+    <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>janis.me</title>
+    <title>Janis Jansen - my personal website</title>
   </head>
 
   <body data-theme="light" data-colormode="false">
@@ -55,7 +57,8 @@ import "$styles/global.scss";
   .content {
     display: flex;
     align-items: center;
-
+    flex-flow: column;
+    
     overflow: auto;
   }
 </style>
