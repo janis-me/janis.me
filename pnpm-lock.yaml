@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  themed: link:../../../.local/share/pnpm/global/5/node_modules/@janis.me/themed
-  '@janis.me/themed': link:../themed/packages/themed
-
 importers:
 
   .:
@@ -19,8 +15,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.5
       '@janis.me/themed':
-        specifier: link:../themed/packages/themed
-        version: link:../themed/packages/themed
+        specifier: 0.1.6
+        version: 0.1.6
       '@lucide/astro':
         specifier: ^0.503.0
         version: 0.503.0(astro@5.7.4(@types/node@22.14.1)(rollup@4.40.0)(sass@1.87.0)(typescript@5.8.3))
@@ -36,9 +32,6 @@ importers:
       sanitize.css:
         specifier: ^13.0.0
         version: 13.0.0
-      themed:
-        specifier: link:../../../.local/share/pnpm/global/5/node_modules/@janis.me/themed
-        version: link:../../../.local/share/pnpm/global/5/node_modules/@janis.me/themed
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -355,6 +348,10 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@janis.me/themed@0.1.6':
+    resolution: {integrity: sha512-IQq7Lhu+zhk2X8i5UVPi1fzmJiYGgVQT3VPmBMQ6j2OiT0YLFpxKA2Mui75Zyfb8oJ9UjBLr/UNkA8+VW2hlvQ==}
+    engines: {node: '>=22.11.0'}
 
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
@@ -2053,6 +2050,8 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.5':
     optional: true
+
+  '@janis.me/themed@0.1.6': {}
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
