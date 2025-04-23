@@ -32,6 +32,12 @@ importers:
       sanitize.css:
         specifier: ^13.0.0
         version: 13.0.0
+      simple-icons:
+        specifier: ^14.12.3
+        version: 14.12.3
+      simple-icons-astro:
+        specifier: ^14.12.3
+        version: 14.12.3(astro@5.7.4(@types/node@22.14.1)(rollup@4.40.0)(sass@1.87.0)(typescript@5.8.3))
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1466,6 +1472,15 @@ packages:
 
   simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
+
+  simple-icons-astro@14.12.3:
+    resolution: {integrity: sha512-e/yQ/FPA+35YKUQ5EywQkXqnSF5QXrynK04zvidUFt6mNOd1Nm921yDWUpK6tYyzIp7UcvJWh5pQr5mi3kxbwQ==}
+    peerDependencies:
+      astro: '>=2.7.1'
+
+  simple-icons@14.12.3:
+    resolution: {integrity: sha512-P85Pqak4picfTzdujmGL7+pFfsd32K/tDjHPQ8vvJcr2Xk380A9kBVIW5QH86qWqa+YJgFa5huLcUuwmW+YBPQ==}
+    engines: {node: '>=0.12.18'}
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -3508,6 +3523,12 @@ snapshots:
       decompress-response: 6.0.0
       once: 1.4.0
       simple-concat: 1.0.1
+
+  simple-icons-astro@14.12.3(astro@5.7.4(@types/node@22.14.1)(rollup@4.40.0)(sass@1.87.0)(typescript@5.8.3)):
+    dependencies:
+      astro: 5.7.4(@types/node@22.14.1)(rollup@4.40.0)(sass@1.87.0)(typescript@5.8.3)
+
+  simple-icons@14.12.3: {}
 
   simple-swizzle@0.2.2:
     dependencies:

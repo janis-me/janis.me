@@ -1,9 +1,19 @@
 ---
-import { Github, Linkedin, Youtube } from "@lucide/astro";
+import { Github, Bluesky, Youtube } from "simple-icons-astro";
+import { Linkedin } from "@lucide/astro";
 
 const profileLinks = [
   { icon: Github, url: "https://github.com/carnageous", label: "Github" },
-  { icon: Youtube, url: "https://www.youtube.com/@roulzhq", label: "Youtube" },
+  {
+    icon: Bluesky,
+    url: "https://bsky.app/profile/janis.me",
+    label: "Youtube",
+  },
+  {
+    icon: Youtube,
+    url: "https://www.youtube.com/@roulzhq",
+    label: "Youtube",
+  },
   {
     icon: Linkedin,
     url: "https://www.linkedin.com/in/janis-jansen",
@@ -26,7 +36,7 @@ const badges = [
       {
         profileLinks.map((i) => (
           <a href={i.url} target="_blank" rel="noopener" aria-label={i.label}>
-            {<i.icon size={20} />}
+            <i.icon />
           </a>
         ))
       }
@@ -46,6 +56,22 @@ const badges = [
   <div class="about-hero__timeline">
     <h3>Some stuff I worked on:</h3>
     <ul>
+      <li>
+        <b>
+          <a href="https://themed.janis.me" target="_blank" rel="noopener">
+            @janis.me/themed
+          </a>
+        </b>{" "}
+        - batteries included, 'Type-save' SCSS theming library. Add themes to your
+        website with 0 effort. Also checkout my
+        <a
+          href="https://themed-playground.janis.me"
+          target="_blank"
+          rel="noopener"
+        >
+          SCSS playground
+        </a>
+      </li>
       <li>
         <b>
           <a href="https://divecae.com" target="_blank" rel="noopener">
@@ -129,6 +155,10 @@ const badges = [
 
       a {
         color: themed("text");
+      }
+
+      svg {
+        fill: themed("text");
       }
     }
 

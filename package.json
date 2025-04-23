@@ -17,6 +17,7 @@
     "include-media": "^2.0.0",
     "lucide": "^0.503.0",
     "sanitize.css": "^13.0.0",
+    "simple-icons-astro": "^14.12.3",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
