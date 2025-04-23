@@ -1,28 +1,6 @@
 ---
-import Nav from "$components/Nav/Nav";
-import "$styles/global.scss";
+import Nav from "$components/Nav/Nav.astro";
 ---
-
-<script>
-  import {
-    getPreferredColorMode,
-    getPreferredTheme,
-    setColorMode,
-    setTheme,
-  } from "$utils/theme.utils";
-
-  const initialTheme = getPreferredTheme();
-  const initialColorMode = getPreferredColorMode();
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      setTheme(event.matches ? "dark" : "light");
-    });
-
-  setTheme(initialTheme);
-  setColorMode(initialColorMode);
-</script>
 
 <html lang="en">
   <head>
@@ -30,15 +8,26 @@ import "$styles/global.scss";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Janis Jansen - Fullstack dev & creator">
-    <meta name="keywords" content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf" />
-    <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
+    <meta name="description" content="Janis Jansen - Fullstack dev & creator" />
+    <meta
+      name="keywords"
+      content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf"
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:[120], max-image-preview:[large]"
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>Janis Jansen - my personal website</title>
+    <title>Janis Jansen - personal website</title>
   </head>
+  <script>
+    import { setDefaultTheme } from "@janis.me/themed/js";
 
-  <body data-theme="light" data-colormode="false">
-    <Nav client:only />
+    setDefaultTheme();
+  </script>
+
+  <body>
+    <Nav />
 
     <main class="content">
       <slot />
@@ -46,7 +35,8 @@ import "$styles/global.scss";
   </body>
 </html>
 
-<style lang="scss">
+<style lang="scss" is:global>
+  @use "$styles/index";
   @use "$styles/config";
 
   body {
@@ -58,7 +48,7 @@ import "$styles/global.scss";
     display: flex;
     align-items: center;
     flex-flow: column;
-    
+
     overflow: auto;
   }
 </style>

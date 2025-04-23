@@ -1,18 +1,9 @@
-@use "include-media" as *;
-
-@use "$styles/index.scss" as *;
-
-$breakpoints: (
-  ultrawide: 2000px,
-  phone: 420px,
-  tablet: 768px,
-  desktop: 1024px,
-);
+@use "globals.scss" as *;
 
 @mixin contentContainer {
   min-height: 100px;
   width: 40%;
-  border: 1px solid c("grey-3");
+  border: 1px solid themed("grey-3");
 
   margin: auto;
 

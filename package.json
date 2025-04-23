@@ -9,20 +9,26 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
-    "@fontsource/ibm-plex-mono": "^5.1.0",
+    "@astrojs/sitemap": "^3.3.0",
+    "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@janis.me/themed": "link:../themed/packages/themed",
+    "@lucide/astro": "^0.503.0",
     "astro-webmanifest": "^1.0.0",
     "include-media": "^2.0.0",
-    "jspdf": "^2.5.2",
-    "lucide-solid": "^0.469.0",
+    "lucide": "^0.503.0",
     "sanitize.css": "^13.0.0",
-    "sharp": "^0.33.5",
-    "solid-js": "^1.9.3"
+    "themed": "link:../../../.local/share/pnpm/global/5/node_modules/@janis.me/themed",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@astrojs/solid-js": "^4.4.4",
     "@types/node": "^22.10.2",
-    "astro": "^4.16.18",
-    "sass": "^1.83.0"
+    "astro": "^5.7.4",
+    "sass": "^1.87.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "themed": "link:../../../.local/share/pnpm/global/5/node_modules/@janis.me/themed",
+      "@janis.me/themed": "link:../themed/packages/themed"
+    }
   }
 }

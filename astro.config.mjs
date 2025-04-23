@@ -1,6 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-import solidJs from "@astrojs/solid-js";
+import { defineConfig, passthroughImageService } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 import webmanifest from "astro-webmanifest";
@@ -14,8 +13,10 @@ const __dirname = dirname(__filename);
 // https://astro.build/config
 export default defineConfig({
   site: "https://janis.me",
+  image: {
+    service: passthroughImageService(),
+  },
   integrations: [
-    solidJs(),
     sitemap(),
     webmanifest({
       name: "janis.me - my personal website",
@@ -36,15 +37,6 @@ export default defineConfig({
     resolve: {
       alias: {
         $: `${path.resolve(__dirname, "src")}`,
-      },
-    },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // path to your scss variables
-          api: "modern-compiler",
-          additionalData: `@use "$styles/index.scss" as *;\n@use "include-media" as *;\n\n`,
-        },
       },
     },
   },
