@@ -21,9 +21,21 @@ import Nav from "$components/Nav/Nav.astro";
     <title>Janis Jansen - personal website</title>
   </head>
   <script>
-    import { setDefaultTheme } from "@janis.me/themed/js";
+    import { setThemeToDocument, getPreferredColorScheme, getThemeFromLocalstorage } from "@janis.me/themed/js";
 
-    setDefaultTheme();
+    const lsTheme = getThemeFromLocalstorage();
+
+    if(lsTheme) {
+      const lsThemeComponents = lsTheme.split("-");
+      if(!['janis', 'lucie'].includes(lsThemeComponents[0]) || !['light', 'dark'].includes(lsThemeComponents[1])) {
+        setThemeToDocument('janis-light');
+      } else {
+        setThemeToDocument(lsTheme);
+      }
+    } else {
+      const preferredTheme = getPreferredColorScheme();
+      setThemeToDocument(preferredTheme === 'light' ? 'janis-light' : 'janis-dark');
+    }
   </script>
 
   <body>

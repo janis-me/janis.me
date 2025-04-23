@@ -1,5 +1,6 @@
 <script>
-  import {
+  import { watchPreferredColorScheme } from "@janis.me/themed/js";
+import {
     getThemeFromDocument,
     setTheme,
     watchThemeAttribute,
@@ -52,6 +53,12 @@
       modeButton.appendChild(modeIcon);
     }
   });
+
+  watchPreferredColorScheme(scheme => {
+    const currentTheme = getThemeFromDocument();
+    const currentMode = currentTheme?.split("-")[0];
+    setTheme(`${currentMode}-${scheme}`);
+  })
 </script>
 
 <nav class="nav">
