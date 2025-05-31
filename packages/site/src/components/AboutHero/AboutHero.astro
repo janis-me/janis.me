@@ -1,0 +1,213 @@
+---
+import { Linkedin } from '@lucide/astro';
+import { Bluesky, Github, Youtube } from 'simple-icons-astro';
+
+const profileLinks = [
+  { icon: Github, url: 'https://github.com/janis-me', label: 'Github' },
+  {
+    icon: Bluesky,
+    url: 'https://bsky.app/profile/janis.me',
+    label: 'Youtube',
+  },
+  {
+    icon: Youtube,
+    url: 'https://www.youtube.com/@roulzhq',
+    label: 'Youtube',
+  },
+  {
+    icon: Linkedin,
+    url: 'https://www.linkedin.com/in/janis-jansen',
+    label: 'Linkedin',
+  },
+] as const;
+
+const badges = ['fullstack-dev', 'ts-nerd', 'wasm-fanatic', 'scss-addict'] as const;
+---
+
+<div class="about-hero">
+  <h2 class="about-hero__title">
+    Janis Jansen
+    <span class="about-hero__links">
+      {
+        profileLinks.map(i => (
+          <a href={i.url} target="_blank" rel="noopener" aria-label={i.label}>
+            <i.icon />
+          </a>
+        ))
+      }
+    </span>
+  </h2>
+  <div class="about-hero__badges">
+    {badges.map(i => <span class="about-hero__badge">{i}</span>)}
+  </div>
+  <p class="about-hero__intro">
+    Hey there! I'm Janis, a full-stack developer from Germany, passionate about turning next-gen web tech into something
+    real and useful for customers.{' '}
+    <br />
+    It's been 9 years (wow, time flies!) of working on exciting projects, from cloud-based CAE software and HMIs to applied
+    machine learning and 3D interfaces—just to name a few. Always looking for new ways to innovate and make things happen!
+  </p>
+  <div class="about-hero__timeline">
+    <h3>Some stuff I worked on:</h3>
+    <ul>
+      <li>
+        <b>
+          <a href="https://themed.janis.me" target="_blank" rel="noopener"> @janis.me/themed </a>
+        </b>{' '}
+        - batteries included, 'Type-save' SCSS theming library. Add themes to your website with 0 effort. Also checkout my
+        <a href="https://themed-playground.janis.me" target="_blank" rel="noopener"> SCSS playground </a>
+      </li>
+      <li>
+        <b>
+          <a href="https://divecae.com" target="_blank" rel="noopener"> Dive CAE </a>
+        </b>{' '}
+        - built the leading cloud-native CAE platform <i>dive</i>. Enabling users to set-up and analyze massive fluid
+        simulations in the browser
+      </li>
+      <li>
+        <b>
+          <a href="https://licensephobia.com" target="_blank" rel="noopener"> Licensephobia </a>
+        </b>{' '}
+        - never be afraid of OpenSource licenses again. Check your dependency files (npm, pip, cargo...) and know exactly
+        what rights you have.
+      </li>
+      <li>
+        <b>
+          <a href="https://youtube.com/@roulzhq" target="_blank" rel="noopener"> ROULZ (youtube) </a>
+        </b>{' '}
+        - Tech content, making easy to follow deep-dives into interesting topics.
+      </li>
+      <li>
+        <b>
+          <a href="https://sms-group.com" target="_blank" rel="noopener"> SMS Group </a>
+        </b>{' '}
+        - enabled SMS's physical and mathmatical models to run in the cloud, built new ML-based prediction models for steel
+        plants
+      </li>
+      <li>
+        <b>
+          <a href="https://caddly.roulz.com/" target="_blank" rel="noopener"> Caddly </a>
+        </b>{' '}
+        - A config file builder for the caddy webserver
+      </li>
+    </ul>
+  </div>
+  <div class="about-hero__pages">
+    <a href="/imprint">Imprint</a>
+    <a href="/contact">Contact</a>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '$styles/globals' as *;
+  @use '$styles/mixins';
+
+  .about-hero {
+    display: grid;
+    grid-template-areas: 'title title' 'badges badges' 'intro timeline' 'pages pages';
+    grid-template-columns: 1fr 2fr;
+
+    @include mixins.contentContainer;
+
+    @include media('<tablet') {
+      grid-template-areas: 'title title' 'badges badges' 'intro intro' 'timeline timeline' 'pages pages';
+    }
+
+    &__title {
+      grid-area: title;
+
+      margin: 0;
+      padding: 8px;
+
+      border-bottom: 1px solid themed('grey-3');
+    }
+
+    &__links {
+      margin-left: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      a {
+        color: themed('text');
+      }
+
+      svg {
+        fill: themed('text');
+      }
+    }
+
+    &__badges {
+      grid-area: badges;
+
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+
+      border-bottom: 1px solid themed('grey-3');
+    }
+
+    &__badge {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+
+      &:not(:last-of-type) {
+        &:after {
+          content: '■';
+          display: inline-block;
+          text-decoration: none;
+          margin-left: 12px;
+          transform: rotate(45deg);
+        }
+      }
+
+      @include media('<tablet') {
+        font-size: 12px;
+
+        &:after {
+          content: '' !important;
+          margin-left: 8px !important;
+        }
+      }
+    }
+
+    &__intro {
+      grid-area: intro;
+
+      margin: 0;
+      display: block;
+      padding: 8px;
+      border-right: 1px dashed themed('grey-3');
+
+      @include media('<tablet') {
+        border-right: none;
+        border-bottom: 1px dashed themed('grey-3');
+      }
+    }
+
+    &__timeline {
+      grid-area: timeline;
+
+      padding: 8px;
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+    }
+
+    &__pages {
+      grid-area: pages;
+
+      display: flex;
+      justify-content: space-evenly;
+      border-top: 1px solid themed('grey-3');
+
+      padding: 8px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+</style>
