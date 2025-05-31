@@ -125,7 +125,7 @@ const currentUrl = Astro.url.pathname;
     border: 1px solid themed('gray-8');
 
     display: grid;
-    grid-template-rows: config.$nav-height auto config.$footer-height;
+    grid-template-rows: config.$nav-height 1fr config.$footer-height;
 
     margin: auto;
 
@@ -195,5 +195,6 @@ const currentUrl = Astro.url.pathname;
   .content {
     overflow-y: auto;
     height: 100%;
+    min-height: config.$content-min-height;
   }
 </style>

@@ -30,7 +30,7 @@ const data = User.parse(input);
 
 Sadly, you cannot do it quite this elegantly in Sass, because you cannot build functional factories like `.number().min(1).label("age")`. Also, while you can specify functions as part of maps like this:
 
-```scss
+```scss {1,3-5}
 @use 'sass:meta';
 
 @function something() {
