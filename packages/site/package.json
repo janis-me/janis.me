@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "include-media": "^2.0.0",
-    "lucide": "^0.503.0",
-    "sanitize.css": "^13.0.0",
-    "simple-icons-astro": "^14.12.3",
-    "typescript": "^5.8.3"
+    "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.0",
@@ -29,6 +29,7 @@
     "rehype-autolink-headings": "^7.1.0",
     "remark-custom-header-id": "^1.0.0",
     "sass": "^1.87.0",
-    "sharp": "^0.34.2"
+    "sharp": "^0.34.2",
+    "typescript": "^5.8.3"
   }
 }

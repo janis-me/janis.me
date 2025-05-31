@@ -1,64 +1,52 @@
 <script>
-  import { watchPreferredColorScheme } from "@janis.me/themed/js";
-import {
-    getThemeFromDocument,
-    setTheme,
-    watchThemeAttribute,
-  } from "@janis.me/themed/js";
-  import {
-    createElement,
-    Sun,
-    Moon,
-    Paintbrush,
-    PaintbrushVertical,
-  } from "lucide";
+  import { icon } from '@fortawesome/fontawesome-svg-core';
+  import { faDroplet, faDropletSlash, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
-  const lightDarkButton = document.getElementById("nav-toggle-dark-button");
-  const modeButton = document.getElementById("nav-toggle-mode-button");
+  import { getThemeFromDocument, setTheme, watchPreferredColorScheme, watchThemeAttribute } from '@janis.me/themed/js';
 
-  lightDarkButton?.addEventListener("click", () => {
+  const DropletIcon = icon(faDroplet);
+  const DropletSlashIcon = icon(faDropletSlash);
+  const MoonIcon = icon(faMoon);
+  const SunIcon = icon(faSun);
+
+  const lightDarkButton = document.getElementById('nav-toggle-dark-button');
+  const modeButton = document.getElementById('nav-toggle-mode-button');
+
+  lightDarkButton?.addEventListener('click', () => {
     const currentTheme = getThemeFromDocument();
     if (!currentTheme) return;
-    const themeComponents = currentTheme.split("-");
-    setTheme(
-      `${themeComponents[0]}-${themeComponents[1] === "dark" ? "light" : "dark"}`
-    );
+    const themeComponents = currentTheme.split('-');
+    setTheme(`${themeComponents[0]}-${themeComponents[1] === 'dark' ? 'light' : 'dark'}`);
   });
 
-  modeButton?.addEventListener("click", () => {
+  modeButton?.addEventListener('click', () => {
     const currentTheme = getThemeFromDocument();
     if (!currentTheme) return;
-    const themeComponents = currentTheme.split("-");
-    setTheme(
-      `${themeComponents[0] === "lucie" ? "janis" : "lucie"}-${themeComponents[1]}`
-    );
+    const themeComponents = currentTheme.split('-');
+    setTheme(`${themeComponents[0] === 'lucie' ? 'janis' : 'lucie'}-${themeComponents[1]}`);
   });
 
-  watchThemeAttribute((theme) => {
+  watchThemeAttribute(theme => {
     if (!theme) return;
-    const themeComponents = theme.split("-");
-    const lightDarkIcon =
-      themeComponents[1] === "dark" ? createElement(Sun) : createElement(Moon);
-    const modeIcon =
-      themeComponents[0] === "lucie"
-        ? createElement(Paintbrush)
-        : createElement(PaintbrushVertical);
+    const themeComponents = theme.split('-');
+    const lightDarkIcon = themeComponents[1] === 'dark' ? SunIcon : MoonIcon;
+    const modeIcon = themeComponents[0] === 'lucie' ? DropletSlashIcon : DropletIcon;
 
     if (lightDarkButton) {
-      lightDarkButton.innerHTML = "";
-      lightDarkButton.appendChild(lightDarkIcon);
+      lightDarkButton.innerHTML = '';
+      lightDarkButton.appendChild(lightDarkIcon.node[0]);
     }
     if (modeButton) {
-      modeButton.innerHTML = "";
-      modeButton.appendChild(modeIcon);
+      modeButton.innerHTML = '';
+      modeButton.appendChild(modeIcon.node[0]);
     }
   });
 
   watchPreferredColorScheme(scheme => {
     const currentTheme = getThemeFromDocument();
-    const currentMode = currentTheme?.split("-")[0];
+    const currentMode = currentTheme?.split('-')[0];
     setTheme(`${currentMode}-${scheme}`);
-  })
+  });
 </script>
 
 <nav class="nav">
@@ -66,17 +54,15 @@ import {
     <a href="/">janis.me</a>
   </h1>
 
-  <div>
-    <button class="nav__toggle-theme-button" id="nav-toggle-dark-button">
-    </button>
-    <button class="nav__toggle-theme-button" id="nav-toggle-mode-button">
-    </button>
+  <div class="nav__buttons">
+    <button class="nav__toggle-theme-button" id="nav-toggle-dark-button"> </button>
+    <button class="nav__toggle-theme-button" id="nav-toggle-mode-button"> </button>
   </div>
 </nav>
 
 <style lang="scss">
-  @use "$styles/globals" as *;
-  @use "$styles/config";
+  @use '$styles/globals' as *;
+  @use '$styles/config';
 
   .nav {
     width: 100%;
@@ -87,7 +73,7 @@ import {
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: 1px solid themed("grey-3");
+    border-bottom: 1px solid themed('grey-3');
 
     backdrop-filter: blur(100px);
 
@@ -95,14 +81,21 @@ import {
       margin: 0;
     }
 
+    &__buttons {
+      display: flex;
+      gap: 16px;
+    }
+
     &__toggle-theme-button {
-      color: themed("text");
+      color: themed('text');
       background-color: transparent;
       border: none;
       cursor: pointer;
+      font-size: 1.3em;
+      width: 32px;
     }
 
-    @include media("<=tablet") {
+    @include media('<=tablet') {
       padding: 0 8px;
     }
   }

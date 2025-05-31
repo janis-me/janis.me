@@ -1,21 +1,26 @@
 ---
-import { Linkedin } from '@lucide/astro';
-import { Bluesky, Github, Youtube } from 'simple-icons-astro';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+
+const GithubIcon = icon(faGithub);
+const BlueskyIcon = icon(faBluesky);
+const YoutubeIcon = icon(faYoutube);
+const LinkedinIcon = icon(faLinkedin);
 
 const profileLinks = [
-  { icon: Github, url: 'https://github.com/janis-me', label: 'Github' },
+  { icon: GithubIcon, url: 'https://github.com/janis-me', label: 'Github' },
   {
-    icon: Bluesky,
+    icon: BlueskyIcon,
     url: 'https://bsky.app/profile/janis.me',
-    label: 'Youtube',
+    label: 'Bluesky',
   },
   {
-    icon: Youtube,
+    icon: YoutubeIcon,
     url: 'https://www.youtube.com/@roulzhq',
     label: 'Youtube',
   },
   {
-    icon: Linkedin,
+    icon: LinkedinIcon,
     url: 'https://www.linkedin.com/in/janis-jansen',
     label: 'Linkedin',
   },
@@ -31,7 +36,7 @@ const badges = ['fullstack-dev', 'ts-nerd', 'wasm-fanatic', 'scss-addict'] as co
       {
         profileLinks.map(i => (
           <a href={i.url} target="_blank" rel="noopener" aria-label={i.label}>
-            <i.icon />
+            <Fragment set:html={i.icon.html} />
           </a>
         ))
       }
