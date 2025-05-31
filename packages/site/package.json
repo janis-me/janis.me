@@ -23,6 +23,7 @@
     "@janis.me/linter-config": "workspace:*",
     "@janis.me/themed": "0.2.0",
     "@janis.me/typescript-config": "workspace:*",
+    "@shikijs/transformers": "^3.4.2",
     "@types/node": "^22.10.2",
     "astro": "^5.8.1",
     "astro-webmanifest": "^1.0.0",

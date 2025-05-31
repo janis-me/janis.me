@@ -123,18 +123,9 @@ importers:
       include-media:
         specifier: ^2.0.0
         version: 2.0.0
-      lucide:
-        specifier: ^0.503.0
-        version: 0.503.0
       sanitize.css:
         specifier: ^13.0.0
         version: 13.0.0
-      simple-icons-astro:
-        specifier: ^14.12.3
-        version: 14.15.0(astro@5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0))
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
     devDependencies:
       '@astrojs/mdx':
         specifier: ^4.3.0
@@ -151,6 +142,9 @@ importers:
       '@janis.me/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@shikijs/transformers':
+        specifier: ^3.4.2
+        version: 3.4.2
       '@types/node':
         specifier: ^22.10.2
         version: 22.15.29
@@ -172,6 +166,9 @@ importers:
       sharp:
         specifier: ^0.34.2
         version: 0.34.2
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/typescript-config: {}
 
@@ -956,6 +953,9 @@ packages:
 
   '@shikijs/themes@3.4.2':
     resolution: {integrity: sha512-qAEuAQh+brd8Jyej2UDDf+b4V2g1Rm8aBIdvt32XhDPrHvDkEnpb7Kzc9hSuHUxz0Iuflmq7elaDuQAP9bHIhg==}
+
+  '@shikijs/transformers@3.4.2':
+    resolution: {integrity: sha512-I5baLVi/ynLEOZoWSAMlACHNnG+yw5HDmse0oe+GW6U1u+ULdEB3UHiVWaHoJSSONV7tlcVxuaMy74sREDkSvg==}
 
   '@shikijs/types@3.4.2':
     resolution: {integrity: sha512-zHC1l7L+eQlDXLnxvM9R91Efh2V4+rN3oMVS2swCBssbj2U/FBwybD1eeLaq8yl/iwT+zih8iUbTBCgGZOYlVg==}
@@ -2097,9 +2097,6 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lucide@0.503.0:
-    resolution: {integrity: sha512-ZAVlxBU4dbSUAVidb2eT0fH3bTtKCj7M2aZNAVsFOrcnazvYJFu6I8OxFE+Fmx5XNf22Cw4Ln3NBHfBxNfoFOw==}
-
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
@@ -2763,11 +2760,6 @@ packages:
 
   simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
-
-  simple-icons-astro@14.15.0:
-    resolution: {integrity: sha512-rfc3sgjoP2VhDpq4B+5HHi+QAnftpfjzcbwdu/sfgWE9R3fMYFusobC69fYkLVVM0j74ko2w1qKQiYzfMH0k7A==}
-    peerDependencies:
-      astro: '>=2.7.1'
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -3939,6 +3931,11 @@ snapshots:
 
   '@shikijs/themes@3.4.2':
     dependencies:
+      '@shikijs/types': 3.4.2
+
+  '@shikijs/transformers@3.4.2':
+    dependencies:
+      '@shikijs/core': 3.4.2
       '@shikijs/types': 3.4.2
 
   '@shikijs/types@3.4.2':
@@ -5418,8 +5415,6 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lucide@0.503.0: {}
-
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -6561,10 +6556,6 @@ snapshots:
       decompress-response: 6.0.0
       once: 1.4.0
       simple-concat: 1.0.1
-
-  simple-icons-astro@14.15.0(astro@5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0)):
-    dependencies:
-      astro: 5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0)
 
   simple-swizzle@0.2.2:
     dependencies:

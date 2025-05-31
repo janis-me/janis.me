@@ -1,5 +1,5 @@
 ---
-import Layout from "$layouts/Layout.astro";
+import Layout from '$layouts/Layout.astro';
 ---
 
 <head>
@@ -8,41 +8,18 @@ import Layout from "$layouts/Layout.astro";
 
 <Layout>
   <div class="imprint">
-    <h2>Imprint</h2>
-    <div class="imprint__text">I don't need a fucking imprint.</div>
-    <div class="imprint__pages">
-      <p>Imprint</p>
-      <a href="/contact">Contact</a>
-    </div>
+    <p>
+      This is a personal website. I don't need an imprint. If you want to sue me for that, please see the <a
+        href="/contact">contact</a
+      > page
+    </p>
   </div>
 </Layout>
 
 <style lang="scss">
-  @use "$styles/globals" as *;
-  @use "$styles/mixins";
+  @use '$styles/globals' as *;
 
   .imprint {
-    @include mixins.contentContainer;
-
-    h2 {
-      margin: 0 0 0 8px;
-    }
-
-    &__text {
-      padding: 8px;
-      border-top: 1px solid themed("grey-3");
-    }
-
-    &__pages {
-      display: flex;
-      justify-content: space-evenly;
-      border-top: 1px solid themed("grey-3");
-
-      padding: 8px;
-
-      p {
-        margin: 0;
-      }
-    }
+    padding: 0 themed('size-16');
   }
 </style>

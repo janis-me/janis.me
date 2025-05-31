@@ -1,0 +1,38 @@
+---
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import Layout from '$layouts/Layout.astro';
+
+const ChevronLeftIcon = icon(faCircleChevronLeft);
+---
+
+<Layout>
+  <div class="blog">
+    <div class="blog__header">
+      <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /> <span>back to all articles</span></a>
+    </div>
+    <div class="blog__content">
+      <slot />
+    </div>
+  </div>
+</Layout>
+
+<style lang="scss" is:global>
+  @use '$styles/globals' as *;
+
+  .blog {
+    &__header {
+      border-bottom: 1px dashed themed('gray-8');
+      padding: themed('size-8') themed('size-16');
+
+      a > span {
+        text-decoration: underline;
+        text-decoration-style: dashed;
+      }
+    }
+
+    &__content {
+      padding: 0 themed('size-16');
+    }
+  }
+</style>

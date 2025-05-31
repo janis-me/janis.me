@@ -49,31 +49,32 @@
   });
 </script>
 
-<nav class="nav">
-  <h1 class="nav__title">
-    <a href="/">janis.me</a>
-  </h1>
+<header class="header">
+  <a href="/">
+    <h1 class="header__title">janis.me</h1>
+  </a>
 
-  <div class="nav__buttons">
-    <button class="nav__toggle-theme-button" id="nav-toggle-dark-button"> </button>
-    <button class="nav__toggle-theme-button" id="nav-toggle-mode-button"> </button>
+  <div class="header__buttons">
+    <button class="header__toggle-theme-button" id="nav-toggle-dark-button" aria-label="toggle dark/light mode"
+    ></button>
+    <button class="header__toggle-theme-button" id="nav-toggle-mode-button" aria-label="toggle color mode"></button>
   </div>
-</nav>
+</header>
 
 <style lang="scss">
   @use '$styles/globals' as *;
   @use '$styles/config';
 
-  .nav {
+  .header {
     width: 100%;
-    height: config.$nav-height;
+    height: config.$header-height;
     padding: 0 64px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: 1px solid themed('grey-3');
+    border-bottom: 1px solid themed('gray-8');
 
     backdrop-filter: blur(100px);
 

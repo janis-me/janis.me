@@ -1,9 +1,8 @@
 ---
-import { Picture } from "astro:assets";
+import Layout from '$layouts/Layout.astro';
+import { Picture } from 'astro:assets';
 
-import Layout from "$layouts/Layout.astro";
-
-import mailImage from "../assets/mail.png"; // Image is 1600x900
+import mailImage from '../assets/mail.png'; // Image is 1600x900
 ---
 
 <head>
@@ -12,50 +11,25 @@ import mailImage from "../assets/mail.png"; // Image is 1600x900
 
 <Layout>
   <div class="contact">
-    <h2>Contact</h2>
-    <div class="contact__text">
-      <p>
-        You can reach me via:
-        <Picture
-          src={mailImage}
-          alt="My email. Sorry, only an image. You can reach out to me on linkedin if you need to."
-        />
-        or send me a message on linkedin.
-      </p>
-    </div>
-    <div class="contact__pages">
-      <a href="/imprint">Imprint</a>
-      <p>Contact</p>
-    </div>
+    <p>
+      You can reach me via:
+      <Picture
+        src={mailImage}
+        alt="My email. Sorry, only an image. You can reach out to me on linkedin if you need to."
+      />
+      or hit me up on <a href="https://bsky.app/profile/janis.me" target="_blank" rel="noopener">Bluesky</a>
+    </p>
   </div>
 </Layout>
 
 <style lang="scss">
-  @use "$styles/globals" as *;
-  @use "$styles/mixins";
+  @use '$styles/globals' as *;
 
   .contact {
-    @include mixins.contentContainer;
+    padding: 0 themed('size-16');
 
-    h2 {
-      margin: 0 0 0 8px;
-    }
-
-    &__text {
-      padding: 8px;
-      border-top: 1px solid themed("grey-3");
-    }
-
-    &__pages {
-      display: flex;
-      justify-content: space-evenly;
-      border-top: 1px solid themed("grey-3");
-
-      padding: 8px;
-
-      p {
-        margin: 0;
-      }
+    p {
+      gap: themed('size-4');
     }
   }
 </style>

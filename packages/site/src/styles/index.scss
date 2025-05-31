@@ -1,9 +1,90 @@
-@use "@fontsource/ibm-plex-mono";
-@use "sanitize.css";
+@use '@fontsource/ibm-plex-mono';
+@use 'sanitize.css';
 
-@use "$styles/globals" as *;
+@use '$styles/globals' as *;
 
 @include apply();
+
+html[data-theme='janis-dark'] {
+  code,
+  .astro-code,
+  .astro-code span,
+  .astro-code .line {
+    background-color: themed('gray-3') !important;
+    color: var(--shiki-dark) !important;
+  }
+}
+
+html[data-theme='janis-light'] {
+  code,
+  .astro-code,
+  .astro-code span,
+  .astro-code .line {
+    background-color: themed('gray-3') !important;
+  }
+}
+
+html[data-theme='lucie-light'] {
+  code,
+  .astro-code,
+  .astro-code span,
+  .astro-code .line {
+    background-color: themed('gray-5') !important;
+  }
+}
+
+html[data-theme='lucie-dark'] {
+  code,
+  .astro-code,
+  .astro-code span,
+  .astro-code .line {
+    color: var(--shiki-dark) !important;
+    background-color: themed('gray-3') !important;
+  }
+}
+
+.astro-code {
+  code {
+    display: inline-block;
+    padding: 0 !important;
+    width: 100%;
+
+    // the usual styling
+    .line {
+      display: inline-block;
+      width: 100%;
+      padding: themed('size-2') themed('size-8');
+    }
+
+    $highlighted-border: 2px dotted themed('text');
+
+    &:has(.highlighted) {
+      .line:not(.highlighted) {
+        filter: blur(1px);
+      }
+
+      // Select the first highlighted line that comes after a non-highlighted line
+      .line:not(.highlighted):has(+ .highlighted) + .highlighted {
+        border-top: $highlighted-border;
+      }
+
+      .highlighted {
+        border-left: $highlighted-border;
+        border-right: $highlighted-border;
+      }
+
+      // The first highlighted line, if there is no previous line
+      .highlighted:first-of-type {
+        border-top: $highlighted-border;
+      }
+
+      // highlighted lines that are not followed by another highlighted line
+      .highlighted:not(:has(+ .highlighted)) {
+        border-bottom: $highlighted-border;
+      }
+    }
+  }
+}
 
 html {
   font-size: 16px;
@@ -18,9 +99,9 @@ body {
 }
 
 body {
-  font-family: "IBM Plex Mono", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: themed("background");
-  color: themed("text");
+  font-family: 'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: themed('background');
+  color: themed('text');
 }
 
 p {
@@ -28,17 +109,23 @@ p {
 }
 
 a {
-  color: themed("text");
+  color: themed('text');
   text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: themed('size-6');
+
+  &:has(svg, h1, h2, h3, h4, h5, h6) {
+    text-decoration: none;
+  }
 }
 
-@include media("<=tablet") {
+@include media('<=tablet') {
   html {
     font-size: 14px;
   }
 }
 
-@include media("<=phone") {
+@include media('<=phone') {
   html {
     font-size: 12px;
   }
