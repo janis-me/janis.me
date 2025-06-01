@@ -17,6 +17,7 @@
   "scripts": {
     "build": "pnpm --filter ./packages/site run build",
     "deps": "pnpm taze",
+    "dev": "pnpm --filter ./packages/site run dev",
     "format": "prettier --write .",
     "lint": "eslint --flag unstable_config_lookup_from_file .",
     "test": "vitest"
