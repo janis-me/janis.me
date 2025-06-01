@@ -32,5 +32,15 @@
     "sass": "^1.87.0",
     "sharp": "^0.34.2",
     "typescript": "^5.8.3"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "libc": [
+        "musl"
+      ]
+    },
+    "overrides": {
+      "sharp": "0.34.2"
+    }
   }
 }
