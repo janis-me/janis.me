@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { transformerMetaHighlight } from '@shikijs/transformers';
 import webmanifest from 'astro-webmanifest';
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import autolinkHeadings from 'rehype-autolink-headings';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +14,9 @@ const __dirname = dirname(__filename);
 // https://astro.build/config
 export default defineConfig({
   site: 'https://janis.me',
+  image: {
+    service: passthroughImageService(),
+  },
   integrations: [
     sitemap(),
     webmanifest({

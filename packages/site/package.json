@@ -15,8 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "include-media": "^2.0.0",
-    "sanitize.css": "^13.0.0",
-    "sharp": "^0.34.2"
+    "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.3.0",

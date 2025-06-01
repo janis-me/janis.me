@@ -4,14 +4,6 @@ packages:
 ignoredBuiltDependencies:
   - esbuild
 
-supportedArchitectures:
-  os:
-    - darwin
-    - current
-  cpu:
-    - x64
-    - arm64
-
 catalogs:
   build:
     vite: ^6.3.5
