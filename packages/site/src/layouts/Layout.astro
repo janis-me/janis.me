@@ -94,12 +94,14 @@ const currentUrl = Astro.url.pathname;
       </main>
       <footer class="footer">
         <p>
-          You're looking at static HTML - Made with
+          <span class="footer__extra">You're looking at static HTML - </span> made with
           <a href="https://janis.me/themed" target="_blank" rel="noopener">themed</a>,
           <a href="https://surimi.dev">surimi.dev</a>,
           <a href="https://github.com/remarkjs/remark">remark</a> and
-          <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>. -
-          <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener">view source</a>
+          <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+          <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener" class="footer__extra">
+            - view source
+          </a>
         </p>
       </footer>
     </div>
@@ -109,45 +111,53 @@ const currentUrl = Astro.url.pathname;
 <style lang="scss" is:global>
   @use '$styles/index';
   @use '$styles/globals' as *;
-  @use '$styles/config';
 
   body {
     display: grid;
-    grid-template-rows: config.$nav-height auto;
+    grid-template-rows: themed('size-80') auto;
+
+    @include media('<=tablet') {
+      grid-template-rows: themed('size-64') auto;
+    }
   }
 
   .container {
     min-height: 100px;
-    max-height: 70%;
+    height: 100%;
     width: 40%;
     overflow: hidden;
     position: relative;
     border: 1px solid themed('gray-8');
 
     display: grid;
-    grid-template-rows: config.$nav-height 1fr config.$footer-height;
+    grid-template-rows: themed('size-48') 1fr fit-content(themed('size-48'));
 
     margin: auto;
 
     @include media('>=ultrawide') {
       width: 40%;
+      max-height: 70%;
     }
 
     @include media('>desktop', '<ultrawide') {
       width: 60%;
+      max-height: 80%;
     }
 
     @include media('>=tablet', '<desktop') {
       width: 80%;
+      max-height: 80%;
     }
 
     @include media('>=phone', '<tablet') {
       width: 90%;
+      max-height: 90%;
     }
 
     @include media('<=phone') {
       width: 100%;
       border: none;
+      max-height: 100%;
     }
 
     @include media('height<800px', '>tablet') {
@@ -156,11 +166,13 @@ const currentUrl = Astro.url.pathname;
 
     @include media('height<600px', '>tablet') {
       width: 90%;
+      max-height: 100%;
     }
 
     @include media('height<500px', '>tablet') {
       width: 100%;
       border: none;
+      max-height: 100%;
     }
   }
 
@@ -181,6 +193,15 @@ const currentUrl = Astro.url.pathname;
         text-decoration-thickness: 2px;
       }
     }
+
+    &__links {
+      display: flex;
+      gap: themed('size-12');
+
+      @include media('<=tablet') {
+        gap: themed('size-8');
+      }
+    }
   }
 
   .footer {
@@ -190,11 +211,20 @@ const currentUrl = Astro.url.pathname;
     border-top: 1px solid themed('gray-8');
 
     padding-left: themed('size-16');
+
+    p {
+      margin: themed('size-8') 0;
+    }
+
+    @include media('<=tablet') {
+      &__extra {
+        display: none;
+      }
+    }
   }
 
   .content {
     overflow-y: auto;
     height: 100%;
-    min-height: config.$content-min-height;
   }
 </style>

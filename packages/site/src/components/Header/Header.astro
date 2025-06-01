@@ -63,12 +63,11 @@
 
 <style lang="scss">
   @use '$styles/globals' as *;
-  @use '$styles/config';
 
   .header {
     width: 100%;
-    height: config.$header-height;
-    padding: 0 64px;
+    height: 100%;
+    padding: 0 themed('size-64');
 
     display: flex;
     justify-content: space-between;
@@ -84,7 +83,7 @@
 
     &__buttons {
       display: flex;
-      gap: 16px;
+      gap: themed('size-16');
     }
 
     &__toggle-theme-button {
@@ -93,11 +92,39 @@
       border: none;
       cursor: pointer;
       font-size: 1.3em;
-      width: 32px;
+      width: themed('size-32');
+    }
+
+    @include media('<=desktop') {
+      padding: 0 themed('size-32');
+
+      &__title {
+        font-size: 1.5em;
+      }
+
+      &__buttons {
+        gap: themed('size-8');
+      }
+
+      &__toggle-theme-button {
+        width: themed('size-24');
+      }
     }
 
     @include media('<=tablet') {
-      padding: 0 8px;
+      padding: 0 themed('size-16');
+
+      &__title {
+        font-size: 1.2em;
+      }
+
+      &__buttons {
+        gap: themed('size-4');
+      }
+
+      &__toggle-theme-button {
+        width: themed('size-20');
+      }
     }
   }
 </style>

@@ -43,6 +43,11 @@ html[data-theme='lucie-dark'] {
   }
 }
 
+code {
+  border: 1px dashed themed('gray-8');
+  padding: themed('size-2') themed('size-4');
+}
+
 .astro-code {
   border: 1px dashed themed('gray-8');
 
@@ -96,7 +101,7 @@ html,
 body {
   margin: 0;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -113,11 +118,17 @@ p {
 a {
   color: themed('text');
   text-decoration: underline;
-  text-decoration-style: wavy;
-  text-underline-offset: themed('size-6');
+  text-decoration-style: dashed;
+  text-underline-offset: themed('size-4');
 
   &:has(svg, h1, h2, h3, h4, h5, h6) {
     text-decoration: none;
+  }
+}
+
+@include media('<desktop') {
+  ul {
+    padding-left: themed('size-16');
   }
 }
 
