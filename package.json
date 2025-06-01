@@ -36,5 +36,15 @@
   "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=22.11.0"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "libc": [
+        "musl"
+      ]
+    },
+    "overrides": {
+      "sharp": "0.34.2"
+    }
   }
 }
