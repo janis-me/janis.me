@@ -1,13 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
-  "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "baseUrl": ".",
-    "paths": {
-      "$*": ["./src/*"]
-    }
-  }
+  "extends": "@janis.me/typescript-config/base.json",
+  "include": ["*.config.ts"],
+  "exclude": ["node_modules"]
 }

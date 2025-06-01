@@ -1,0 +1,200 @@
+---
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import Header from '$components/Header/Header.astro';
+
+const GithubIcon = icon(faGithub);
+const BlueskyIcon = icon(faBluesky);
+const YoutubeIcon = icon(faYoutube);
+const LinkedinIcon = icon(faLinkedin);
+
+const pageLinks = [
+  { url: '', label: 'Home' },
+  { url: 'blog', label: 'Blog' },
+  { url: 'contact', label: 'Contact' },
+  { url: 'imprint', label: 'Imprint' },
+] as const;
+
+const profileLinks = [
+  { icon: GithubIcon, url: 'https://github.com/janis-me', label: 'Github' },
+  {
+    icon: BlueskyIcon,
+    url: 'https://bsky.app/profile/janis.me',
+    label: 'Bluesky',
+  },
+  {
+    icon: YoutubeIcon,
+    url: 'https://www.youtube.com/@roulzhq',
+    label: 'Youtube',
+  },
+  {
+    icon: LinkedinIcon,
+    url: 'https://www.linkedin.com/in/janis-jansen',
+    label: 'Linkedin',
+  },
+] as const;
+
+const currentUrl = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Janis Jansen - Fullstack dev & creator" />
+    <meta name="keywords" content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf" />
+    <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script>
+      import { getPreferredColorScheme, getThemeFromLocalstorage, setThemeToDocument } from '@janis.me/themed/js';
+
+      const lsTheme = getThemeFromLocalstorage();
+
+      if (lsTheme) {
+        const lsThemeComponents = lsTheme.split('-');
+        if (!['janis', 'lucie'].includes(lsThemeComponents[0]) || !['light', 'dark'].includes(lsThemeComponents[1])) {
+          setThemeToDocument('janis-light');
+        } else {
+          setThemeToDocument(lsTheme);
+        }
+      } else {
+        const preferredTheme = getPreferredColorScheme();
+        setThemeToDocument(preferredTheme === 'light' ? 'janis-light' : 'janis-dark');
+      }
+    </script></head
+  >
+
+  <body>
+    <Header />
+
+    <div class="container">
+      <nav class="nav">
+        <div class="nav__pages">
+          {
+            pageLinks.map(i =>
+              // prettier-ignore
+              <a href={`/${i.url}`} class={currentUrl.replaceAll('/', '') === `${i.url}` ? 'active' : ''}>{i.label}</a>,
+            )
+          }
+        </div>
+        <div class="nav__links">
+          {
+            profileLinks.map(i => (
+              <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
+                <Fragment set:html={i.icon.html} />
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+      <main class="content">
+        <slot />
+      </main>
+      <footer class="footer">
+        <p>
+          You're looking at static HTML - Made with
+          <a href="https://janis.me/themed" target="_blank" rel="noopener">themed</a>,
+          <a href="https://surimi.dev">surimi.dev</a>,
+          <a href="https://github.com/remarkjs/remark">remark</a> and
+          <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>. -
+          <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener">view source</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style lang="scss" is:global>
+  @use '$styles/index';
+  @use '$styles/globals' as *;
+  @use '$styles/config';
+
+  body {
+    display: grid;
+    grid-template-rows: config.$nav-height auto;
+  }
+
+  .container {
+    min-height: 100px;
+    max-height: 70%;
+    width: 40%;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid themed('gray-8');
+
+    display: grid;
+    grid-template-rows: config.$nav-height 1fr config.$footer-height;
+
+    margin: auto;
+
+    @include media('>=ultrawide') {
+      width: 40%;
+    }
+
+    @include media('>desktop', '<ultrawide') {
+      width: 60%;
+    }
+
+    @include media('>=tablet', '<desktop') {
+      width: 80%;
+    }
+
+    @include media('>=phone', '<tablet') {
+      width: 90%;
+    }
+
+    @include media('<=phone') {
+      width: 100%;
+      border: none;
+    }
+
+    @include media('height<800px', '>tablet') {
+      width: 80%;
+    }
+
+    @include media('height<600px', '>tablet') {
+      width: 90%;
+    }
+
+    @include media('height<500px', '>tablet') {
+      width: 100%;
+      border: none;
+    }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: themed('size-32');
+    padding: themed('size-8') themed('size-16');
+    align-items: center;
+    border-bottom: 1px solid themed('gray-8');
+    height: 100%;
+
+    &__pages {
+      display: flex;
+      gap: themed('size-8');
+      a.active {
+        text-decoration-style: solid;
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-top: 1px solid themed('gray-8');
+
+    padding-left: themed('size-16');
+  }
+
+  .content {
+    overflow-y: auto;
+    height: 100%;
+    min-height: config.$content-min-height;
+  }
+</style>

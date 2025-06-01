@@ -1,0 +1,11 @@
+{
+  "name": "janis.me",
+  "compatibility_date": "2025-05-31",
+  "pages_build_output_dir": "./packages/site/dist/",
+  "routes": [
+    {
+      "pattern": "janis.me",
+      "custom_domain": true,
+    },
+  ],
+}

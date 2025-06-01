@@ -1,0 +1,36 @@
+{
+  "name": "janis.me",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "include-media": "^2.0.0",
+    "sanitize.css": "^13.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/sitemap": "^3.3.0",
+    "@janis.me/linter-config": "workspace:*",
+    "@janis.me/themed": "0.2.0",
+    "@janis.me/typescript-config": "workspace:*",
+    "@shikijs/transformers": "^3.4.2",
+    "@types/node": "^22.10.2",
+    "astro": "^5.8.1",
+    "astro-webmanifest": "^1.0.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "remark-custom-header-id": "^1.0.0",
+    "sass": "^1.87.0",
+    "sharp": "^0.34.2",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,35 @@
+---
+import Layout from '$layouts/Layout.astro';
+import { Picture } from 'astro:assets';
+
+import mailImage from '../assets/mail.png'; // Image is 1600x900
+---
+
+<head>
+  <title>Contact - janis.me</title>
+</head>
+
+<Layout>
+  <div class="contact">
+    <p>
+      You can reach me via:
+      <Picture
+        src={mailImage}
+        alt="My email. Sorry, only an image. You can reach out to me on linkedin if you need to."
+      />
+      or hit me up on <a href="https://bsky.app/profile/janis.me" target="_blank" rel="noopener">Bluesky</a>
+    </p>
+  </div>
+</Layout>
+
+<style lang="scss">
+  @use '$styles/globals' as *;
+
+  .contact {
+    padding: 0 themed('size-16');
+
+    p {
+      gap: themed('size-4');
+    }
+  }
+</style>

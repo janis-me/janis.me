@@ -1,0 +1,7 @@
+@use '$styles/globals' as *;
+
+$header-height: themed('size-80');
+$nav-height: themed('size-40');
+$footer-height: themed('size-40');
+
+$content-min-height: 400px;

@@ -1,0 +1,43 @@
+---
+layout: ../../layouts/Blog.astro
+---
+<head>
+  <title>Introducing surimi.dev - Sass validation library!</title>
+</head>
+
+## Introducing surimi.dev - Sass validation library!
+
+I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
+
+Initially, I built this with my theming libraries in mind, because I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
+but they didn't allow me to validate maps and nested data the way I wanted to: I wanted to write schemas like in zod or yup.
+
+Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data on them like this:
+
+```ts
+import { z } from "zod/v4";
+ 
+const User = z.object({
+  name: z.string(),
+});
+ 
+// some untrusted data...
+const input = { /* stuff */ };
+ 
+// the parsed result is validated and type safe!
+const data = User.parse(input);
+```
+
+Sadly, you cannot do it quite this elegantly in Sass, because you cannot build functional factories like `.number().min(1).label("age")`. Also, while you can specify functions as part of maps like this:
+
+```scss {1,3-5}
+@use 'sass:meta';
+
+@function something() {
+  @return 42;
+};
+
+$map: (
+  "something": meta.get-function("something"),
+);
+```

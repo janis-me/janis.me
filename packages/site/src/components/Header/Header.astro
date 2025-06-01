@@ -1,0 +1,103 @@
+<script>
+  import { icon } from '@fortawesome/fontawesome-svg-core';
+  import { faDroplet, faDropletSlash, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+
+  import { getThemeFromDocument, setTheme, watchPreferredColorScheme, watchThemeAttribute } from '@janis.me/themed/js';
+
+  const DropletIcon = icon(faDroplet);
+  const DropletSlashIcon = icon(faDropletSlash);
+  const MoonIcon = icon(faMoon);
+  const SunIcon = icon(faSun);
+
+  const lightDarkButton = document.getElementById('nav-toggle-dark-button');
+  const modeButton = document.getElementById('nav-toggle-mode-button');
+
+  lightDarkButton?.addEventListener('click', () => {
+    const currentTheme = getThemeFromDocument();
+    if (!currentTheme) return;
+    const themeComponents = currentTheme.split('-');
+    setTheme(`${themeComponents[0]}-${themeComponents[1] === 'dark' ? 'light' : 'dark'}`);
+  });
+
+  modeButton?.addEventListener('click', () => {
+    const currentTheme = getThemeFromDocument();
+    if (!currentTheme) return;
+    const themeComponents = currentTheme.split('-');
+    setTheme(`${themeComponents[0] === 'lucie' ? 'janis' : 'lucie'}-${themeComponents[1]}`);
+  });
+
+  watchThemeAttribute(theme => {
+    if (!theme) return;
+    const themeComponents = theme.split('-');
+    const lightDarkIcon = themeComponents[1] === 'dark' ? SunIcon : MoonIcon;
+    const modeIcon = themeComponents[0] === 'lucie' ? DropletSlashIcon : DropletIcon;
+
+    if (lightDarkButton) {
+      lightDarkButton.innerHTML = '';
+      lightDarkButton.appendChild(lightDarkIcon.node[0]);
+    }
+    if (modeButton) {
+      modeButton.innerHTML = '';
+      modeButton.appendChild(modeIcon.node[0]);
+    }
+  });
+
+  watchPreferredColorScheme(scheme => {
+    const currentTheme = getThemeFromDocument();
+    const currentMode = currentTheme?.split('-')[0];
+    setTheme(`${currentMode}-${scheme}`);
+  });
+</script>
+
+<header class="header">
+  <a href="/">
+    <h1 class="header__title">janis.me</h1>
+  </a>
+
+  <div class="header__buttons">
+    <button class="header__toggle-theme-button" id="nav-toggle-dark-button" aria-label="toggle dark/light mode"
+    ></button>
+    <button class="header__toggle-theme-button" id="nav-toggle-mode-button" aria-label="toggle color mode"></button>
+  </div>
+</header>
+
+<style lang="scss">
+  @use '$styles/globals' as *;
+  @use '$styles/config';
+
+  .header {
+    width: 100%;
+    height: config.$header-height;
+    padding: 0 64px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid themed('gray-8');
+
+    backdrop-filter: blur(100px);
+
+    &__title {
+      margin: 0;
+    }
+
+    &__buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    &__toggle-theme-button {
+      color: themed('text');
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3em;
+      width: 32px;
+    }
+
+    @include media('<=tablet') {
+      padding: 0 8px;
+    }
+  }
+</style>
