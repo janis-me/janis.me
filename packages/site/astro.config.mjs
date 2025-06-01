@@ -54,11 +54,6 @@ export default defineConfig({
     },
   },
   vite: {
-    build: {
-      rollupOptions: {
-        external: ['sharp'],
-      },
-    },
     resolve: {
       alias: {
         $: path.resolve(__dirname, 'src'),

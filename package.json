@@ -19,6 +19,7 @@
     "deps": "pnpm taze",
     "dev": "pnpm --filter ./packages/site run dev",
     "format": "prettier --write .",
+    "postinstall": "npm rebuild --verbose sharp",
     "lint": "eslint --flag unstable_config_lookup_from_file .",
     "test": "vitest"
   },
