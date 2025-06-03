@@ -1,32 +1,3 @@
----
-import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
-
-const GithubIcon = icon(faGithub);
-const BlueskyIcon = icon(faBluesky);
-const YoutubeIcon = icon(faYoutube);
-const LinkedinIcon = icon(faLinkedin);
-
-const profileLinks = [
-  { icon: GithubIcon, url: 'https://github.com/janis-me', label: 'Github' },
-  {
-    icon: BlueskyIcon,
-    url: 'https://bsky.app/profile/janis.me',
-    label: 'Bluesky',
-  },
-  {
-    icon: YoutubeIcon,
-    url: 'https://www.youtube.com/@roulzhq',
-    label: 'Youtube',
-  },
-  {
-    icon: LinkedinIcon,
-    url: 'https://www.linkedin.com/in/janis-jansen',
-    label: 'Linkedin',
-  },
-] as const;
----
-
 <div class="about-hero">
   <h2 class="about-hero__title">Welcome to my interwebs</h2>
   <p class="about-hero__intro">

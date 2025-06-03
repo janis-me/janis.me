@@ -17,6 +17,10 @@ export default defineConfig({
   image: {
     service: passthroughImageService(),
   },
+  build: {
+    inlineStylesheets: 'always',
+  },
+  prefetch: true,
   integrations: [
     sitemap(),
     webmanifest({

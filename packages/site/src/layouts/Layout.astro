@@ -1,12 +1,10 @@
 ---
-import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import openSansWoff2 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import Header from '$components/Header/Header.astro';
+import { BlueskyIcon, GithubIcon, LinkedinIcon, YoutubeIcon } from '$components/icons';
 
-const GithubIcon = icon(faGithub);
-const BlueskyIcon = icon(faBluesky);
-const YoutubeIcon = icon(faYoutube);
-const LinkedinIcon = icon(faLinkedin);
+import '../styles/index.scss';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const pageLinks = [
   { url: '', label: 'Home' },
@@ -37,16 +35,22 @@ const profileLinks = [
 const currentUrl = Astro.url.pathname;
 ---
 
-<html lang="en">
+<html lang="en" data-theme="janis-light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content="Janis Jansen - Fullstack dev & creator" />
-    <meta name="keywords" content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf" />
+    <meta
+      name="keywords"
+      content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf, carnageous, janis-me, janis.me"
+    />
     <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preload" as="font" type="font/woff2" href={openSansWoff2} crossorigin="anonymous" />
+
     <script>
       import { getPreferredColorScheme, getThemeFromLocalstorage, setThemeToDocument } from '@janis.me/themed/js';
 
@@ -63,8 +67,8 @@ const currentUrl = Astro.url.pathname;
         const preferredTheme = getPreferredColorScheme();
         setThemeToDocument(preferredTheme === 'light' ? 'janis-light' : 'janis-dark');
       }
-    </script></head
-  >
+    </script>
+  </head>
 
   <body>
     <Header />
@@ -105,126 +109,116 @@ const currentUrl = Astro.url.pathname;
         </p>
       </footer>
     </div>
+
+    <style lang="scss">
+      @use '$styles/globals' as *;
+
+      .container {
+        min-height: 100px;
+        height: 100%;
+        width: 40%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid themed('gray-8');
+
+        display: grid;
+        grid-template-rows: themed('size-48') 1fr fit-content(themed('size-48'));
+
+        margin: auto;
+
+        @include media('>=ultrawide') {
+          width: 40%;
+          max-height: 70%;
+        }
+
+        @include media('>desktop', '<ultrawide') {
+          width: 60%;
+          max-height: 80%;
+        }
+
+        @include media('>=tablet', '<desktop') {
+          width: 80%;
+          max-height: 80%;
+        }
+
+        @include media('>=phone', '<tablet') {
+          width: 90%;
+          max-height: 90%;
+        }
+
+        @include media('<=phone') {
+          width: 100%;
+          border: none;
+          max-height: 100%;
+        }
+
+        @include media('height<800px', '>tablet') {
+          width: 80%;
+        }
+
+        @include media('height<600px', '>tablet') {
+          width: 90%;
+          max-height: 100%;
+        }
+
+        @include media('height<500px', '>tablet') {
+          width: 100%;
+          border: none;
+          max-height: 100%;
+        }
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        gap: themed('size-32');
+        padding: themed('size-8') themed('size-16');
+        align-items: center;
+        border-bottom: 1px solid themed('gray-8');
+        height: 100%;
+
+        &__pages {
+          display: flex;
+          gap: themed('size-8');
+          a.active {
+            text-decoration-style: solid;
+            text-decoration-thickness: 2px;
+          }
+        }
+
+        &__links {
+          display: flex;
+          gap: themed('size-12');
+
+          @include media('<=tablet') {
+            gap: themed('size-8');
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        border-top: 1px solid themed('gray-8');
+
+        padding-left: themed('size-16');
+
+        p {
+          margin: themed('size-8') 0;
+        }
+
+        @include media('<=tablet') {
+          &__extra {
+            display: none;
+          }
+        }
+      }
+
+      .content {
+        overflow-y: auto;
+        height: 100%;
+      }
+    </style>
   </body>
 </html>
-
-<style lang="scss" is:global>
-  @use '$styles/index';
-  @use '$styles/globals' as *;
-
-  body {
-    display: grid;
-    grid-template-rows: themed('size-80') auto;
-
-    @include media('<=tablet') {
-      grid-template-rows: themed('size-64') auto;
-    }
-  }
-
-  .container {
-    min-height: 100px;
-    height: 100%;
-    width: 40%;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid themed('gray-8');
-
-    display: grid;
-    grid-template-rows: themed('size-48') 1fr fit-content(themed('size-48'));
-
-    margin: auto;
-
-    @include media('>=ultrawide') {
-      width: 40%;
-      max-height: 70%;
-    }
-
-    @include media('>desktop', '<ultrawide') {
-      width: 60%;
-      max-height: 80%;
-    }
-
-    @include media('>=tablet', '<desktop') {
-      width: 80%;
-      max-height: 80%;
-    }
-
-    @include media('>=phone', '<tablet') {
-      width: 90%;
-      max-height: 90%;
-    }
-
-    @include media('<=phone') {
-      width: 100%;
-      border: none;
-      max-height: 100%;
-    }
-
-    @include media('height<800px', '>tablet') {
-      width: 80%;
-    }
-
-    @include media('height<600px', '>tablet') {
-      width: 90%;
-      max-height: 100%;
-    }
-
-    @include media('height<500px', '>tablet') {
-      width: 100%;
-      border: none;
-      max-height: 100%;
-    }
-  }
-
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    gap: themed('size-32');
-    padding: themed('size-8') themed('size-16');
-    align-items: center;
-    border-bottom: 1px solid themed('gray-8');
-    height: 100%;
-
-    &__pages {
-      display: flex;
-      gap: themed('size-8');
-      a.active {
-        text-decoration-style: solid;
-        text-decoration-thickness: 2px;
-      }
-    }
-
-    &__links {
-      display: flex;
-      gap: themed('size-12');
-
-      @include media('<=tablet') {
-        gap: themed('size-8');
-      }
-    }
-  }
-
-  .footer {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    border-top: 1px solid themed('gray-8');
-
-    padding-left: themed('size-16');
-
-    p {
-      margin: themed('size-8') 0;
-    }
-
-    @include media('<=tablet') {
-      &__extra {
-        display: none;
-      }
-    }
-  }
-
-  .content {
-    overflow-y: auto;
-    height: 100%;
-  }
-</style>

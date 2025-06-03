@@ -1,13 +1,7 @@
 <script>
-  import { icon } from '@fortawesome/fontawesome-svg-core';
-  import { faDroplet, faDropletSlash, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+  import { DropletIcon, DropletSlashIcon, MoonIcon, SunIcon } from '$components/icons';
 
   import { getThemeFromDocument, setTheme, watchPreferredColorScheme, watchThemeAttribute } from '@janis.me/themed/js';
-
-  const DropletIcon = icon(faDroplet);
-  const DropletSlashIcon = icon(faDropletSlash);
-  const MoonIcon = icon(faMoon);
-  const SunIcon = icon(faSun);
 
   const lightDarkButton = document.getElementById('nav-toggle-dark-button');
   const modeButton = document.getElementById('nav-toggle-mode-button');

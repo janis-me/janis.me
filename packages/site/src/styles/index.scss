@@ -5,6 +5,15 @@
 
 @include apply();
 
+html[data-theme='janis-light'] {
+  code,
+  .astro-code,
+  .astro-code span,
+  .astro-code .line {
+    background-color: themed('gray-3') !important;
+  }
+}
+
 html[data-theme='janis-dark'] {
   code,
   .astro-code,
@@ -12,15 +21,6 @@ html[data-theme='janis-dark'] {
   .astro-code .line {
     background-color: themed('gray-3') !important;
     color: var(--shiki-dark) !important;
-  }
-}
-
-html[data-theme='janis-light'] {
-  code,
-  .astro-code,
-  .astro-code span,
-  .astro-code .line {
-    background-color: themed('gray-3') !important;
   }
 }
 
@@ -106,9 +106,16 @@ body {
 }
 
 body {
+  display: grid;
+  grid-template-rows: themed('size-80') auto;
+
   font-family: 'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif;
   background-color: themed('background');
   color: themed('text');
+
+  @include media('<=tablet') {
+    grid-template-rows: themed('size-64') auto;
+  }
 }
 
 p {
