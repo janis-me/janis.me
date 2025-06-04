@@ -1,17 +1,33 @@
 ---
 import { ChevronLeftIcon } from '$components/icons';
+import type { BlogProps } from '$content.config';
 import Layout from '$layouts/Layout.astro';
 
-const { title } = Astro.props;
+interface Props {
+  content: BlogProps;
+}
+
+const { content } = Astro.props;
+const { title, createdAt, updatedAt, tags } = content;
+
+const createdDate = new Date(createdAt);
+const updatedDate = updatedAt != createdAt ? new Date(updatedAt) : null;
 ---
 
-<Layout title={title}>
+<Layout title={title} description="janis.me/blog - a blog made for programming, probably full of food">
   <div class="blog">
     <div class="blog__header">
       <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>back to all articles</span></a>
     </div>
     <div class="blog__content">
+      <p class="blog__meta">
+        {createdDate.toLocaleDateString()}
+        {updatedDate ? `- updated at ${updatedDate.toLocaleDateString()}` : ''} -
+        {tags?.join(', ')}
+      </p>
+      <h2 class="blog__title">{title}</h2>
       <slot />
+      <p>~ Cheers</p>
     </div>
   </div>
 </Layout>
@@ -20,6 +36,19 @@ const { title } = Astro.props;
   @use '$styles/globals' as *;
 
   .blog {
+    &__meta {
+      margin: themed('size-16') 0 themed('size-8') 0;
+      color: themed('gray-11');
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__meta {
+      font-size: 0.8em;
+    }
+
     &__header {
       border-bottom: 1px dashed themed('gray-8');
       padding: 0 themed('size-16');

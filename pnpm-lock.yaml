@@ -4,6 +4,49 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  build:
+    typescript:
+      specifier: ^5.8.3
+      version: 5.8.3
+  format:
+    '@ianvs/prettier-plugin-sort-imports':
+      specifier: ^4.4.2
+      version: 4.4.2
+    prettier:
+      specifier: ^3.5.3
+      version: 3.5.3
+    prettier-plugin-packagejson:
+      specifier: ^2.5.15
+      version: 2.5.15
+  lint:
+    '@eslint/js':
+      specifier: ^9.28.0
+      version: 9.28.0
+    eslint:
+      specifier: ^9.28.0
+      version: 9.28.0
+    eslint-plugin-react:
+      specifier: ^7.37.5
+      version: 7.37.5
+    eslint-plugin-react-hooks:
+      specifier: ^5.2.0
+      version: 5.2.0
+    jiti:
+      specifier: ^2.4.2
+      version: 2.4.2
+    typescript-eslint:
+      specifier: ^8.33.0
+      version: 8.33.0
+  script:
+    taze:
+      specifier: ^19.1.0
+      version: 19.1.0
+  types:
+    '@types/node':
+      specifier: ^22.15.29
+      version: 22.15.29
+
 overrides:
   sharp: 0.34.2
 
@@ -68,6 +111,12 @@ importers:
 
   packages/site:
     dependencies:
+      '@astrojs/rss':
+        specifier: ^4.0.12
+        version: 4.0.12
+      '@brandonaaron/astro-script-embed':
+        specifier: ^1.0.3
+        version: 1.0.3(astro@5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0))
       '@fontsource/ibm-plex-mono':
         specifier: ^5.2.5
         version: 5.2.5
@@ -157,6 +206,9 @@ packages:
     resolution: {integrity: sha512-q8VwfU/fDZNoDOf+r7jUnMC2//H2l0TuQ6FkGJL8vD8nw/q5KiL3DS1KKBI3QhI9UQhpJ5dc7AtqfbXWuOgLCQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
 
+  '@astrojs/rss@4.0.12':
+    resolution: {integrity: sha512-O5yyxHuDVb6DQ6VLOrbUVFSm+NpObulPxjs6XT9q3tC+RoKbN4HXMZLpv0LvXd1qdAjzVgJ1NFD+zKHJNDXikw==}
+
   '@astrojs/sitemap@3.4.0':
     resolution: {integrity: sha512-C5m/xsKvRSILKM3hy47n5wKtTQtJXn8epoYuUmCCstaE9XBt20yInym3Bz2uNbEiNfv11bokoW0MqeXPIvjFIQ==}
 
@@ -196,6 +248,11 @@ packages:
   '@babel/types@7.27.3':
     resolution: {integrity: sha512-Y1GkI4ktrtvmawoSq+4FCVHNryea6uR+qUQy0AGxLSsjCX0nVmkYQMBLHDkXZuo5hGx7eYdnIaslsdBFm7zbUw==}
     engines: {node: '>=6.9.0'}
+
+  '@brandonaaron/astro-script-embed@1.0.3':
+    resolution: {integrity: sha512-iNsQb2MJh1V4iF2hxKhuYTDLwyF0UIVqd7gaoqmDFuUal6gg72QEAzEJbase7aI1h9WE7755yjwE/ECjvfJoCQ==}
+    peerDependencies:
+      astro: ^4.0.0
 
   '@capsizecss/unpack@2.4.0':
     resolution: {integrity: sha512-GrSU71meACqcmIUxPYOJvGKF0yryjN/L1aCuE9DViCTJI7bfkjgYDPD1zbNDcINJwSSP6UaBZY9GAbYDO7re0Q==}
@@ -1437,6 +1494,10 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
+  fast-xml-parser@5.2.3:
+    resolution: {integrity: sha512-OdCYfRqfpuLUFonTNjvd30rCBZUneHpSQkCqfaeWQ9qrKcl6XlWeDBNVwGb+INAIxRshuN2jF+BE0L6gbBO2mw==}
+    hasBin: true
+
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
 
@@ -2567,6 +2628,9 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
+  strnum@2.1.1:
+    resolution: {integrity: sha512-7ZvoFTiCnGxBtDqJ//Cu6fWtZtc7Y3x+QOirG15wztbdngGSkht27o2pyGWrVy0b4WAy3jbKmnoK6g5VlVNUUw==}
+
   style-to-js@1.1.16:
     resolution: {integrity: sha512-/Q6ld50hKYPH3d/r6nr117TZkHR0w0kGGIVfpG9N6D8NymRPM9RqCUv4pRpJ62E5DqOYx2AFpbZMyCPnjQCnOw==}
 
@@ -3007,6 +3071,11 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
+  '@astrojs/rss@4.0.12':
+    dependencies:
+      fast-xml-parser: 5.2.3
+      kleur: 4.1.5
+
   '@astrojs/sitemap@3.4.0':
     dependencies:
       sitemap: 8.0.0
@@ -3069,6 +3138,10 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
+
+  '@brandonaaron/astro-script-embed@1.0.3(astro@5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0))':
+    dependencies:
+      astro: 5.8.1(@types/node@22.15.29)(jiti@2.4.2)(rollup@4.41.1)(sass@1.89.1)(typescript@5.8.3)(yaml@2.8.0)
 
   '@capsizecss/unpack@2.4.0':
     dependencies:
@@ -4442,6 +4515,10 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
+
+  fast-xml-parser@5.2.3:
+    dependencies:
+      strnum: 2.1.1
 
   fastq@1.19.1:
     dependencies:
@@ -6114,6 +6191,8 @@ snapshots:
       ansi-regex: 6.1.0
 
   strip-json-comments@3.1.1: {}
+
+  strnum@2.1.1: {}
 
   style-to-js@1.1.16:
     dependencies:

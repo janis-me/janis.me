@@ -1,4 +1,5 @@
 ---
+layout: $layouts/Blog.astro
 title: How I built surimi.dev - the Sass validation library!
 createdAt: 2025-05-31
 updatedAt: 2025-06-04
@@ -6,179 +7,169 @@ published: true
 tags: ['Sass', 'Programming']
 ---
 
-import BlogLayout from '#layouts/Blog.astro';
+I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
 
-<BlogLayout title={frontmatter.title}>
-  ## {frontmatter.title}
+I started building this with my theming libraries in mind, as I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
+but they didn't allow me to validate maps and nested data the way I wanted to: I wanted to write schemas like in zod or yup.
 
-  > <small>(Be warned, this post is VERY full of code.)</small>
+Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
 
-  I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
+```ts
+import { z } from "zod/v4";
 
-  I started building this with my theming libraries in mind, as I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
-  but they didn't allow me to validate maps and nested data the way I wanted to: I wanted to write schemas like in zod or yup.
+const User = z.object({
+  name: z.string(),
+});
 
-  Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
+// some untrusted data...
+const input = { /* stuff */ };
 
-  ```ts
-  import { z } from "zod/v4";
-  
-  const User = z.object({
-    name: z.string(),
-  });
-  
-  // some untrusted data...
-  const input = { /* stuff */ };
-  
-  // the parsed result is validated and type safe!
-  const data = User.parse(input);
-  ```
+// the parsed result is validated and type safe!
+const data = User.parse(input);
+```
 
-  You cannot do it quite this elegantly in Sass, because you cannot build functional factories like `.number().min(1).label("age")`. Also, while you can specify functions as part of maps like this:
+You cannot do it quite this elegantly in Sass, because you cannot build functional factories like `.number().min(1).label("age")`. Also, while you can specify functions as part of maps like this:
 
-  ```scss
-  @use 'sass:meta';
+```scss
+@use 'sass:meta';
 
-  @function something() {
-    @return 42;
-  };
+@function something() {
+  @return 42;
+};
 
-  $map: (
-    "something": meta.get-function("something"),
-  );
-  ```
+$map: (
+  "something": meta.get-function("something"),
+);
+```
 
-  you cannot call the function 'right away' like you would do in js. Instead, you need to use `meta.call()`, which is fine - Sass is not supposed to be a 'cluttered' or 'comfy' language - it's for stylesheets after all, and I like that approach.
+you cannot call the function 'right away' like you would do in js. Instead, you need to use `meta.call()`, which is fine - Sass is not supposed to be a 'cluttered' or 'comfy' language - it's for stylesheets after all, and I like that approach.
 
-  What you can do, is return maps from function calls, and these maps can contain a bunch of parameters you can use to do 'dynamic' functino calls. That's the approach I went for. It kinda looks like this:
+What you can do, is return maps from function calls, and these maps can contain a bunch of parameters you can use to do 'dynamic' functino calls. That's the approach I went for. It kinda looks like this:
 
-  ```scss
-  @use 'sass:meta';
-  @use 'surimi' as s;
+```scss
+@use 'sass:meta';
+@use 'surimi' as s;
 
-  $number-schema: s.number(
-    $min: 1,
-    $max: 100,
-    $label: "age",
-  );
+$number-schema: s.number(
+  $min: 1,
+  $max: 100,
+  $label: "age",
+);
 
-  @debug $number-schema;
-  // (
-  //   "type": "number",
-  //   "label": "age",
-  //   "validators": (
-  //     "min": (
-  //       "args": (1),
-  //       "fn": meta.get-function("... some function"),
-  //     ),
-  //     "max": (
-  //       "args": (100),
-  //       "fn": meta.get-function("... some function"),
-  //     ),
-  //   ),
-  // );
-  ```
+@debug $number-schema;
+// (
+//   "type": "number",
+//   "label": "age",
+//   "validators": (
+//     "min": (
+//       "args": (1),
+//       "fn": meta.get-function("... some function"),
+//     ),
+//     "max": (
+//       "args": (100),
+//       "fn": meta.get-function("... some function"),
+//     ),
+//   ),
+// );
+```
 
-  Now, when passing it to the `s.validate()` function, it will call the given functions with the arguments. It's just a map, so calling the functions is super easy:
+Now, when passing it to the `s.validate()` function, it will call the given functions with the arguments. It's just a map, so calling the functions is super easy:
 
-  ```scss
-  @each $key, $validator in $validators {
-    $fn: map.get($validator, 'fn');
-    $arg: map.get($validator, 'arg');
+```scss
+@each $key, $validator in $validators {
+  $fn: map.get($validator, 'fn');
+  $arg: map.get($validator, 'arg');
 
-    // Call the validator function with the value and the argument.
-    $res: meta.call($fn, $arg, $value);
+  // Call the validator function with the value and the argument.
+  $res: meta.call($fn, $arg, $value);
 
-    // Only save and process the result, if the validator returned an error (string).
-    @if $res != null and meta.type-of($res) == 'string' {
-      $validation-errors: list.append($validation-errors, '#{$label} #{$res}');
+  // Only save and process the result, if the validator returned an error (string).
+  @if $res != null and meta.type-of($res) == 'string' {
+    $validation-errors: list.append($validation-errors, '#{$label} #{$res}');
+  }
+}
+```
+
+A bit more tricky was to find a way to not have to 'fix' all the parameters that a validation schema takes. If I wanted to make another validator in addition to `min` and `max`, it should be picked up automatically.
+To do that, I used a combination of the [`meta.keywords`](https://sass-lang.com/documentation/modules/meta/#keywords) function, and the fact that you can list all (public) module functions with [`meta.module-functions`](https://sass-lang.com/documentation/modules/meta/#module-functions).
+
+So, I just defined all available validators for each 'type' in a module, prefixed them with some name, like `number-min`, `number-max`, etc., and then listed them and stripped the prefix
+
+```scss
+@function list($module, $aliases: ()) {
+  $all-functions: meta.module-functions($module);
+
+  $res: [];
+
+  @each $key, $fn in $all-functions {
+    @if sass-string.index($key, '#{$module}-') == 1 {
+      $key: sass-string.slice($key, sass-string.length($module) + 2);
+      $res: sass-list.append($res, $key);
     }
   }
-  ```
 
-  A bit more tricky was to find a way to not have to 'fix' all the parameters that a validation schema takes. If I wanted to make another validator in addition to `min` and `max`, it should be picked up automatically.
-  To do that, I used a combination of the [`meta.keywords`](https://sass-lang.com/documentation/modules/meta/#keywords) function, and the fact that you can list all (public) module functions with [`meta.module-functions`](https://sass-lang.com/documentation/modules/meta/#module-functions).
+  $alias-keys: sass-map.keys($aliases);
 
-  So, I just defined all available validators for each 'type' in a module, prefixed them with some name, like `number-min`, `number-max`, etc., and then listed them and stripped the prefix
+  @return sass-list.join($res, $alias-keys);
+}
+```
 
-  ```scss
-  @function list($module, $aliases: ()) {
-    $all-functions: meta.module-functions($module);
+Then, you can just loop over all keyword arguments and check if the validator exists in the module. For numbers, that looks like this:
 
-    $res: [];
+```scss
+@function number($label: null, $args...) {
+  $kvargs: meta.keywords($args);
+  // $_number-aliases defines aliases so you can pass either 'min' or 'gte' and it would call the same function.
+  $allowed-validators: validators.list('number', $_number-aliases);
 
-    @each $key, $fn in $all-functions {
-      @if sass-string.index($key, '#{$module}-') == 1 {
-        $key: sass-string.slice($key, sass-string.length($module) + 2);
-        $res: sass-list.append($res, $key);
+  @each $key, $value in $kvargs {
+    @if list.index($allowed-validators, $key) == null {
+      @error '[surimi] `number.#{$key}` is not a valid validator. Allowed validators are: #{$allowed-validators}';
+    }
+  }
+
+  $validators: validators.get('number', $_number-aliases, $args...);
+
+  @return ('type': 'number', 'label': $label, 'validators': $validators);
+}
+```
+
+The `validators.get` function simply returns a map of all validators with their parameters, in a map like I showed above.
+
+```scss
+@function get($module, $aliases, $args...) {
+  $kwargs: meta.keywords($args);
+
+  $validators: ();
+
+  @each $key, $arg in $kwargs {
+    @if $arg != null {
+      $fn-key: $key;
+      @if meta.function-exists('#{$module}-#{$key}', $module: $module) {
+        $fn-key: '#{$module}-#{$key}';
+      } @else if sass-map.has-key($aliases, $key) {
+        $alias: sass-map.get($aliases, $key);
+        $fn-key: '#{$module}-#{$alias}';
+      } @else {
+        @error '[surimi] Internal error: Validator function `#{$key}` does not exist for numbers.';
       }
+
+      $fn: meta.get-function($fn-key, $module: $module);
+
+      $validator: (
+        '#{$key}': (
+            'fn': $fn,
+            'arg': $arg,
+          ),
+      );
+      $validators: sass-map.merge($validators, $validator);
     }
-
-    $alias-keys: sass-map.keys($aliases);
-
-    @return sass-list.join($res, $alias-keys);
   }
-  ```
 
-  Then, you can just loop over all keyword arguments and check if the validator exists in the module. For numbers, that looks like this:
+  @return $validators;
+}
+```
 
-  ```scss
-  @function number($label: null, $args...) {
-    $kvargs: meta.keywords($args);
-    // $_number-aliases defines aliases so you can pass either 'min' or 'gte' and it would call the same function.
-    $allowed-validators: validators.list('number', $_number-aliases);
+And with that, we have a bunch of schema functions that can be executed by a single `validate` method, and all we need to do to extend them, is to define new functions!
 
-    @each $key, $value in $kvargs {
-      @if list.index($allowed-validators, $key) == null {
-        @error '[surimi] `number.#{$key}` is not a valid validator. Allowed validators are: #{$allowed-validators}';
-      }
-    }
-
-    $validators: validators.get('number', $_number-aliases, $args...);
-
-    @return ('type': 'number', 'label': $label, 'validators': $validators);
-  }
-  ```
-
-  The `validators.get` function simply returns a map of all validators with their parameters, in a map like I showed above.
-
-  ```scss
-  @function get($module, $aliases, $args...) {
-    $kwargs: meta.keywords($args);
-
-    $validators: ();
-
-    @each $key, $arg in $kwargs {
-      @if $arg != null {
-        $fn-key: $key;
-        @if meta.function-exists('#{$module}-#{$key}', $module: $module) {
-          $fn-key: '#{$module}-#{$key}';
-        } @else if sass-map.has-key($aliases, $key) {
-          $alias: sass-map.get($aliases, $key);
-          $fn-key: '#{$module}-#{$alias}';
-        } @else {
-          @error '[surimi] Internal error: Validator function `#{$key}` does not exist for numbers.';
-        }
-
-        $fn: meta.get-function($fn-key, $module: $module);
-
-        $validator: (
-          '#{$key}': (
-              'fn': $fn,
-              'arg': $arg,
-            ),
-        );
-        $validators: sass-map.merge($validators, $validator);
-      }
-    }
-
-    @return $validators;
-  }
-  ```
-
-  And with that, we have a bunch of schema functions that can be executed by a single `validate` method, and all we need to do to extend them, is to define new functions!
-
-  Checkout [surimi.dev](https://surimi.dev) for more information, and the [source code](https://github.com/janis-me/surimi).
-
-  ~ Cheers
-</BlogLayout>
+Checkout [surimi.dev](https://surimi.dev) for more information, and the [source code](https://github.com/janis-me/surimi).

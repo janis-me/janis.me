@@ -1,16 +1,15 @@
 ---
-import '#styles/index.scss';
+import '$styles/index.scss';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import openSansWoff2 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import Header from '$components/Header/Header.astro';
-import { BlueskyIcon, GithubIcon, LinkedinIcon, YoutubeIcon } from '$components/icons';
+import { BlueskyIcon, GithubIcon, LinkedinIcon, RssIcon, YoutubeIcon } from '$components/icons';
 
 const pageLinks = [
   { url: '', label: 'Home' },
   { url: 'blog', label: 'Blog' },
   { url: 'contact', label: 'Contact' },
-  { url: 'imprint', label: 'Imprint' },
 ] as const;
 
 const profileLinks = [
@@ -30,11 +29,18 @@ const profileLinks = [
     url: 'https://www.linkedin.com/in/janis-jansen',
     label: 'Linkedin',
   },
+  {
+    icon: RssIcon,
+    url: '/rss.xml',
+    label: 'RSS',
+  },
 ] as const;
 
 const currentUrl = Astro.url.pathname;
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+
+const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 ---
 
 <html lang="en" data-theme="janis-light">
@@ -43,7 +49,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Janis Jansen - Fullstack dev & creator" />
+    <meta name="description" content={metaDescription} />
     <meta
       name="keywords"
       content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf, carnageous, janis-me, janis.me"
@@ -55,23 +61,7 @@ const { title } = Astro.props;
 
     <link rel="preload" as="font" type="font/woff2" href={openSansWoff2} crossorigin="anonymous" />
 
-    <script>
-      import { getPreferredColorScheme, getThemeFromLocalstorage, setThemeToDocument } from '@janis.me/themed/js';
-
-      const lsTheme = getThemeFromLocalstorage();
-
-      if (lsTheme) {
-        const lsThemeComponents = lsTheme.split('-');
-        if (!['janis', 'lucie'].includes(lsThemeComponents[0]) || !['light', 'dark'].includes(lsThemeComponents[1])) {
-          setThemeToDocument('janis-light');
-        } else {
-          setThemeToDocument(lsTheme);
-        }
-      } else {
-        const preferredTheme = getPreferredColorScheme();
-        setThemeToDocument(preferredTheme === 'light' ? 'janis-light' : 'janis-dark');
-      }
-    </script>
+    <script src="$client.ts" is:inline is:embeded></script>
   </head>
 
   <body>
@@ -107,9 +97,10 @@ const { title } = Astro.props;
           <a href="https://surimi.dev">surimi.dev</a>,
           <a href="https://github.com/remarkjs/remark">remark</a> and
           <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
-          <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener" class="footer__extra">
-            - view source
-          </a>
+          <span class="footer__extra">
+            -
+            <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener"> view source </a>
+          </span>
         </p>
       </footer>
     </div>

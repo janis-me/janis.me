@@ -3,6 +3,7 @@ import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import scriptEmbed from '@brandonaaron/astro-script-embed';
 import { transformerMetaHighlight } from '@shikijs/transformers';
 import webmanifest from 'astro-webmanifest';
 import { defineConfig, passthroughImageService } from 'astro/config';
@@ -46,6 +47,7 @@ export default defineConfig({
         ],
       ],
     }),
+    scriptEmbed(),
   ],
   markdown: {
     shikiConfig: {
