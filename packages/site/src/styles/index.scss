@@ -5,6 +5,10 @@
 
 @include apply();
 
+@view-transition {
+  navigation: auto;
+}
+
 html[data-theme='janis-light'] {
   code,
   .astro-code,
