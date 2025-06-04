@@ -1,0 +1,78 @@
+---
+import Layout from '$layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.published === true;
+});
+
+const sortedPosts = posts.sort((a, b) => {
+  return b.data.createdAt.getTime() - a.data.createdAt.getTime();
+});
+
+const groupedPosts = sortedPosts.reduce(
+  (acc, post) => {
+    const year = post.data.createdAt.getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<string, typeof posts>,
+);
+---
+
+<Layout title="blog - janis.me">
+  <div style="padding: 0 16px">
+    <h1>My blog posts:</h1>
+    <ul>
+      {
+        Object.entries(groupedPosts).map(([year, posts]) => (
+            <h2>{year}</h2>
+            <>
+              {posts.map(post => (
+                <li>
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a> ({post.data.createdAt.toLocaleDateString()})
+                  {post.data.tags.map(i => (
+                    <span class="blog__tag">{i}</span>
+                  ))}
+                </li>
+              ))}
+            </>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
+
+<style lang="scss">
+  @use '$styles/globals' as *;
+
+  ul,
+  h2 {
+    margin: 0;
+  }
+
+  li {
+    line-height: 2;
+  }
+
+  .blog {
+    &__tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 themed('size-4');
+      border: 1px dashed themed('gray-9');
+      background-color: themed('gray-3');
+      margin-right: themed('size-6');
+      font-size: 0.8rem;
+      height: themed('size-24');
+
+      @include media('<=phone') {
+        display: none;
+      }
+    }
+  }
+</style>

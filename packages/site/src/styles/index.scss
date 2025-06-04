@@ -133,6 +133,10 @@ a {
   }
 }
 
+ul {
+  list-style-type: square;
+}
+
 @include media('<desktop') {
   ul {
     padding-left: themed('size-16');
