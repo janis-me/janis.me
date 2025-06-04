@@ -141,6 +141,13 @@ ul {
   list-style-type: square;
 }
 
+.blog:has(img) img {
+  width: 100%;
+  object-fit: contain;
+  height: min-content;
+  margin-top: themed('size-16');
+}
+
 @include media('<desktop') {
   ul {
     padding-left: themed('size-16');

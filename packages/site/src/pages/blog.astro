@@ -24,7 +24,7 @@ const groupedPosts = sortedPosts.reduce(
 ---
 
 <Layout title="blog - janis.me">
-  <div style="padding: 0 16px">
+  <div class="blog">
     <h1>My blog posts:</h1>
     <ul>
       {
@@ -59,6 +59,8 @@ const groupedPosts = sortedPosts.reduce(
   }
 
   .blog {
+    padding: 0 themed('size-16');
+
     &__tag {
       display: inline-flex;
       align-items: center;

@@ -6,7 +6,7 @@ published: true
 tags: ['Sass', 'Programming']
 ---
 
-import BlogLayout from '../../layouts/Blog.astro';
+import BlogLayout from '#layouts/Blog.astro';
 
 <BlogLayout title={frontmatter.title}>
   ## {frontmatter.title}
@@ -15,7 +15,7 @@ import BlogLayout from '../../layouts/Blog.astro';
 
   I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
 
-  Initially, I built this with my theming libraries in mind, because I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
+  I started building this with my theming libraries in mind, as I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
   but they didn't allow me to validate maps and nested data the way I wanted to: I wanted to write schemas like in zod or yup.
 
   Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
