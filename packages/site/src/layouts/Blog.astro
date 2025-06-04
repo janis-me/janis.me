@@ -1,9 +1,11 @@
 ---
 import { ChevronLeftIcon } from '$components/icons';
 import Layout from '$layouts/Layout.astro';
+
+const { title } = Astro.props;
 ---
 
-<Layout>
+<Layout title={title}>
   <div class="blog">
     <div class="blog__header">
       <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>back to all articles</span></a>

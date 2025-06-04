@@ -1,14 +1,10 @@
----
-layout: ../layouts/Layout.astro
----
+import Layout from '../layouts/Layout.astro';
 
-<head>
-  <title>janis.me - blog</title>
-</head>
+<Layout title="Blog - janis.me">
+  <div style='padding: 0 16px'>
+  ## List of my blog posts:
 
-<div style='padding: 0 16px'>
-## List of my blog posts:
-
-- 2025
-  - [How I built surimi.dev - the Sass validation library!](/blog/2025-05-31-how-i-built-surimi) (2025-05-31)
-</div>
+  - 2025
+    - [How I built surimi.dev - the Sass validation library!](/blog/2025-05-31-how-i-built-surimi) (2025-05-31)
+  </div>
+</Layout>

@@ -1,10 +1,10 @@
 ---
+import '../styles/index.scss';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import openSansWoff2 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import Header from '$components/Header/Header.astro';
 import { BlueskyIcon, GithubIcon, LinkedinIcon, YoutubeIcon } from '$components/icons';
-
-import '../styles/index.scss';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const pageLinks = [
   { url: '', label: 'Home' },
@@ -33,6 +33,8 @@ const profileLinks = [
 ] as const;
 
 const currentUrl = Astro.url.pathname;
+
+const { title } = Astro.props;
 ---
 
 <html lang="en" data-theme="janis-light">
@@ -48,6 +50,8 @@ const currentUrl = Astro.url.pathname;
     />
     <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <title>{title}</title>
 
     <link rel="preload" as="font" type="font/woff2" href={openSansWoff2} crossorigin="anonymous" />
 
