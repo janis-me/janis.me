@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { transformerMetaHighlight } from '@shikijs/transformers';
+import genericBuildFilenames from 'astro-generic-build-filenames';
 import webmanifest from 'astro-webmanifest';
 import { defineConfig, passthroughImageService } from 'astro/config';
 import autolinkHeadings from 'rehype-autolink-headings';
@@ -46,6 +47,7 @@ export default defineConfig({
         ],
       ],
     }),
+    genericBuildFilenames(),
   ],
   markdown: {
     shikiConfig: {
