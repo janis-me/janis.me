@@ -20,7 +20,6 @@
     "sanitize.css": "^13.0.0"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.0",
     "@astrojs/sitemap": "^3.3.0",
     "@janis.me/linter-config": "workspace:*",
     "@janis.me/themed": "0.2.0",

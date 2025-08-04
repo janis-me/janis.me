@@ -30,11 +30,11 @@ const groupedPosts = sortedPosts.reduce(
       <br />
       If you end up liking what you read, I set up an <a href="/rss.xml">RSS feed</a>!
     </p>
-    <h1>My blog posts:</h1>
+    <h2>My blog posts:</h2>
     <ul>
       {
         Object.entries(groupedPosts).map(([year, posts]) => (
-            <h2>{year}</h2>
+            <h3>{year}</h3>
             <>
               {posts.map(post => (
                 <li>

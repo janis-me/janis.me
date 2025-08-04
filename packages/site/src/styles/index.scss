@@ -53,7 +53,29 @@ code {
 }
 
 .astro-code {
-  border: 1px dashed themed('gray-8');
+  $header-size: themed('size-32');
+
+  padding-top: $header-size;
+  position: relative;
+  overflow: auto;
+
+  &:before {
+    top: 0;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    padding: 0 themed('size-8');
+    text-transform: uppercase;
+    border: 1px dashed themed('gray-8');
+    border-bottom: none;
+    font-size: 0.8em;
+
+    height: $header-size;
+    width: 100%;
+    background-color: themed('gray-4');
+    content: attr(data-language);
+  }
 
   code {
     display: inline-block;
@@ -74,18 +96,13 @@ code {
         filter: blur(1px);
       }
 
-      // Select the first highlighted line that comes after a non-highlighted line
-      .line:not(.highlighted):has(+ .highlighted) + .highlighted {
+      // The first highlighted line, if there is no previous line
+      .highlighted:first-of-type {
         border-top: $highlighted-border;
       }
 
-      .highlighted {
-        border-left: $highlighted-border;
-        border-right: $highlighted-border;
-      }
-
-      // The first highlighted line, if there is no previous line
-      .highlighted:first-of-type {
+      // Select the first highlighted line that comes after a non-highlighted line
+      .line:not(.highlighted):has(+ .highlighted) + .highlighted {
         border-top: $highlighted-border;
       }
 
@@ -127,6 +144,7 @@ p {
 }
 
 a {
+  cursor: pointer;
   color: themed('text');
   text-decoration: underline;
   text-decoration-style: dashed;

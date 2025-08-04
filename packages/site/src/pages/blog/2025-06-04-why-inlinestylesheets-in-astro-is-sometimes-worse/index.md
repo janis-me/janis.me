@@ -4,7 +4,7 @@ title: Why `inlineStylesheets` in Astro is sometimes worse
 createdAt: 2025-06-04
 updatedAt: 2025-06-04
 published: true
-tags: ['Astro', 'Programming']
+tags: ['astro', 'coding']
 ---
 
 When I started building this website with [astro](https://astro.build), I quickly searched for ways to optimize it. What I wanted was static HTML with as little network requests as reasonably possible.
@@ -22,7 +22,7 @@ The index (`/`) route loads
 - finally, a favicon.
 
 I wanted to optimize this somewhat, specifically reduce the network requests. Bundling the styles into the main HTML should be pretty easy. Astro has a built-in option for that: `inlineStylesheets`.
-```ts
+```typescript
 export default defineConfig({
   build: {
     inlineStylesheets: 'always',

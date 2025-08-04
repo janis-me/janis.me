@@ -17,7 +17,7 @@ const updatedDate = updatedAt != createdAt ? new Date(updatedAt) : null;
 <Layout title={title} description="janis.me/blog - a blog made for programming, probably full of food">
   <div class="blog">
     <div class="blog__header">
-      <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>back to all articles</span></a>
+      <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>See my other articles</span></a>
     </div>
     <div class="blog__content">
       <p class="blog__meta">
@@ -58,6 +58,7 @@ const updatedDate = updatedAt != createdAt ? new Date(updatedAt) : null;
       height: themed('size-40');
       display: flex;
       align-items: center;
+      z-index: 1;
 
       a {
         display: flex;

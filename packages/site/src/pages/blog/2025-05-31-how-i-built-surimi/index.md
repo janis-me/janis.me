@@ -4,7 +4,7 @@ title: How I built surimi.dev - the Sass validation library!
 createdAt: 2025-05-31
 updatedAt: 2025-06-04
 published: true
-tags: ['Sass', 'Programming']
+tags: ['sass', 'coding']
 ---
 
 I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
@@ -14,7 +14,7 @@ but they didn't allow me to validate maps and nested data the way I wanted to: I
 
 Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
 
-```ts
+```typescript
 import { z } from "zod/v4";
 
 const User = z.object({

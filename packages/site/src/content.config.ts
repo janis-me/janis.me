@@ -3,6 +3,8 @@ import { glob } from 'astro/loaders';
 
 const blogSchema = z.object({
   title: z.string(),
+  description: z.string().optional(),
+  layout: z.string().optional(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   published: z.boolean().default(false),
@@ -10,7 +12,7 @@ const blogSchema = z.object({
 });
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.mdx', base: './src/pages/blog' }),
+  loader: glob({ pattern: '**/*.md', base: './src/pages/blog' }),
   schema: blogSchema,
 });
 
