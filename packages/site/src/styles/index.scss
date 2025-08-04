@@ -78,16 +78,16 @@ code {
   }
 
   code {
-    display: inline-block;
+    display: inline-grid;
+    grid-auto-rows: 25px;
     padding: 0 !important;
     width: 100%;
     overflow: auto;
 
-    // the usual styling
     .line {
       display: inline-block;
       width: 100%;
-      padding: themed('size-2') themed('size-8');
+      padding: 0 themed('size-8');
     }
 
     $highlighted-border: 1px dashed themed('gray-8');
