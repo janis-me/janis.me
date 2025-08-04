@@ -1,6 +1,6 @@
 ---
 layout: $layouts/Blog.astro
-title: Highlighting blocks of CSS selectors - awesome syntax highlighting!
+title: Highlighting lines of code in blocks - awesome syntax highlighting with CSS selectors!
 desc: A simple way to highlight blocks of CSS selectors in code blocks, using just a few lines of CSS.
 createdAt: 2025-08-04
 updatedAt: 2025-08-04
@@ -18,20 +18,21 @@ code {
     .line:not(.highlighted):has(+ .highlighted) + .highlighted {
       border-top: $highlighted-border;
     }
-    
+
     .highlighted:not(:has(+ .highlighted)) {
       border-bottom: $highlighted-border;
     }
   }
 }
 ```
-In the code block above, some lines are highlighted with a border, and the rest is pretty blurry. 
+
+In the code block above, some lines are highlighted with a border, and the rest is pretty blurry.
 
 Note, that the border shows around all the highlighted lines, but not in between them. This was done without having to add extra classes, just by using CSS pseudo-classes and selectors!
 
 For the code examples, we assume that all lines have a `line` class, and the highlighted lines have an additional `highlighted` class. This is how shiki (and thus vitepress and astro) have it set up by default.
 
-__Let's dive in__
+**Let's dive in**
 
 The easy part first: Blurring everything that is not highlighted. You could also greyscale, or leave this part out!
 
