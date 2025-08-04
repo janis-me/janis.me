@@ -87,7 +87,7 @@ code {
     .line {
       display: inline-block;
       width: 100%;
-      padding: 0 themed('size-8');
+      padding: themed('size-1') themed('size-8');
     }
 
     $highlighted-border: 1px dashed themed('gray-8');
