@@ -14,6 +14,7 @@ Now, the network requests initially looked something like this:
 ![Network requests overview](./_network-requests-initial.png)
 
 The index (`/`) route loads
+
 - a font (I marked it as `preload` to prevent content-shifts)
 - a script that handles theming (it sets the `data-theme` attribute on the `<html>` element based on user preferences)
 - the main, global stylesheet
@@ -22,6 +23,7 @@ The index (`/`) route loads
 - finally, a favicon.
 
 I wanted to optimize this somewhat, specifically reduce the network requests. Bundling the styles into the main HTML should be pretty easy. Astro has a built-in option for that: `inlineStylesheets`.
+
 ```typescript
 export default defineConfig({
   build: {

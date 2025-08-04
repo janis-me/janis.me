@@ -15,14 +15,16 @@ but they didn't allow me to validate maps and nested data the way I wanted to: I
 Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
 
 ```typescript
-import { z } from "zod/v4";
+import { z } from 'zod/v4';
 
 const User = z.object({
   name: z.string(),
 });
 
 // some untrusted data...
-const input = { /* stuff */ };
+const input = {
+  /* stuff */
+};
 
 // the parsed result is validated and type safe!
 const data = User.parse(input);
@@ -35,10 +37,10 @@ You cannot do it quite this elegantly in Sass, because you cannot build function
 
 @function something() {
   @return 42;
-};
+}
 
 $map: (
-  "something": meta.get-function("something"),
+  'something': meta.get-function('something'),
 );
 ```
 
@@ -53,7 +55,7 @@ What you can do, is return maps from function calls, and these maps can contain 
 $number-schema: s.number(
   $min: 1,
   $max: 100,
-  $label: "age",
+  $label: 'age',
 );
 
 @debug $number-schema;

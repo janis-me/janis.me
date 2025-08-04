@@ -1,4 +1,3 @@
-@use '@fontsource/ibm-plex-mono';
 @use 'sanitize.css';
 
 @use '$styles/globals' as *;
@@ -7,6 +6,20 @@
 
 @view-transition {
   navigation: auto;
+}
+
+/* ibm-plex-mono-latin-400-normal */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    url(@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2) format('woff2'),
+    url(@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff) format('woff');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 html[data-theme='janis-light'] {
@@ -93,6 +106,11 @@ code {
     $highlighted-border: 1px dashed themed('gray-8');
 
     &:has(.highlighted) {
+      .line.highlighted,
+      .line.highlighted span {
+        background-color: themed('gray-4') !important;
+      }
+
       .line:not(.highlighted) {
         filter: blur(1px);
       }
@@ -158,6 +176,12 @@ a {
 
 ul {
   list-style-type: square;
+}
+
+// We're not adding font-awesome styles, so we need to style icons manually
+svg {
+  width: 1em;
+  height: 1em;
 }
 
 .blog:has(img) img {

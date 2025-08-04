@@ -20,18 +20,17 @@
     "dev": "pnpm --filter ./packages/site run dev",
     "format": "prettier --write .",
     "lint": "eslint --flag unstable_config_lookup_from_file .",
+    "preview": "pnpm --filter ./packages/site run preview",
     "test": "vitest"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "catalog:format",
     "@janis.me/linter-config": "workspace:*",
     "@janis.me/typescript-config": "workspace:*",
-    "@types/sanitize-html": "^2.16.0",
     "eslint": "catalog:lint",
     "jiti": "catalog:lint",
     "prettier": "catalog:format",
     "prettier-plugin-packagejson": "catalog:format",
-    "sanitize-html": "^2.17.0",
     "taze": "catalog:script",
     "typescript": "catalog:build"
   },

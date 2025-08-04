@@ -22,16 +22,20 @@
   "devDependencies": {
     "@astrojs/sitemap": "^3.3.0",
     "@janis.me/linter-config": "workspace:*",
-    "@janis.me/themed": "0.2.0",
+    "@janis.me/themed": "0.2.2",
     "@janis.me/typescript-config": "workspace:*",
     "@shikijs/transformers": "^3.4.2",
-    "@types/node": "^22.10.2",
+    "@types/node": "catalog:types",
+    "@types/sanitize-html": "catalog:types",
     "astro": "^5.8.1",
     "astro-webmanifest": "^1.0.0",
+    "cssnano": "catalog:build",
+    "postcss": "catalog:build",
     "rehype-autolink-headings": "^7.1.0",
     "remark-custom-header-id": "^1.0.0",
-    "sass": "^1.87.0",
+    "sanitize-html": "^2.17.0",
+    "sass": "catalog:build",
     "sharp": "^0.34.2",
-    "typescript": "^5.8.3"
+    "typescript": "catalog:build"
   }
 }
