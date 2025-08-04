@@ -57,7 +57,7 @@ code {
 
   padding-top: $header-size;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 
   &:before {
     top: 0;
@@ -81,6 +81,7 @@ code {
     display: inline-block;
     padding: 0 !important;
     width: 100%;
+    overflow: auto;
 
     // the usual styling
     .line {
