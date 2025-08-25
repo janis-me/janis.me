@@ -1,9 +1,11 @@
 // @ts-check
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import scriptEmbed from '@brandonaaron/astro-script-embed';
 import { transformerMetaHighlight } from '@shikijs/transformers';
+import { dev } from 'astro';
 import pdf from 'astro-pdf';
 import webmanifest from 'astro-webmanifest';
 import { defineConfig, passthroughImageService } from 'astro/config';
@@ -14,12 +16,15 @@ const __dirname = dirname(__filename);
 // https://astro.build/config
 export default defineConfig({
   site: 'https://janis.me',
+
   image: {
     service: passthroughImageService(),
   },
+
   build: {
     inlineStylesheets: 'always',
   },
+
   integrations: [
     sitemap(),
     webmanifest({
@@ -42,6 +47,18 @@ export default defineConfig({
         screen: true,
         pdf: { format: 'A4', scale: 0.8, printBackground: true },
       },
+      server: async config => {
+        const server = await dev({ root: fileURLToPath(config.root), logLevel: 'error' });
+
+        const host = server.address.address;
+        const port = server.address.port;
+
+        const url = new URL(`http://${host ?? 'localhost'}:${port}`);
+        return {
+          url,
+          close: server.stop,
+        };
+      },
       pages: {
         '/cv/raw': [
           'cv.pdf',
@@ -62,6 +79,7 @@ export default defineConfig({
     }),
     scriptEmbed(),
   ],
+
   markdown: {
     shikiConfig: {
       transformers: [transformerMetaHighlight()],
@@ -71,6 +89,7 @@ export default defineConfig({
       },
     },
   },
+
   vite: {
     resolve: {
       alias: {
@@ -78,4 +97,10 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
 });
