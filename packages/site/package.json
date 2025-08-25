@@ -38,5 +38,8 @@
     "sass": "catalog:build",
     "sharp": "^0.34.2",
     "typescript": "catalog:build"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.48.1"
   }
 }

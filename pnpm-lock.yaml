@@ -202,6 +202,10 @@ importers:
       typescript:
         specifier: catalog:build
         version: 5.9.2
+    optionalDependencies:
+      '@rollup/rollup-linux-x64-gnu':
+        specifier: 4.48.1
+        version: 4.48.1
 
   packages/typescript-config: {}
 
@@ -889,6 +893,12 @@ packages:
 
   '@rollup/rollup-linux-x64-gnu@4.41.1':
     resolution: {integrity: sha512-cWBOvayNvA+SyeQMp79BHPK8ws6sHSsYnK5zDcsC3Hsxr1dgTABKjMnMslPq1DvZIp6uO7kIWhiGwaTdR4Og9A==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@rollup/rollup-linux-x64-gnu@4.48.1':
+    resolution: {integrity: sha512-90taWXCWxTbClWuMZD0DKYohY1EovA+W5iytpE89oUPmT5O1HFdf8cuuVIylE6vCbrGdIGv85lVRzTcpTRZ+kA==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
@@ -4096,6 +4106,9 @@ snapshots:
     optional: true
 
   '@rollup/rollup-linux-x64-gnu@4.41.1':
+    optional: true
+
+  '@rollup/rollup-linux-x64-gnu@4.48.1':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.41.1':
