@@ -49,11 +49,21 @@ export default defineConfig({
       },
       server: async config => {
         const server = await dev({ root: fileURLToPath(config.root), logLevel: 'error' });
+        // get the actual port number for static preview server
+        // @ts-ignore
+        const address = 'server' in server ? server.server.address() : undefined;
+        let host = undefined;
+        let port = undefined;
+        if (address && typeof address === 'object') {
+          host = address?.address;
+          port = address?.port;
+        }
 
-        const host = server.address.address;
-        const port = server.address.port;
+        // @ts-ignore
+        const url = new URL(`http://${server.host ?? host ?? 'localhost'}:${port ?? server.port}`);
+        console.log(host, port);
+        console.log(url.toString());
 
-        const url = new URL(`http://${host ?? 'localhost'}:${port}`);
         return {
           url,
           close: server.stop,
