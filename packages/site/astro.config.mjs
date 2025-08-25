@@ -59,14 +59,9 @@ export default defineConfig({
         const host = server.address.address ?? 'localhost';
         const port = server.address.port ?? 4321;
 
-        console.log(config);
-        console.log(server);
-
-        const str = `http://${host}:${port}`;
-        console.log(str);
-
         let url = new URL('http://localhost:4321');
 
+        const str = `http://${host}:${port}`;
         try {
           url = new URL(str);
         } catch (e) {
