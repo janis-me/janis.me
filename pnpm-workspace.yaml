@@ -36,7 +36,7 @@ onlyBuiltDependencies:
 
 overrides:
   rollup: npm:@rollup/wasm-node
-  puppeteer: "@cloudflare/puppeteer"
+  puppeteer-core: "npm:@cloudflare/puppeteer"
 
 supportedArchitectures:
   os: [wasm, linux]

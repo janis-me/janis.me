@@ -18,7 +18,7 @@ export default defineConfig({
   site: 'https://janis.me',
 
   server: {
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 4321,
   },
 
@@ -54,12 +54,12 @@ export default defineConfig({
       },
       // Adapted the `original` server version: https://github.com/lameuler/astro-pdf/blob/main/src/server.ts
       server: async config => {
-        const server = await dev({ root: fileURLToPath(config.root), base: 'localhost', logLevel: 'error' });
+        const server = await dev({ root: fileURLToPath(config.root), logLevel: 'error' });
         // get the actual port number for static preview server
         const host = server.address.address ?? 'localhost';
         const port = server.address.port ?? 4321;
 
-        let url = new URL('http://localhost:4321');
+        let url = new URL('http://127.0.0.1:4321');
 
         const str = `http://${host}:${port}`;
         try {
