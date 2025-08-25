@@ -36,7 +36,7 @@
   },
   "packageManager": "pnpm@10.15.0",
   "engines": {
-    "node": ">=22.11.0"
+    "node": ">=24.6.0"
   },
   "pnpm": {
     "supportedArchitectures": {
@@ -45,6 +45,7 @@
       ]
     },
     "overrides": {
+      "rollup": "npm:@rollup/wasm-node",
       "sharp": "0.34.2"
     }
   }
