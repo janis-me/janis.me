@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.3.0",
+    "@cloudflare/puppeteer": "^1.0.4",
     "@janis.me/linter-config": "workspace:*",
     "@janis.me/themed": "0.2.2",
     "@janis.me/typescript-config": "workspace:*",
