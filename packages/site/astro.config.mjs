@@ -47,22 +47,15 @@ export default defineConfig({
         screen: true,
         pdf: { format: 'A4', scale: 0.8, printBackground: true },
       },
+      // Adapted the `original` server version: https://github.com/lameuler/astro-pdf/blob/main/src/server.ts
       server: async config => {
-        const server = await dev({ root: fileURLToPath(config.root), logLevel: 'error' });
+        const server = await dev({ root: fileURLToPath(config.root), base: 'localhost', logLevel: 'error' });
         // get the actual port number for static preview server
         // @ts-ignore
-        const address = 'server' in server ? server.server.address() : undefined;
-        let host = undefined;
-        let port = undefined;
-        if (address && typeof address === 'object') {
-          host = address?.address;
-          port = address?.port;
-        }
-
-        console.log(host, port);
-        console.log(server);
+        const host = server.address.address ?? 'localhost';
+        const port = server.address.port ?? 4321;
         // @ts-ignore
-        const url = new URL(`http://${server.host ?? host ?? 'localhost'}:${port ?? server.port}`);
+        const url = new URL(`http://${host}:${port}`);
         console.log(url.toString());
 
         return {
