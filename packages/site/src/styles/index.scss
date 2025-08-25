@@ -150,8 +150,26 @@ body {
   grid-template-rows: themed('size-80') auto;
 
   font-family: 'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: themed('background');
   color: themed('text');
+
+  $line-color: themed('gray-3');
+  $background-color: themed('background');
+
+  background-color: $background-color;
+  background-image:
+    linear-gradient($line-color 2px, transparent 2px), linear-gradient(90deg, $line-color 2px, transparent 2px),
+    linear-gradient($line-color 1px, transparent 1px), linear-gradient(90deg, $line-color 1px, $background-color 1px);
+  background-size:
+    50px 50px,
+    50px 50px,
+    10px 10px,
+    10px 10px;
+  background-position:
+    -2px -2px,
+    -2px -2px,
+    -1px -1px,
+    -1px -1px;
+  background-repeat: repeat;
 
   @include media('<=tablet') {
     grid-template-rows: themed('size-64') auto;

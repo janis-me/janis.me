@@ -2,7 +2,10 @@ packages:
   - packages/*
 
 ignoredBuiltDependencies:
-  - esbuild
+  - 'esbuild'
+  - '@parcel/watcher'
+  - 'esbuild'
+  - 'sharp'
 
 catalogs:
   build:

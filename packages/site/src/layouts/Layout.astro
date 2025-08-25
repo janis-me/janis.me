@@ -114,6 +114,7 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
         overflow: hidden;
         position: relative;
         border: 1px solid themed('gray-8');
+        background-color: themed('background');
 
         display: grid;
         grid-template-rows: themed('size-48') 1fr fit-content(themed('size-48'));
@@ -141,9 +142,8 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
         }
 
         @include media('<=phone') {
-          width: 100%;
-          border: none;
-          max-height: 100%;
+          width: 96%;
+          max-height: 98%;
         }
 
         @include media('height<800px', '>tablet') {
