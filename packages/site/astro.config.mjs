@@ -17,6 +17,11 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   site: 'https://janis.me',
 
+  server: {
+    host: 'localhost',
+    port: 4321,
+  },
+
   image: {
     service: passthroughImageService(),
   },
@@ -54,13 +59,19 @@ export default defineConfig({
         const host = server.address.address ?? 'localhost';
         const port = server.address.port ?? 4321;
 
+        console.log(config);
         console.log(server);
 
         const str = `http://${host}:${port}`;
         console.log(str);
 
-        const url = new URL(str);
-        console.log(url.toString());
+        let url = new URL('http://localhost:4321');
+
+        try {
+          url = new URL(str);
+        } catch (e) {
+          console.warn(`Could not parse URL from dev server: ${str}, falling back to ${url.toString()}`);
+        }
 
         return {
           url,
