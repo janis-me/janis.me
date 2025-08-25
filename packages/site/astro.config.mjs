@@ -51,11 +51,15 @@ export default defineConfig({
       server: async config => {
         const server = await dev({ root: fileURLToPath(config.root), base: 'localhost', logLevel: 'error' });
         // get the actual port number for static preview server
-        // @ts-ignore
         const host = server.address.address ?? 'localhost';
         const port = server.address.port ?? 4321;
-        // @ts-ignore
-        const url = new URL(`http://${host}:${port}`);
+
+        console.log(server);
+
+        const str = `http://${host}:${port}`;
+        console.log(str);
+
+        const url = new URL(str);
         console.log(url.toString());
 
         return {
