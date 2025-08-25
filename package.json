@@ -39,14 +39,8 @@
     "node": ">=24.6.0"
   },
   "pnpm": {
-    "supportedArchitectures": {
-      "libc": [
-        "musl"
-      ]
-    },
     "overrides": {
-      "rollup": "npm:@rollup/wasm-node",
-      "sharp": "0.34.2"
+      "rollup": "npm:@rollup/wasm-node"
     }
   }
 }
