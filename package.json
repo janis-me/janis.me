@@ -37,10 +37,5 @@
   "packageManager": "pnpm@10.15.0",
   "engines": {
     "node": ">=24.6.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "rollup": "npm:@rollup/wasm-node"
-    }
   }
 }
