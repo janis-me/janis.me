@@ -59,9 +59,10 @@ export default defineConfig({
           port = address?.port;
         }
 
+        console.log(host, port);
+        console.log(server);
         // @ts-ignore
         const url = new URL(`http://${server.host ?? host ?? 'localhost'}:${port ?? server.port}`);
-        console.log(host, port);
         console.log(url.toString());
 
         return {
