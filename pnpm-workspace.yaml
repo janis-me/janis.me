@@ -1,14 +1,13 @@
 packages:
   - packages/*
 
-ignoredBuiltDependencies:
-  - "esbuild"
-  - "@parcel/watcher"
-  - "esbuild"
-  - "sharp"
-
-onlyBuiltDependencies:
-  - "puppeteer"
+supportedArchitectures:
+  os:
+    - linux
+  cpu:
+    - x64
+  libc:
+    - musl
 
 catalogs:
   build:
