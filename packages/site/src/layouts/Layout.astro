@@ -8,6 +8,7 @@ import { BlueskyIcon, GithubIcon, LinkedinIcon, RssIcon, YoutubeIcon } from '$co
 const pageLinks = [
   { url: '', label: 'Home' },
   { url: 'blog', label: 'Blog' },
+  { url: 'cv', label: 'CV' },
   { url: 'contact', label: 'Contact' },
 ] as const;
 
@@ -37,9 +38,11 @@ const profileLinks = [
 
 const currentUrl = Astro.url.pathname;
 
-const { title, description } = Astro.props;
+const { title, description, raw = false } = Astro.props;
 
 const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
+
+const urlPath = Astro.url.pathname.replace('/raw', '');
 ---
 
 <html lang="en" data-theme="janis-light">
@@ -64,48 +67,87 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
   </head>
 
   <body>
-    <Header />
+    {!raw && <Header />}
 
-    <div class="container">
-      <nav class="nav">
-        <div class="nav__pages">
-          {
-            pageLinks.map(i =>
-              // prettier-ignore
-              <a href={`/${i.url}`} class={currentUrl.replaceAll('/', '') === `${i.url}` ? 'active' : ''}>{i.label}</a>,
-            )
-          }
+    {
+      raw && (
+        <div class="raw-note">
+          <small>
+            An interactive version of this document is available at{' '}
+            <a href={`https://janis.me${urlPath}`} target="_blank" rel="noopener">
+              janis.me{urlPath}
+            </a>
+          </small>
         </div>
-        <div class="nav__links">
-          {
-            profileLinks.map(i => (
-              <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
-                <Fragment set:html={i.icon.html} />
+      )
+    }
+
+    {
+      raw ? (
+        <div class="container--raw">
+          <slot />
+        </div>
+      ) : (
+        <div class="container">
+          <nav class="nav">
+            <div class="nav__pages">
+              {pageLinks.map(i =>
+                // prettier-ignore
+                <a href={`/${i.url}`} class={currentUrl.replaceAll('/', '') === `${i.url}` ? 'active' : ''}>{i.label}</a>,
+              )}
+            </div>
+            <div class="nav__links">
+              {profileLinks.map(i => (
+                <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
+                  <Fragment set:html={i.icon.html} />
+                </a>
+              ))}
+            </div>
+          </nav>
+          <main class="content">
+            <slot />
+          </main>
+          <footer class="footer">
+            <p>
+              <span class="footer__extra">You're looking at static HTML - </span> made with
+              <a href="https://janis.me/themed" target="_blank" rel="noopener">
+                themed
               </a>
-            ))
-          }
+              ,<a href="https://surimi.dev">surimi.dev</a>,<a href="https://github.com/remarkjs/remark">remark</a> and
+              <a href="https://astro.build" target="_blank" rel="noopener">
+                Astro
+              </a>
+              <span class="footer__extra">
+                -
+                <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener">
+                  {' '}
+                  view source{' '}
+                </a>
+              </span>
+            </p>
+          </footer>
         </div>
-      </nav>
-      <main class="content">
-        <slot />
-      </main>
-      <footer class="footer">
-        <p>
-          <span class="footer__extra">You're looking at static HTML - </span> made with
-          <a href="https://janis.me/themed" target="_blank" rel="noopener">themed</a>,
-          <a href="https://surimi.dev">surimi.dev</a>,
-          <a href="https://github.com/remarkjs/remark">remark</a> and
-          <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
-          <span class="footer__extra">
-            -
-            <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener"> view source </a>
-          </span>
-        </p>
-      </footer>
-    </div>
+      )
+    }
 
     <style lang="scss">
       @use '$styles/globals' as *;
+
+      .raw-note {
+        text-align: center;
+        padding: themed('size-4') themed('size-8');
+        background-color: themed('background');
+        color: themed('text');
+        border-bottom: 1px solid themed('gray-8');
+      }
+
+      .container--raw {
+        border: 1px solid themed('gray-8');
+        margin: auto;
+        background-color: themed('background');
+        margin: themed('size-32');
+        padding-bottom: themed('size-32');
+      }
 
       .container {
         min-height: 100px;

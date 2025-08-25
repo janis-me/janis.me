@@ -142,13 +142,9 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
 
 body {
-  display: grid;
-  grid-template-rows: themed('size-80') auto;
-
   font-family: 'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif;
   color: themed('text');
 
@@ -174,6 +170,16 @@ body {
   @include media('<=tablet') {
     grid-template-rows: themed('size-64') auto;
   }
+}
+
+body:not(:has(.container--raw)) {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: themed('size-80') auto;
+}
+
+body:has(.container--raw) {
+  margin: 0;
 }
 
 p {
@@ -207,6 +213,10 @@ svg {
   object-fit: contain;
   height: min-content;
   margin-top: themed('size-16');
+}
+
+.strikethrough {
+  background: linear-gradient(to left top, transparent 47.75%, currentColor 48%, currentColor 52%, transparent 52.25%);
 }
 
 @include media('<desktop') {

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import sitemap from '@astrojs/sitemap';
 import scriptEmbed from '@brandonaaron/astro-script-embed';
 import { transformerMetaHighlight } from '@shikijs/transformers';
+import pdf from 'astro-pdf';
 import webmanifest from 'astro-webmanifest';
 import { defineConfig, passthroughImageService } from 'astro/config';
 
@@ -34,6 +35,30 @@ export default defineConfig({
       theme_color: '#212529',
       background_color: '#212529',
       display: 'standalone',
+    }),
+    pdf({
+      baseOptions: {
+        path: '/pdf[pathname].pdf',
+        screen: true,
+        pdf: { format: 'A4', scale: 0.8, printBackground: true },
+      },
+      pages: {
+        '/cv/raw': [
+          'cv.pdf',
+          {
+            path: '/cv-light.pdf',
+            preCallback: page => {
+              page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+            },
+          },
+          {
+            path: '/cv-dark.pdf',
+            preCallback: async page => {
+              await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+            },
+          },
+        ],
+      },
     }),
     scriptEmbed(),
   ],
