@@ -2,13 +2,30 @@ packages:
   - packages/*
 
 catalogs:
+  ui:
+    "@janis.me/themed": "0.2.2"
+    "include-media": "^2.0.0"
+    "sanitize.css": "^13.0.0"
   build:
+    "@astrojs/rss": "^4.0.12"
+    "@astrojs/sitemap": "^3.5.1"
+    "@brandonaaron/astro-script-embed": "^1.0.3"
+    "@shikijs/transformers": "^3.11.0"
+    "astro-webmanifest": "^1.0.0"
+    "astro": "^5.13.3"
+    "sanitize-html": "^2.17.0"
+    "sharp": "^0.34.3"
     cssnano: ^7.1.1
     postcss: ^8.5.6
-    sass: ^1.90.0
+    sass: ^1.91.0
     typescript: ^5.9.2
-    vite: ^6.3.5
     vite-plugin-static-copy: ^2.3.2
+    vite: ^6.3.5
+  fonts:
+    "@fontsource/ibm-plex-mono": "^5.2.6"
+    "@fortawesome/fontawesome-svg-core": "^6.7.2"
+    "@fortawesome/free-brands-svg-icons": "^6.7.2"
+    "@fortawesome/free-solid-svg-icons": "^6.7.2"
   format:
     "@ianvs/prettier-plugin-sort-imports": ^4.6.2
     prettier: ^3.6.2
@@ -20,7 +37,7 @@ catalogs:
     eslint-plugin-react: ^7.37.5
     eslint-plugin-react-hooks: ^5.2.0
     jiti: ^2.5.1
-    typescript-eslint: ^8.40.0
+    typescript-eslint: ^8.41.0
   script:
     taze: ^19.3.0
   types:
@@ -36,7 +53,6 @@ onlyBuiltDependencies:
 
 overrides:
   rollup: npm:@rollup/wasm-node
-  puppeteer-core: "npm:@cloudflare/puppeteer"
 
 supportedArchitectures:
-  os: [wasm, linux]
+  os: [ linux ]

@@ -1,11 +1,9 @@
 // @ts-check
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import scriptEmbed from '@brandonaaron/astro-script-embed';
 import { transformerMetaHighlight } from '@shikijs/transformers';
-import { dev } from 'astro';
 import pdf from 'astro-pdf';
 import webmanifest from 'astro-webmanifest';
 import { defineConfig, passthroughImageService } from 'astro/config';
@@ -52,27 +50,6 @@ export default defineConfig({
         screen: true,
         pdf: { format: 'A4', scale: 0.8, printBackground: true },
       },
-      // Adapted the `original` server version: https://github.com/lameuler/astro-pdf/blob/main/src/server.ts
-      server: async config => {
-        const server = await dev({ root: fileURLToPath(config.root), logLevel: 'error' });
-        // get the actual port number for static preview server
-        const host = server.address.address ?? 'localhost';
-        const port = server.address.port ?? 4321;
-
-        let url = new URL('http://127.0.0.1:4321');
-
-        const str = `http://${host}:${port}`;
-        try {
-          url = new URL(str);
-        } catch (e) {
-          console.warn(`Could not parse URL from dev server: ${str}, falling back to ${url.toString()}`);
-        }
-
-        return {
-          url,
-          close: server.stop,
-        };
-      },
       pages: {
         '/cv/raw': [
           'cv.pdf',
@@ -111,10 +88,4 @@ export default defineConfig({
       },
     },
   },
-
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
 });
