@@ -175,7 +175,7 @@ body {
 body:not(:has(.container--raw)) {
   overflow: hidden;
   display: grid;
-  grid-template-rows: themed('size-80') auto;
+  grid-template-rows: themed('size-64') auto;
 }
 
 body:has(.container--raw) {
@@ -200,6 +200,7 @@ a {
 
 ul {
   list-style-type: square;
+  padding-left: themed('size-24');
 }
 
 // We're not adding font-awesome styles, so we need to style icons manually
