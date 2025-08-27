@@ -47,7 +47,6 @@ export default defineConfig({
     pdf({
       baseOptions: {
         path: '/pdf[pathname].pdf',
-        screen: true,
         pdf: { format: 'A4', scale: 0.8, printBackground: true },
       },
       pages: {

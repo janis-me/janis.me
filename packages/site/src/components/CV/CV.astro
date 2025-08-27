@@ -220,7 +220,7 @@ import me from './me.png';
 
     .section {
       background-color: themed('background');
-      border-bottom: 1px solid themed('gray-8');
+      border-top: 1px solid themed('gray-8');
       border-collapse: collapse;
     }
 
@@ -256,6 +256,7 @@ import me from './me.png';
     .title {
       grid-area: title;
       padding: themed('size-8') themed('size-16');
+      border-top: none;
     }
 
     .subtitle {
@@ -278,15 +279,27 @@ import me from './me.png';
 
     .experience {
       grid-area: experience;
+
+      @media print {
+        break-after: page;
+      }
     }
 
     .random {
       grid-area: random;
       border-right: 1px solid themed('gray-8');
+
+      @media print {
+        margin-top: themed('size-16');
+      }
     }
 
     .other {
       grid-area: other;
+
+      @media print {
+        margin-top: themed('size-16');
+      }
     }
 
     .outro {
