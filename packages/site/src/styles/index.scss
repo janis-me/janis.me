@@ -135,6 +135,12 @@ code {
 
 html {
   font-size: 16px;
+  scrollbar-color: themed('text') themed('background');
+
+  ::selection {
+    background: themed('text');
+    color: themed('background');
+  }
 }
 
 html,

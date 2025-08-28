@@ -9,30 +9,36 @@
   lightDarkButton?.addEventListener('click', () => {
     const currentTheme = getThemeFromDocument();
     if (!currentTheme) return;
-    const themeComponents = currentTheme.split('-');
-    setTheme(`${themeComponents[0]}-${themeComponents[1] === 'dark' ? 'light' : 'dark'}`);
+    const [mode, scheme] = currentTheme.split('-');
+    setTheme(`${mode}-${scheme === 'dark' ? 'light' : 'dark'}`);
   });
 
   modeButton?.addEventListener('click', () => {
     const currentTheme = getThemeFromDocument();
     if (!currentTheme) return;
-    const themeComponents = currentTheme.split('-');
-    setTheme(`${themeComponents[0] === 'lucie' ? 'janis' : 'lucie'}-${themeComponents[1]}`);
+    const [mode, scheme] = currentTheme.split('-');
+    setTheme(`${mode === 'lucie' ? 'janis' : 'lucie'}-${scheme}`);
   });
 
   watchThemeAttribute(theme => {
     if (!theme) return;
-    const themeComponents = theme.split('-');
-    const lightDarkIcon = themeComponents[1] === 'dark' ? SunIcon : MoonIcon;
-    const modeIcon = themeComponents[0] === 'lucie' ? DropletSlashIcon : DropletIcon;
+    const [mode, scheme] = theme.split('-');
+    const modeIcon = mode === 'lucie' ? DropletSlashIcon : DropletIcon;
+    const lightDarkIcon = scheme === 'dark' ? SunIcon : MoonIcon;
 
     if (lightDarkButton) {
       lightDarkButton.innerHTML = '';
+      const text = document.createElement('span');
+      text.innerHTML = `${scheme === 'dark' ? 'light' : 'dark'}`;
       lightDarkButton.appendChild(lightDarkIcon.node[0]);
+      lightDarkButton.appendChild(text);
     }
     if (modeButton) {
       modeButton.innerHTML = '';
+      const text = document.createElement('span');
+      text.innerHTML = `${mode === 'lucie' ? 'simple' : 'colorful'}`;
       modeButton.appendChild(modeIcon.node[0]);
+      modeButton.appendChild(text);
     }
   });
 
@@ -91,8 +97,18 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-      font-size: 1.3em;
+      font-size: 1.3rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      gap: themed('size-4');
       width: themed('size-32');
+
+      :global(span) {
+        font-size: 0.8rem;
+      }
     }
 
     @include media('<=desktop') {
