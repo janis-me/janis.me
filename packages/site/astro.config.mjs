@@ -51,9 +51,8 @@ export default defineConfig({
       },
       pages: {
         '/cv/raw': [
-          'cv.pdf',
           {
-            path: '/cv-light.pdf',
+            path: '/cv.pdf',
             preCallback: page => {
               page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
             },
