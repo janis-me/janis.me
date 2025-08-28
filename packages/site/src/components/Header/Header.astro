@@ -28,17 +28,11 @@
 
     if (lightDarkButton) {
       lightDarkButton.innerHTML = '';
-      const text = document.createElement('span');
-      text.innerHTML = `${scheme === 'dark' ? 'light' : 'dark'}`;
       lightDarkButton.appendChild(lightDarkIcon.node[0]);
-      lightDarkButton.appendChild(text);
     }
     if (modeButton) {
       modeButton.innerHTML = '';
-      const text = document.createElement('span');
-      text.innerHTML = `${mode === 'lucie' ? 'simple' : 'colorful'}`;
       modeButton.appendChild(modeIcon.node[0]);
-      modeButton.appendChild(text);
     }
   });
 
@@ -97,18 +91,8 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-      font-size: 1.3rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-flow: column;
-      gap: themed('size-4');
-      width: themed('size-32');
-
-      :global(span) {
-        font-size: 0.8rem;
-      }
+      font-size: 1.3em;
+      width: themed('size-24');
     }
 
     @include media('<=desktop') {
