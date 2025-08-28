@@ -1,8 +1,5 @@
 ---
 import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
-import { Image } from 'astro:assets';
-
-import me from './me.png';
 ---
 
 <div class="cv">
@@ -138,14 +135,6 @@ import me from './me.png';
             h5wasm, The supabase PostgREST Go client, The homassistant HomeAutomation system and more.
           </li>
         </ul>
-
-        <li><b>A picture of me drinking mocktails on Mallorca</b></li>
-        <ul>
-          <li>
-            Didn't fit the aesthetics of the first page. So you get it now.
-            <Image src={me} alt="me, in front of some mocktails. Picture a very pretty and happy person" />
-          </li>
-        </ul>
       </ul>
     </div>
   </div>
@@ -243,13 +232,6 @@ import me from './me.png';
 
     .section-content {
       padding: themed('size-8') themed('size-16');
-    }
-
-    img {
-      display: block;
-      max-width: 80%;
-      width: auto;
-      height: auto;
     }
 
     ul {
