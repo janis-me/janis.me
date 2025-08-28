@@ -1,0 +1,35 @@
+---
+import { BlueskyIcon, GithubIcon, LinkedinIcon, RssIcon, YoutubeIcon } from '$components/icons';
+
+const profileLinks = [
+  { icon: GithubIcon, url: 'https://github.com/janis-me', label: 'Github' },
+  {
+    icon: BlueskyIcon,
+    url: 'https://bsky.app/profile/janis.me',
+    label: 'Bluesky',
+  },
+  {
+    icon: YoutubeIcon,
+    url: 'https://www.youtube.com/@roulzhq',
+    label: 'Youtube',
+  },
+  {
+    icon: LinkedinIcon,
+    url: 'https://www.linkedin.com/in/janis-jansen',
+    label: 'Linkedin',
+  },
+  {
+    icon: RssIcon,
+    url: '/rss.xml',
+    label: 'RSS',
+  },
+] as const;
+---
+
+{
+  profileLinks.map(i => (
+    <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
+      <Fragment set:html={i.icon.html} />
+    </a>
+  ))
+}

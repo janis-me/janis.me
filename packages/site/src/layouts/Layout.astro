@@ -3,37 +3,13 @@ import '$styles/index.scss';
 
 import openSansWoff2 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import Header from '$components/Header/Header.astro';
-import { BlueskyIcon, GithubIcon, LinkedinIcon, RssIcon, YoutubeIcon } from '$components/icons';
+import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
 
 const pageLinks = [
   { url: '', label: 'Home' },
   { url: 'blog', label: 'Blog' },
   { url: 'cv', label: 'CV' },
   { url: 'contact', label: 'Contact' },
-] as const;
-
-const profileLinks = [
-  { icon: GithubIcon, url: 'https://github.com/janis-me', label: 'Github' },
-  {
-    icon: BlueskyIcon,
-    url: 'https://bsky.app/profile/janis.me',
-    label: 'Bluesky',
-  },
-  {
-    icon: YoutubeIcon,
-    url: 'https://www.youtube.com/@roulzhq',
-    label: 'Youtube',
-  },
-  {
-    icon: LinkedinIcon,
-    url: 'https://www.linkedin.com/in/janis-jansen',
-    label: 'Linkedin',
-  },
-  {
-    icon: RssIcon,
-    url: '/rss.xml',
-    label: 'RSS',
-  },
 ] as const;
 
 const currentUrl = Astro.url.pathname;
@@ -70,21 +46,16 @@ const urlPath = Astro.url.pathname.replace('/raw', '');
     {!raw && <Header />}
 
     {
-      raw && (
-        <div class="raw-note">
-          <small>
-            An interactive version of this document is available at{' '}
-            <a href={`https://janis.me${urlPath}`} target="_blank" rel="noopener">
-              janis.me{urlPath}
-            </a>
-          </small>
-        </div>
-      )
-    }
-
-    {
       raw ? (
         <div class="container--raw">
+          <div class="raw-note">
+            <small>
+              An interactive version of this document is available at{' '}
+              <a href={`https://janis.me${urlPath}`} target="_blank" rel="noopener">
+                janis.me{urlPath}
+              </a>
+            </small>
+          </div>
           <slot />
         </div>
       ) : (
@@ -97,11 +68,7 @@ const urlPath = Astro.url.pathname.replace('/raw', '');
               )}
             </div>
             <div class="nav__links">
-              {profileLinks.map(i => (
-                <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
-                  <Fragment set:html={i.icon.html} />
-                </a>
-              ))}
+              <SocialIcons />
             </div>
           </nav>
           <main class="content">
@@ -134,7 +101,7 @@ const urlPath = Astro.url.pathname.replace('/raw', '');
       @use '$styles/globals' as *;
 
       .raw-note {
-        text-align: center;
+        text-align: right;
         padding: themed('size-4') themed('size-8');
         background-color: themed('background');
         color: themed('text');
@@ -202,6 +169,10 @@ const urlPath = Astro.url.pathname.replace('/raw', '');
           border: none;
           max-height: 100%;
         }
+      }
+
+      .container :global(.raw-only) {
+        display: none !important;
       }
 
       .nav {

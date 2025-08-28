@@ -1,11 +1,18 @@
 ---
+import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
 import { Image } from 'astro:assets';
 
 import me from './me.png';
 ---
 
 <div class="cv">
-  <h2 class="title section">Janis Jansen</h2>
+  <h2 class="title section">
+    Janis Jansen
+    <span class="title__right raw-only">
+      <a href="mailto:mail@janis.me">mail@janis.me</a>
+      <SocialIcons />
+    </span>
+  </h2>
   <p class="subtitle section">Typescript ■ React ■ SCSS ■ Python ■ SQL ■ Three.js ■ Go ■ WASM ■ Vue ■ Solid</p>
   <div class="intro section">
     <div class="section-content">
@@ -192,17 +199,18 @@ import me from './me.png';
       </ul>
     </div>
   </div>
-  <p class="outro section">
-    <div class="section-content">
-      Thanks a lot for reading through all that! Though, if I sent you this I think we should rather talk in person. Let
-      me tell you about my projects, show you some code, talk about the nerdy stuff.
+  <div class="outro section">
+    <p class="section-content">
+      Thanks a lot for reading through all that! Though, if I sent you this I think we should rather talk in person.
+      <br />
+      Let me tell you about my projects, show you some code, talk about the nerdy stuff.
       <br />
       Looking forward!
       <br />
       <br />
       Cheers, Janis
-    </div>
-  </p>
+    </p>
+  </div>
 </div>
 
 <style lang="scss">
@@ -257,6 +265,15 @@ import me from './me.png';
       grid-area: title;
       padding: themed('size-8') themed('size-16');
       border-top: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &__right {
+        font-size: 0.8rem;
+        display: flex;
+        gap: themed('size-12');
+      }
     }
 
     .subtitle {
