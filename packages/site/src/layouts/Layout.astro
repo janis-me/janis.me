@@ -14,7 +14,7 @@ const pageLinks = [
 
 const currentUrl = Astro.url.pathname;
 
-const { title, description, raw = false } = Astro.props;
+const { title, description, raw = false, hideBanner = false } = Astro.props;
 
 const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 
@@ -48,14 +48,16 @@ const urlPath = Astro.url.pathname.replace('/raw', '');
     {
       raw ? (
         <div class="container--raw">
-          <div class="raw-note">
-            <small>
-              Document generated from the live-version at{' '}
-              <a href={`https://janis.me${urlPath}`} target="_blank" rel="noopener">
-                janis.me{urlPath}
-              </a>
-            </small>
-          </div>
+          {!hideBanner && (
+            <div class="raw-note">
+              <small>
+                Document generated from the live-version at{' '}
+                <a href={`https://janis.me${urlPath}`} target="_blank" rel="noopener">
+                  janis.me{urlPath}
+                </a>
+              </small>
+            </div>
+          )}
           <slot />
         </div>
       ) : (

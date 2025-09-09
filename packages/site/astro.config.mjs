@@ -50,6 +50,20 @@ export default defineConfig({
         pdf: { format: 'A4', scale: 0.8, printBackground: true },
       },
       pages: {
+        '/cl/raw': [
+          {
+            path: '/cl.pdf',
+            preCallback: page => {
+              page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+            },
+            pdf: {
+              pageRanges: '1',
+              format: 'A4',
+              scale: 0.8,
+              printBackground: true,
+            },
+          },
+        ],
         '/cv/raw': [
           {
             path: '/cv.pdf',
