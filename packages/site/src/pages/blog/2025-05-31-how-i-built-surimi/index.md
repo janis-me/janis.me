@@ -1,13 +1,13 @@
 ---
 layout: $layouts/Blog.astro
-title: How I built surimi.dev - the Sass validation library!
+title: How I built scss-validate - the Sass validation library!
 createdAt: 2025-05-31
 updatedAt: 2025-06-04
 published: true
 tags: ['sass', 'coding']
 ---
 
-I just published the first few versions of [surimi.dev](https://surimi.dev), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
+I just published the first few versions of [scss-validate](https://scss-validate.janis.me), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
 
 I started building this with my theming libraries in mind, as I needed some way to validate user-defined maps against pre-defined schemas. I found a few libraries like [sass-door](https://github.com/CarcajadaArtificial/sass-door) and [sassy-validation](https://github.com/iamskok/sassy-validation?tab=readme-ov-file),
 but they didn't allow me to validate maps and nested data the way I wanted to: I wanted to write schemas like in zod or yup.
@@ -50,7 +50,7 @@ What you can do, is return maps from function calls, and these maps can contain 
 
 ```scss
 @use 'sass:meta';
-@use 'surimi' as s;
+@use 'scss-validate' as s;
 
 $number-schema: s.number(
   $min: 1,
@@ -126,7 +126,7 @@ Then, you can just loop over all keyword arguments and check if the validator ex
 
   @each $key, $value in $kvargs {
     @if list.index($allowed-validators, $key) == null {
-      @error '[surimi] `number.#{$key}` is not a valid validator. Allowed validators are: #{$allowed-validators}';
+      @error '[scss-validate] `number.#{$key}` is not a valid validator. Allowed validators are: #{$allowed-validators}';
     }
   }
 
@@ -153,7 +153,7 @@ The `validators.get` function simply returns a map of all validators with their 
         $alias: sass-map.get($aliases, $key);
         $fn-key: '#{$module}-#{$alias}';
       } @else {
-        @error '[surimi] Internal error: Validator function `#{$key}` does not exist for numbers.';
+        @error '[scss-validate] Internal error: Validator function `#{$key}` does not exist for numbers.';
       }
 
       $fn: meta.get-function($fn-key, $module: $module);
@@ -174,4 +174,4 @@ The `validators.get` function simply returns a map of all validators with their 
 
 And with that, we have a bunch of schema functions that can be executed by a single `validate` method, and all we need to do to extend them, is to define new functions!
 
-Checkout [surimi.dev](https://surimi.dev) for more information, and the [source code](https://github.com/janis-me/surimi).
+Checkout [scss-validate](https://scss-validate.janis.me) for more information, and the [source code](https://github.com/janis-me/scss-validate).
