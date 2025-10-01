@@ -8,41 +8,41 @@ catalogs:
     "sanitize.css": "^13.0.0"
   build:
     "@astrojs/rss": "^4.0.12"
-    "@astrojs/sitemap": "^3.5.1"
+    "@astrojs/sitemap": "^3.6.0"
     "astro-pdf": "^1.7.2"
     "@brandonaaron/astro-script-embed": "^1.0.3"
-    "@shikijs/transformers": "^3.11.0"
+    "@shikijs/transformers": "^3.13.0"
     "astro-webmanifest": "^1.0.0"
-    "astro": "^5.13.3"
+    "astro": "^5.14.1"
     "sanitize-html": "^2.17.0"
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.4"
     cssnano: ^7.1.1
     postcss: ^8.5.6
-    sass: ^1.91.0
-    typescript: ^5.9.2
+    sass: ^1.93.2
+    typescript: ^5.9.3
     vite-plugin-static-copy: ^2.3.2
-    vite: ^6.3.5
+    vite: ^6.3.6
   fonts:
-    "@fontsource/ibm-plex-mono": "^5.2.6"
+    "@fontsource/ibm-plex-mono": "^5.2.7"
     "@fortawesome/fontawesome-svg-core": "^6.7.2"
     "@fortawesome/free-brands-svg-icons": "^6.7.2"
     "@fortawesome/free-solid-svg-icons": "^6.7.2"
   format:
-    "@ianvs/prettier-plugin-sort-imports": ^4.6.2
+    "@ianvs/prettier-plugin-sort-imports": ^4.7.0
     prettier: ^3.6.2
     prettier-plugin-packagejson: ^2.5.19
   lint:
     "@eslint/eslintrc": ^3.3.1
-    "@eslint/js": ^9.34.0
-    eslint: ^9.34.0
+    "@eslint/js": ^9.36.0
+    eslint: ^9.36.0
     eslint-plugin-react: ^7.37.5
     eslint-plugin-react-hooks: ^5.2.0
-    jiti: ^2.5.1
-    typescript-eslint: ^8.41.0
+    jiti: ^2.6.0
+    typescript-eslint: ^8.45.0
   script:
-    taze: ^19.3.0
+    taze: ^19.7.0
   types:
-    "@types/node": ^22.18.0
+    "@types/node": ^22.18.8
     "@types/sanitize-html": ^2.16.0
 
 onlyBuiltDependencies:
@@ -56,4 +56,4 @@ overrides:
   rollup: npm:@rollup/wasm-node
 
 supportedArchitectures:
-  os: [linux]
+  os: [ linux ]
