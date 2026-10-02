@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./base.json": "./base.json",
-    "./react.json": "./react.json"
+    "./base.json": "./base.json"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

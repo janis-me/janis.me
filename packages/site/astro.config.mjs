@@ -1,80 +1,76 @@
 // @ts-check
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import sitemap from '@astrojs/sitemap';
-import scriptEmbed from '@brandonaaron/astro-script-embed';
-import { transformerMetaHighlight } from '@shikijs/transformers';
-import pdf from 'astro-pdf';
-import webmanifest from 'astro-webmanifest';
-import { defineConfig, passthroughImageService } from 'astro/config';
+import path, { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import sitemap from "@astrojs/sitemap";
+import scriptEmbed from "@brandonaaron/astro-script-embed";
+import { transformerMetaHighlight } from "@shikijs/transformers";
+import { defineConfig, passthroughImageService } from "astro/config";
+import pdf from "astro-pdf";
+import webmanifest from "astro-webmanifest";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://janis.me',
-
-  server: {
-    host: '127.0.0.1',
-    port: 4321,
-  },
-
+  site: "https://janis.me",
   image: {
     service: passthroughImageService(),
   },
 
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: "always",
   },
 
   integrations: [
     sitemap(),
     webmanifest({
-      name: 'janis.me - my personal website',
-
-      /**
-       * optional
-       **/
-      icon: 'src/assets/astronaut.svg', // source for favicon & icons
-      short_name: 'janis.me',
-      description: 'Janis Jansen - Fullstack dev & creator',
-      start_url: '/',
-      theme_color: '#212529',
-      background_color: '#212529',
-      display: 'standalone',
+      name: "janis.me - my personal website",
+      icon: "src/assets/astronaut.svg",
+      short_name: "janis.me",
+      description: "Janis Jansen - Fullstack dev & creator",
+      start_url: "/",
+      theme_color: "#212529",
+      background_color: "#212529",
+      display: "standalone",
     }),
     pdf({
       baseOptions: {
-        path: '/pdf[pathname].pdf',
-        pdf: { format: 'A4', scale: 0.8, printBackground: true },
+        path: "/pdf[pathname].pdf",
+        pdf: { format: "A4", scale: 0.8, printBackground: true },
       },
       pages: {
-        '/cl/raw': [
+        "/cl/raw": [
           {
-            path: '/cl.pdf',
-            preCallback: page => {
-              page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+            path: "/cl.pdf",
+            preCallback: (page) => {
+              page.emulateMediaFeatures([
+                { name: "prefers-color-scheme", value: "light" },
+              ]);
             },
             pdf: {
-              pageRanges: '1',
-              format: 'A4',
+              pageRanges: "1",
+              format: "A4",
               scale: 0.8,
               printBackground: true,
             },
           },
         ],
-        '/cv/raw': [
+        "/cv/raw": [
           {
-            path: '/cv.pdf',
-            preCallback: page => {
-              page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
+            path: "/cv.pdf",
+            preCallback: (page) => {
+              page.emulateMediaFeatures([
+                { name: "prefers-color-scheme", value: "light" },
+              ]);
             },
           },
           {
-            path: '/cv-dark.pdf',
-            preCallback: async page => {
-              await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+            path: "/cv-dark.pdf",
+            preCallback: async (page) => {
+              await page.emulateMediaFeatures([
+                { name: "prefers-color-scheme", value: "dark" },
+              ]);
             },
           },
         ],
@@ -87,8 +83,8 @@ export default defineConfig({
     shikiConfig: {
       transformers: [transformerMetaHighlight()],
       themes: {
-        light: 'github-light',
-        dark: 'github-dark',
+        light: "github-light",
+        dark: "github-dark",
       },
     },
   },
@@ -96,7 +92,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        $: path.resolve(__dirname, 'src'),
+        $: path.resolve(__dirname, "src"),
       },
     },
   },

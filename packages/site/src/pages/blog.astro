@@ -1,25 +1,25 @@
 ---
-import Layout from '$layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Layout from '$layouts/Layout.astro';
 
 const posts = await getCollection('blog', ({ data }) => {
-  return data.published === true;
+	return data.published === true;
 });
 
 const sortedPosts = posts.sort((a, b) => {
-  return b.data.createdAt.getTime() - a.data.createdAt.getTime();
+	return b.data.createdAt.getTime() - a.data.createdAt.getTime();
 });
 
 const groupedPosts = sortedPosts.reduce(
-  (acc, post) => {
-    const year = post.data.createdAt.getFullYear();
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(post);
-    return acc;
-  },
-  {} as Record<string, typeof posts>,
+	(acc, post) => {
+		const year = post.data.createdAt.getFullYear();
+		if (!acc[year]) {
+			acc[year] = [];
+		}
+		acc[year].push(post);
+		return acc;
+	},
+	{} as Record<string, typeof posts>,
 );
 ---
 

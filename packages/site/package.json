@@ -7,7 +7,10 @@
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "format": "biome format --write",
+    "lint": "biome lint --fix",
+    "check": "biome check --fix"
   },
   "devDependencies": {
     "@astrojs/rss": "catalog:build",
@@ -17,7 +20,6 @@
     "@fortawesome/fontawesome-svg-core": "catalog:fonts",
     "@fortawesome/free-brands-svg-icons": "catalog:fonts",
     "@fortawesome/free-solid-svg-icons": "catalog:fonts",
-    "@janis.me/linter-config": "workspace:*",
     "@janis.me/themed": "catalog:ui",
     "@janis.me/typescript-config": "workspace:*",
     "@shikijs/transformers": "catalog:build",
