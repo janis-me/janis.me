@@ -1,6 +1,6 @@
 import { select } from 'surimi';
-import { print, upTo } from '#styles/media.ts';
-import { ellipsis, flush, inset, line, row, spread, surface } from '#styles/presets.ts';
+import { upTo } from '#styles/media.ts';
+import { ellipsis, flush, inset, line, row, surface } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
 const { color, space } = theme;
@@ -60,13 +60,8 @@ section.child('.body').use(inset);
 
 select(`${cv} p`, `${cv} h2`, `${cv} ul`).use(flush);
 
-area('title').use(spread, inset).style({
+area('title').use(inset).style({
 	borderTop: 'none',
-});
-
-area('title').child('span').use(row).style({
-	fontSize: '0.8rem',
-	gap: space[12],
 });
 
 area('subtitle').use(ellipsis, inset).style({
@@ -76,16 +71,6 @@ area('subtitle').use(ellipsis, inset).style({
 select(`${area('education')}`, `${area('random')}`).style({
 	borderRight: line.solid,
 });
-
-print().select(area('experience')).style({
-	breakAfter: 'page',
-});
-
-print()
-	.select(`${area('random')}`, `${area('other')}`)
-	.style({
-		marginTop: space[16],
-	});
 
 upTo('tablet')
 	.select(cv)

@@ -16,7 +16,6 @@ catalogs:
   build:
     "@astrojs/rss": ^4.0.19
     "@astrojs/sitemap": ^3.7.4
-    "astro-pdf": ^1.10.1
     "@brandonaaron/astro-script-embed": "^1.0.3"
     "@shikijs/transformers": ^4.5.0
     "astro-webmanifest": "^1.0.0"

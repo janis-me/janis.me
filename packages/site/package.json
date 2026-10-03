@@ -33,7 +33,6 @@
     "@types/node": "catalog:types",
     "@types/sanitize-html": "catalog:types",
     "astro": "catalog:build",
-    "astro-pdf": "catalog:build",
     "astro-webmanifest": "catalog:build",
     "cssnano": "catalog:build",
     "postcss": "catalog:build",

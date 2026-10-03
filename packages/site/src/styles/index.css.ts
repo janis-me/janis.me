@@ -19,7 +19,6 @@ fontFace({
 
 const html = select('html');
 const body = select('body');
-const app = select('body:not([data-layout="raw"])');
 
 select('html', 'body').style({
 	margin: '0',
@@ -53,14 +52,10 @@ body.style({
 	backgroundRepeat: 'repeat',
 });
 
-app.style({
+body.style({
 	overflow: 'hidden',
 	display: 'grid',
 	gridTemplateRows: `${space[64]} auto`,
-});
-
-app.descendant('.raw-only').style({
-	display: 'none !important',
 });
 
 select('p').style({

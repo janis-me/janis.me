@@ -1,28 +1,10 @@
 import { media, select } from 'surimi';
 import { above, between, breakpoints, from, upTo } from '#styles/media.ts';
-import { framed, line, row, spread, surface } from '#styles/presets.ts';
+import { framed, line, row, spread } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
 const { space } = theme;
 
-// Raw layout (PDF/print source).
-const sheet = select('.sheet');
-
-sheet.use(framed).style({
-	margin: space[32],
-	paddingBottom: space[32],
-});
-
-sheet
-	.child('.raw-note')
-	.use(surface)
-	.style({
-		textAlign: 'right',
-		padding: `${space[4]} ${space[8]}`,
-		borderBottom: line.solid,
-	});
-
-// App layout.
 const frame = select('.frame');
 const nav = frame.child('.site-nav');
 const footer = frame.child('.site-footer');

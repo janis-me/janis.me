@@ -18,5 +18,3 @@ export const above = (bp: Breakpoint) => media().width('>', breakpoints[bp]);
 
 export const between = (min: Breakpoint, max: Breakpoint) =>
 	media().width('>=', breakpoints[min]).and().width('<', breakpoints[max]);
-
-export const print = () => media().print();
