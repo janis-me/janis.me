@@ -16,7 +16,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "pnpm --filter ./packages/site run build",
-		"deploy": "pnpm build && pnpm dlx wrangler deploy",
+		"deploy": "pnpm build && pnpm exec wrangler deploy",
 		"deps": "pnpm taze",
 		"dev": "pnpm --filter ./packages/site run dev",
 		"format": "biome format --write",
@@ -34,7 +34,8 @@
 		"prettier": "catalog:format",
 		"prettier-plugin-packagejson": "catalog:format",
 		"taze": "catalog:script",
-		"typescript": "catalog:build"
+		"typescript": "catalog:build",
+		"wrangler": "catalog:build"
 	},
 	"packageManager": "pnpm@12.8.1",
 	"engines": {
