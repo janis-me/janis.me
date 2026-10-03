@@ -11,7 +11,7 @@ catalogMode: strict
 
 catalogs:
   ui:
-    surimi: ^0.9.0
+    surimi: ^0.9.1
     "sanitize.css": "^13.0.0"
   build:
     "@astrojs/rss": ^4.0.19
@@ -59,7 +59,9 @@ minimumReleaseAgeExclude:
   - "@surimi/core@0.9.0"
   - "@surimi/theme@0.9.0"
   - surimi@0.9.0
+  - surimi@0.9.1
   - vite-plugin-surimi@0.9.0
+  - vite-plugin-surimi@0.9.1
 
 onlyBuiltDependencies:
   - "@parcel/watcher"
