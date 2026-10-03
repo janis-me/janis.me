@@ -1,30 +1,31 @@
 ---
-import Layout from '$layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Layout from '#layouts/Layout.astro';
+import '#styles/pages/blog.css';
 
 const posts = await getCollection('blog', ({ data }) => {
-  return data.published === true;
+	return data.published === true;
 });
 
 const sortedPosts = posts.sort((a, b) => {
-  return b.data.createdAt.getTime() - a.data.createdAt.getTime();
+	return b.data.createdAt.getTime() - a.data.createdAt.getTime();
 });
 
 const groupedPosts = sortedPosts.reduce(
-  (acc, post) => {
-    const year = post.data.createdAt.getFullYear();
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(post);
-    return acc;
-  },
-  {} as Record<string, typeof posts>,
+	(acc, post) => {
+		const year = post.data.createdAt.getFullYear();
+		if (!acc[year]) {
+			acc[year] = [];
+		}
+		acc[year].push(post);
+		return acc;
+	},
+	{} as Record<string, typeof posts>,
 );
 ---
 
 <Layout title="blog - janis.me">
-  <div class="blog">
+  <div class="posts">
     <p>
       This blog is mostly about programming, but I will certainly make some random posts from time to time. I hope these posts will be fairly concise, as I am not an avid writer and reading long articles is not in the nature of most people anymore.
       <br />
@@ -40,7 +41,7 @@ const groupedPosts = sortedPosts.reduce(
                 <li>
                   <a href={`/blog/${post.id}`}>{post.data.title}</a> ({post.data.createdAt.toLocaleDateString()})
                   {post.data.tags.map(i => (
-                    <span class="blog__tag">{i}</span>
+                    <span class="tag">{i}</span>
                   ))}
                 </li>
               ))}
@@ -50,40 +51,3 @@ const groupedPosts = sortedPosts.reduce(
     </ul>
   </div>
 </Layout>
-
-<style lang="scss">
-  @use '$styles/globals' as *;
-
-  ul,
-  h2 {
-    margin: 0;
-  }
-
-  h3 {
-    margin: themed('size-4') 0;
-  }
-
-  li {
-    line-height: 2;
-  }
-
-  .blog {
-    padding: 0 themed('size-16');
-
-    &__tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 themed('size-4');
-      border: 1px dashed themed('gray-9');
-      background-color: themed('gray-3');
-      margin-right: themed('size-6');
-      font-size: 0.8rem;
-      height: themed('size-24');
-
-      @include media('<=phone') {
-        display: none;
-      }
-    }
-  }
-</style>

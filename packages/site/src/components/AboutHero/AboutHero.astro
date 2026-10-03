@@ -1,6 +1,10 @@
+---
+import './AboutHero.css';
+---
+
 <div class="about-hero">
-  <h2 class="about-hero__title">You've reached `janis.me`</h2>
-  <p class="about-hero__intro">
+  <h2>You've reached `janis.me`</h2>
+  <p>
     I'm Janis, a full-stack developer from Germany, passionate about turning next-gen web tech into something real and
     useful.
     <br />
@@ -14,7 +18,7 @@
     I made my dream of living on the countryside come true, have two cats and play the base guitar (much to the dismay of
     my girlfriend).
   </p>
-  <div class="about-hero__timeline">
+  <div>
     <h3>Some stuff I worked on (mini-CV):</h3>
     <ul>
       <li>
@@ -44,15 +48,9 @@
       </li>
       <li>
         <b>
-          <a href="https://scss-validate.janis.me/" target="_blank" rel="noopener">scss-validate</a>
-        </b> - Validation library for Sass/SCSS. Like <a href="https://zod.dev/" target="_blank" rel="noopener">zod</a>,
-        but for stylesheets. Sounds weird, but I actually needed it, for:
-      </li>
-      <li>
-        <b>
-          <a href="https://themed.janis.me" target="_blank" rel="noopener">themed</a>
-        </b> - batteries included theming for <i>SCSS</i>. Add themes to your website with 0 effort. Also checkout the
-        <a href="https://themed-playground.janis.me" target="_blank" rel="noopener">SCSS playground</a>
+          <a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>
+        </b> - type-safe CSS in TypeScript. Themes, media queries and mixins, compiled away to plain CSS. This site runs
+        on it.
       </li>
       <li>
         <b>
@@ -83,70 +81,3 @@
     </ul>
   </div>
 </div>
-
-<style lang="scss">
-  @use '$styles/globals' as *;
-
-  .about-hero {
-    display: grid;
-    grid-template-areas: 'title title' 'intro timeline';
-    grid-template-columns: 1fr 2fr;
-
-    @include media('<tablet') {
-      grid-template-areas: 'title title' 'intro intro' 'timeline timeline';
-    }
-
-    &__title {
-      grid-area: title;
-
-      margin: 0;
-      padding: themed('size-8') themed('size-16');
-
-      border-bottom: 1px dashed themed('gray-8');
-    }
-
-    &__links {
-      margin-left: themed('size-8');
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      a {
-        color: themed('text');
-      }
-
-      svg {
-        fill: themed('text');
-      }
-    }
-
-    &__intro {
-      grid-area: intro;
-
-      margin: 0;
-      display: block;
-      padding: themed('size-8') themed('size-16');
-      border-right: 1px dashed themed('gray-8');
-
-      @include media('<tablet') {
-        border-right: none;
-        border-bottom: 1px dashed themed('gray-8');
-      }
-    }
-
-    &__timeline {
-      grid-area: timeline;
-
-      padding: themed('size-8') themed('size-16');
-
-      h3 {
-        margin: 0;
-        font-size: 1rem;
-      }
-
-      ul li {
-        margin: themed('size-2') 0;
-      }
-    }
-  }
-</style>

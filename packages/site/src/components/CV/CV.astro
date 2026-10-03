@@ -1,18 +1,19 @@
 ---
-import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
+import SocialIcons from '#components/SocialIcons/SocialIcons.astro';
+import './CV.css';
 ---
 
 <div class="cv">
   <h2 class="title section">
     Janis Jansen
-    <span class="title__right raw-only">
+    <span class="raw-only">
       <a href="mailto:mail@janis.me">mail@janis.me</a>
       <SocialIcons />
     </span>
   </h2>
   <p class="subtitle section">Typescript ■ React ■ SCSS ■ Python ■ SQL ■ Three.js ■ Go ■ WASM ■ Vue ■ Solid</p>
   <div class="intro section">
-    <div class="section-content">
+    <div class="body">
       <p>
         Hi, I'm Janis, a 25-year-old full-stack engineer from Germany. I'm working on complex, modern web applications
         across the entire stack, from database to (mostly?) pixel-perfect UI. With my experience in building
@@ -22,8 +23,8 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </div>
   </div>
   <div class="education section">
-    <div class="section-title">Education / Skills</div>
-    <div class="section-content">
+    <h3>Education / Skills</h3>
+    <div class="body">
       <p>
         I have been working full-time in software development for the last 9 years, gaining a lot of experience in
         various fields. A rough, ranked list of expertise:
@@ -67,8 +68,8 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </div>
   </div>
   <div class="experience section">
-    <div class="section-title">Work-experience</div>
-    <div class="section-content">
+    <h3>Work-experience</h3>
+    <div class="body">
       <ul>
         <li>
           <b>Cognigy</b>: Sr. Software Engineer (Jul 2025 - present)
@@ -121,8 +122,8 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </div>
   </div>
   <div class="random section">
-    <div class="section-title">Random stuff</div>
-    <div class="section-content">
+    <h3>Random stuff</h3>
+    <div class="body">
       <ul>
         <li><b>Music</b></li>
         <ul>
@@ -159,8 +160,8 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </div>
   </div>
   <div class="other section">
-    <div class="section-title">Other projects & OSS</div>
-    <div class="section-content">
+    <h3>Other projects & OSS</h3>
+    <div class="body">
       <ul>
         <li>
           <b><a href="https://handlery.dev" target="_blank" rel="noopener">handlery.dev</a></b>: Typescript event
@@ -173,14 +174,12 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
         </ul>
 
         <li>
-          <b><a href="https://scss-validate.janis.me" target="_blank" rel="noopener">scss-validate</a></b>: SCSS schema
-          validation
+          <b><a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a></b>: CSS in TypeScript
         </li>
         <ul>
-          <li>schema validation for SCSS data (numbers, colors, objects..) for use in sass libraries.</li>
-          <li>Syntax similar to zod/yup, low-overhead, customizable error messages and prefixes</li>
-          <li>uses default SASS debug/error reporting under the hood = Compile time warnings!</li>
-          <li>Stack: pure SCSS, docs in astro.</li>
+          <li>type-safe styles, themes and media queries, zero runtime</li>
+          <li>this website is styled with it</li>
+          <li>docs at surimi.dev</li>
         </ul>
 
         <li>
@@ -210,7 +209,7 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </div>
   </div>
   <div class="outro section">
-    <p class="section-content">
+    <p class="body">
       Thanks a lot for reading through all that! Though, if I sent you this I think we should rather talk in person.
       <br />
       Let me tell you about my projects, show you some code, talk about the nerdy stuff.
@@ -222,118 +221,3 @@ import SocialIcons from '$components/SocialIcons/SocialIcons.astro';
     </p>
   </div>
 </div>
-
-<style lang="scss">
-  @use '$styles/globals' as *;
-
-  .cv {
-    display: grid;
-    grid-template-areas: 'title title' 'subtitle subtitle' 'intro intro' 'education experience' 'random other' 'outro outro';
-    grid-template-rows: min-content min-content min-content min-content min-content min-content;
-    grid-template-columns: 2fr 3fr;
-    width: 100%;
-    height: 100%;
-    color: themed('text');
-    border-collapse: collapse;
-
-    .section {
-      background-color: themed('background');
-      border-top: 1px solid themed('gray-8');
-      border-collapse: collapse;
-    }
-
-    .section-title {
-      font-weight: bold;
-      border-bottom: 1px dashed themed('gray-9');
-      height: themed('size-32');
-      display: flex;
-      align-items: center;
-      padding: 0 themed('size-16');
-    }
-
-    .section-content {
-      padding: themed('size-8') themed('size-16');
-    }
-
-    ul {
-      margin: 0;
-    }
-
-    p,
-    h2 {
-      margin: 0;
-    }
-
-    .title {
-      grid-area: title;
-      padding: themed('size-8') themed('size-16');
-      border-top: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      &__right {
-        font-size: 0.8rem;
-        display: flex;
-        gap: themed('size-12');
-      }
-    }
-
-    .subtitle {
-      grid-area: subtitle;
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      padding: themed('size-8') themed('size-16');
-    }
-
-    .intro {
-      grid-area: intro;
-    }
-
-    .education {
-      grid-area: education;
-      border-right: 1px solid themed('gray-8');
-    }
-
-    .experience {
-      grid-area: experience;
-
-      @media print {
-        break-after: page;
-      }
-    }
-
-    .random {
-      grid-area: random;
-      border-right: 1px solid themed('gray-8');
-
-      @media print {
-        margin-top: themed('size-16');
-      }
-    }
-
-    .other {
-      grid-area: other;
-
-      @media print {
-        margin-top: themed('size-16');
-      }
-    }
-
-    .outro {
-      grid-area: outro;
-    }
-
-    @include media('<=tablet') {
-      grid-template-areas: 'title' 'subtitle' 'intro' 'education' 'experience' 'other' 'random' 'outro';
-      grid-template-columns: 1fr;
-
-      .education,
-      .random {
-        border-right: none;
-      }
-    }
-  }
-</style>

@@ -1,42 +1,43 @@
 {
-  "name": "@janis.me/janis.me-repo",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Janis' personal website",
-  "keywords": [
-    "janis.me"
-  ],
-  "homepage": "https://janis.me",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/janis-me/janis.me.git"
-  },
-  "license": "MIT",
-  "author": "Janis Jansen",
-  "type": "module",
-  "scripts": {
-    "build": "pnpm --filter ./packages/site run build",
-    "deploy": "pnpm build && pnpm dlx wrangler deploy",
-    "deps": "pnpm taze",
-    "dev": "pnpm --filter ./packages/site run dev",
-    "format": "prettier --write .",
-    "lint": "eslint --flag unstable_config_lookup_from_file .",
-    "preview": "pnpm --filter ./packages/site run preview",
-    "test": "vitest"
-  },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "catalog:format",
-    "@janis.me/linter-config": "workspace:*",
-    "@janis.me/typescript-config": "workspace:*",
-    "eslint": "catalog:lint",
-    "jiti": "catalog:lint",
-    "prettier": "catalog:format",
-    "prettier-plugin-packagejson": "catalog:format",
-    "taze": "catalog:script",
-    "typescript": "catalog:build"
-  },
-  "packageManager": "pnpm@10.22.0",
-  "engines": {
-    "node": ">=24.6.0"
-  }
+	"name": "@janis.me/janis.me-repo",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Janis' personal website",
+	"keywords": [
+		"janis.me"
+	],
+	"homepage": "https://janis.me",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/janis-me/janis.me.git"
+	},
+	"license": "MIT",
+	"author": "Janis Jansen",
+	"type": "module",
+	"scripts": {
+		"build": "pnpm --filter ./packages/site run build",
+		"deploy": "pnpm build && pnpm dlx wrangler deploy",
+		"deps": "pnpm taze",
+		"dev": "pnpm --filter ./packages/site run dev",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
+		"check": "biome check --write",
+		"preview": "pnpm --filter ./packages/site run preview",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.15",
+		"@ianvs/prettier-plugin-sort-imports": "catalog:format",
+		"@janis.me/typescript-config": "workspace:*",
+		"eslint": "catalog:lint",
+		"jiti": "catalog:lint",
+		"prettier": "catalog:format",
+		"prettier-plugin-packagejson": "catalog:format",
+		"taze": "catalog:script",
+		"typescript": "catalog:build"
+	},
+	"packageManager": "pnpm@12.8.1",
+	"engines": {
+		"node": ">=24.6.0"
+	}
 }

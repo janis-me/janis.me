@@ -1,12 +1,12 @@
 import { config, icon } from '@fortawesome/fontawesome-svg-core';
 import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {
-  faCircleChevronLeft,
-  faDroplet,
-  faDropletSlash,
-  faMoon,
-  faRss,
-  faSun,
+	faCircleChevronLeft,
+	faDroplet,
+	faDropletSlash,
+	faMoon,
+	faRss,
+	faSun,
 } from '@fortawesome/free-solid-svg-icons';
 
 config.autoAddCss = false;

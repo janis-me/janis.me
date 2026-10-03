@@ -1,0 +1,115 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.13/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": ["**", "!**/dist", "!**/node_modules", "!**/coverage", "!**/build", "!pnpm-lock.yaml"],
+		"ignoreUnknown": true
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 120,
+		"lineEnding": "lf"
+	},
+	"linter": {
+		"enabled": true,
+		"domains": {
+			"project": "all",
+			"types": "all"
+		},
+		"rules": {
+			"preset": "recommended",
+			"style": {
+				"useImportType": "error",
+				"useExportType": "error",
+				"noNonNullAssertion": "warn",
+				"useNamingConvention": "off",
+				"noParameterAssign": "error",
+				"useConsistentArrayType": "off"
+			},
+			"suspicious": {
+				"noConsole": {
+					"level": "warn",
+					"options": { "allow": ["error", "warn", "info"] }
+				},
+				"noExplicitAny": "error"
+			},
+			"correctness": {
+				"noUnusedVariables": {
+					"level": "error",
+					"options": { "ignoreRestSiblings": true }
+				},
+				"noUnusedImports": "error",
+				"noUnusedFunctionParameters": "warn",
+				"useExhaustiveDependencies": "error",
+				"useImportExtensions": "off",
+				"noUnresolvedImports": "off"
+			},
+			"complexity": {
+				"noUselessFragments": "error",
+				"useArrowFunction": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "double",
+			"trailingCommas": "all",
+			"arrowParentheses": "asNeeded",
+			"semicolons": "always",
+			"bracketSameLine": false,
+			"bracketSpacing": true
+		}
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none"
+		}
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.svelte", "**/*.astro", "**/*.vue"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedVariables": "off",
+						"noUnusedImports": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx", "**/__tests__/**"],
+			"linter": {
+				"domains": {
+					"test": "all"
+				},
+				"rules": {
+					"suspicious": {
+						"noConsole": "off",
+						"noExplicitAny": "off"
+					}
+				}
+			}
+		}
+	]
+}

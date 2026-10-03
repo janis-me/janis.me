@@ -1,14 +1,14 @@
 {
-  "name": "janis-me",
-  "compatibility_date": "2025-05-31",
-  "compatibility_flags": ["nodejs_compat_v2"],
-  "assets": {
-    "directory": "./packages/site/dist",
-  },
-  "routes": [
-    {
-      "pattern": "janis.me",
-      "custom_domain": true,
-    },
-  ],
+	"name": "janis-me",
+	"compatibility_date": "2025-05-31",
+	"compatibility_flags": ["nodejs_compat_v2"],
+	"assets": {
+		"directory": "./packages/site/dist"
+	},
+	"routes": [
+		{
+			"pattern": "janis.me",
+			"custom_domain": true
+		}
+	]
 }

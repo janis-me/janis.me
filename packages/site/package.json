@@ -3,11 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts"
+    ]
+  },
   "scripts": {
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "format": "biome format --write",
+    "lint": "biome lint --fix",
+    "check": "biome check --fix"
   },
   "devDependencies": {
     "@astrojs/rss": "catalog:build",
@@ -17,8 +28,6 @@
     "@fortawesome/fontawesome-svg-core": "catalog:fonts",
     "@fortawesome/free-brands-svg-icons": "catalog:fonts",
     "@fortawesome/free-solid-svg-icons": "catalog:fonts",
-    "@janis.me/linter-config": "workspace:*",
-    "@janis.me/themed": "catalog:ui",
     "@janis.me/typescript-config": "workspace:*",
     "@shikijs/transformers": "catalog:build",
     "@types/node": "catalog:types",
@@ -27,12 +36,11 @@
     "astro-pdf": "catalog:build",
     "astro-webmanifest": "catalog:build",
     "cssnano": "catalog:build",
-    "include-media": "catalog:ui",
     "postcss": "catalog:build",
     "sanitize-html": "catalog:build",
     "sanitize.css": "catalog:ui",
-    "sass": "catalog:build",
     "sharp": "catalog:build",
-    "typescript": "catalog:build"
+    "typescript": "catalog:build",
+    "surimi": "catalog:ui"
   }
 }

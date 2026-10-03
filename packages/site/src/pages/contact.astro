@@ -1,7 +1,8 @@
 ---
-import mailImage from '$assets/mail.png'; // Image is 1600x900
-import Layout from '$layouts/Layout.astro';
 import { Picture } from 'astro:assets';
+import mailImage from '#assets/mail.png'; // Image is 1600x900
+import Layout from '#layouts/Layout.astro';
+import '#styles/pages/contact.css';
 ---
 
 <Layout title="contact - janis.me">
@@ -16,15 +17,3 @@ import { Picture } from 'astro:assets';
     </p>
   </div>
 </Layout>
-
-<style lang="scss">
-  @use '$styles/globals' as *;
-
-  .contact {
-    padding: 0 themed('size-16');
-
-    p {
-      gap: themed('size-4');
-    }
-  }
-</style>
