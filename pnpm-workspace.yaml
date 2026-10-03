@@ -11,9 +11,7 @@ catalogMode: strict
 
 catalogs:
   ui:
-    "@janis.me/themed": "0.2.2"
     surimi: ^0.9.0
-    "include-media": "^2.0.0"
     "sanitize.css": "^13.0.0"
   build:
     "@astrojs/rss": ^4.0.19

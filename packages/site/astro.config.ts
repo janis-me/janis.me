@@ -1,19 +1,17 @@
 // @ts-check
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import sitemap from "@astrojs/sitemap";
 import scriptEmbed from "@brandonaaron/astro-script-embed";
 import { transformerMetaHighlight } from "@shikijs/transformers";
 import { defineConfig, passthroughImageService } from "astro/config";
 import pdf from "astro-pdf";
 import webmanifest from "astro-webmanifest";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import surimiPlugin from "surimi/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://janis.me",
+  // Astro 7 defaults to 'jsx', which drops spaces at line breaks around inline elements.
+  compressHTML: true,
   image: {
     service: passthroughImageService(),
   },
@@ -90,10 +88,6 @@ export default defineConfig({
   },
 
   vite: {
-    resolve: {
-      alias: {
-        $: path.resolve(__dirname, "src"),
-      },
-    },
+    plugins: [surimiPlugin()],
   },
 });

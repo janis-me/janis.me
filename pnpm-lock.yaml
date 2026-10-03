@@ -242,12 +242,6 @@ catalogs:
       specifier: ^2.16.2
       version: 2.16.2
   ui:
-    '@janis.me/themed':
-      specifier: 0.2.2
-      version: 0.2.2
-    include-media:
-      specifier: ^2.0.0
-      version: 2.0.0
     sanitize.css:
       specifier: ^13.0.0
       version: 13.0.0
@@ -313,9 +307,6 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: catalog:fonts
         version: 7.3.1
-      '@janis.me/themed':
-        specifier: catalog:ui
-        version: 0.2.2
       '@janis.me/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -340,9 +331,6 @@ importers:
       cssnano:
         specifier: catalog:build
         version: 9.1.2(postcss@8.5.28)
-      include-media:
-        specifier: catalog:ui
-        version: 2.0.0
       postcss:
         specifier: catalog:build
         version: 8.5.28
@@ -1060,10 +1048,6 @@ packages:
     engines: {node: '>=20.9.0'}
     cpu: [x64]
     os: [win32]
-
-  '@janis.me/themed@0.2.2':
-    resolution: {integrity: sha512-T/g97IDvTdRjbn61gev+hSyhZghGZ21K3r3u06Kp/vgxryWCScBmXLcIXgxs89yTTBDTIA8Nni+knddoNzGcHg==}
-    engines: {node: '>=22.11.0'}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -2215,9 +2199,6 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
-
-  include-media@2.0.0:
-    resolution: {integrity: sha512-LSJcffPYIZ/Kln0rIi5UhqQbZxElDCMYA4dPC5MI1rkwwjptgEiOicHnzB0MMhMNJver0+4zULb4MKlgDyapZg==}
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -3926,8 +3907,6 @@ snapshots:
   '@img/sharp-win32-x64@0.35.5':
     optional: true
 
-  '@janis.me/themed@0.2.2': {}
-
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -5101,8 +5080,6 @@ snapshots:
       resolve-from: 4.0.0
 
   imurmurhash@0.1.4: {}
-
-  include-media@2.0.0: {}
 
   inherits@2.0.4: {}
 

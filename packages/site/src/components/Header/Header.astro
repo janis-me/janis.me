@@ -1,130 +1,79 @@
-<script>
-  import { DropletIcon, DropletSlashIcon, MoonIcon, SunIcon } from '$components/icons';
+---
+import { themeNames } from '#styles/theme.css.ts';
+import './Header.css';
 
-  import { getThemeFromDocument, setTheme, watchPreferredColorScheme, watchThemeAttribute } from '@janis.me/themed/js';
+const options = [{ value: '', label: 'system' }, ...themeNames.map(name => ({ value: name, label: name }))];
+---
 
-  const lightDarkButton = document.getElementById('nav-toggle-dark-button');
-  const modeButton = document.getElementById('nav-toggle-mode-button');
-
-  lightDarkButton?.addEventListener('click', () => {
-    const currentTheme = getThemeFromDocument();
-    if (!currentTheme) return;
-    const [mode, scheme] = currentTheme.split('-');
-    setTheme(`${mode}-${scheme === 'dark' ? 'light' : 'dark'}`);
-  });
-
-  modeButton?.addEventListener('click', () => {
-    const currentTheme = getThemeFromDocument();
-    if (!currentTheme) return;
-    const [mode, scheme] = currentTheme.split('-');
-    setTheme(`${mode === 'lucie' ? 'janis' : 'lucie'}-${scheme}`);
-  });
-
-  watchThemeAttribute(theme => {
-    if (!theme) return;
-    const [mode, scheme] = theme.split('-');
-    const modeIcon = mode === 'lucie' ? DropletSlashIcon : DropletIcon;
-    const lightDarkIcon = scheme === 'dark' ? SunIcon : MoonIcon;
-
-    if (lightDarkButton) {
-      lightDarkButton.innerHTML = '';
-      lightDarkButton.appendChild(lightDarkIcon.node[0]);
-    }
-    if (modeButton) {
-      modeButton.innerHTML = '';
-      modeButton.appendChild(modeIcon.node[0]);
-    }
-  });
-
-  watchPreferredColorScheme(scheme => {
-    const currentTheme = getThemeFromDocument();
-    const currentMode = currentTheme?.split('-')[0];
-    setTheme(`${currentMode}-${scheme}`);
-  });
-</script>
-
-<header class="header">
+<header class="site-header">
   <a href="/">
-    <h1 class="header__title">janis.me</h1>
+    <h1>janis.me</h1>
   </a>
 
-  <div class="header__buttons">
-    <button
-      class="header__toggle-theme-button"
-      id="nav-toggle-dark-button"
-      aria-label="toggle dark/light mode"
-      title="dark/light"></button>
-    <button
-      class="header__toggle-theme-button"
-      id="nav-toggle-mode-button"
-      aria-label="toggle color mode"
-      title="colorful/simple"></button>
-  </div>
+  <details class="theme-picker">
+    <summary aria-label="Theme" title="Theme"><span>system</span></summary>
+    <menu>
+      {
+        options.map(option => (
+          <li>
+            <button type="button" value={option.value} aria-pressed="false">
+              {option.label}
+            </button>
+          </li>
+        ))
+      }
+    </menu>
+  </details>
 </header>
 
-<style lang="scss">
-  @use '$styles/globals' as *;
+<script>
+  const STORAGE_KEY = 'theme';
+  const root = document.documentElement;
+  const picker = document.querySelector<HTMLDetailsElement>('.theme-picker');
 
-  .header {
-    width: 100%;
-    height: 100%;
-    padding: 0 themed('size-64');
-    background-color: themed('background');
+  if (picker) {
+    const label = picker.querySelector('summary > span');
+    const buttons = [...picker.querySelectorAll<HTMLButtonElement>('menu button')];
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    const sync = () => {
+      const current = root.dataset.theme ?? '';
+      for (const button of buttons) {
+        const active = button.value === current;
+        button.setAttribute('aria-pressed', String(active));
+        if (active && label) label.textContent = button.textContent?.trim() ?? '';
+      }
+    };
 
-    border-bottom: 1px solid themed('gray-8');
+    const apply = (theme: string) => {
+      if (theme) {
+        root.dataset.theme = theme;
+        localStorage.setItem(STORAGE_KEY, theme);
+      } else {
+        delete root.dataset.theme;
+        localStorage.removeItem(STORAGE_KEY);
+      }
+      sync();
+    };
 
-    &__title {
-      margin: 0;
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        apply(button.value);
+        picker.open = false;
+        picker.querySelector('summary')?.focus();
+      });
     }
 
-    &__buttons {
-      display: flex;
-      gap: themed('size-16');
-    }
+    document.addEventListener('click', event => {
+      if (picker.open && !picker.contains(event.target as Node)) picker.open = false;
+    });
 
-    &__toggle-theme-button {
-      color: themed('text');
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      font-size: 1.3em;
-      width: themed('size-24');
-    }
-
-    @include media('<=desktop') {
-      padding: 0 themed('size-32');
-
-      &__title {
-        font-size: 1.5em;
+    picker.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && picker.open) {
+        picker.open = false;
+        picker.querySelector('summary')?.focus();
       }
+    });
 
-      &__buttons {
-        gap: themed('size-8');
-      }
-
-      &__toggle-theme-button {
-        width: themed('size-24');
-      }
-    }
-
-    @include media('<=tablet') {
-      padding: 0 themed('size-16');
-
-      &__title {
-        font-size: 1.2em;
-      }
-
-      &__buttons {
-        gap: themed('size-4');
-      }
-
-      &__toggle-theme-button {
-        width: themed('size-20');
-      }
-    }
+    sync();
   }
-</style>
+</script>
