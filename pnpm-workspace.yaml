@@ -2,26 +2,29 @@ packages:
   - packages/*
 
 allowBuilds:
-  '@parcel/watcher': false
+  "@parcel/watcher": false
   esbuild: false
   puppeteer: false
   sharp: true
 
+catalogMode: strict
+
 catalogs:
   ui:
-    '@janis.me/themed': '0.2.2'
-    'include-media': '^2.0.0'
-    'sanitize.css': '^13.0.0'
+    "@janis.me/themed": "0.2.2"
+    surimi: ^0.9.0
+    "include-media": "^2.0.0"
+    "sanitize.css": "^13.0.0"
   build:
-    '@astrojs/rss': ^4.0.19
-    '@astrojs/sitemap': ^3.7.4
-    'astro-pdf': ^1.10.1
-    '@brandonaaron/astro-script-embed': '^1.0.3'
-    '@shikijs/transformers': ^4.5.0
-    'astro-webmanifest': '^1.0.0'
-    'astro': ^7.3.5
-    'sanitize-html': ^2.18.0
-    'sharp': ^0.35.5
+    "@astrojs/rss": ^4.0.19
+    "@astrojs/sitemap": ^3.7.4
+    "astro-pdf": ^1.10.1
+    "@brandonaaron/astro-script-embed": "^1.0.3"
+    "@shikijs/transformers": ^4.5.0
+    "astro-webmanifest": "^1.0.0"
+    "astro": ^7.3.5
+    "sanitize-html": ^2.18.0
+    "sharp": ^0.35.5
     cssnano: ^9.1.2
     postcss: ^8.5.28
     sass: ^1.105.1
@@ -29,17 +32,17 @@ catalogs:
     vite-plugin-static-copy: ^3.4.0
     vite: ^7.3.6
   fonts:
-    '@fontsource/ibm-plex-mono': ^5.3.0
-    '@fortawesome/fontawesome-svg-core': ^7.3.1
-    '@fortawesome/free-brands-svg-icons': ^7.3.1
-    '@fortawesome/free-solid-svg-icons': ^7.3.1
+    "@fontsource/ibm-plex-mono": ^5.3.0
+    "@fortawesome/fontawesome-svg-core": ^7.3.1
+    "@fortawesome/free-brands-svg-icons": ^7.3.1
+    "@fortawesome/free-solid-svg-icons": ^7.3.1
   format:
-    '@ianvs/prettier-plugin-sort-imports': ^4.7.1
+    "@ianvs/prettier-plugin-sort-imports": ^4.7.1
     prettier: ^3.9.9
     prettier-plugin-packagejson: ^3.0.2
   lint:
-    '@eslint/eslintrc': ^3.3.7
-    '@eslint/js': ^10.0.1
+    "@eslint/eslintrc": ^3.3.7
+    "@eslint/js": ^10.0.1
     eslint: ^10.11.0
     eslint-plugin-react: ^7.37.5
     eslint-plugin-react-hooks: ^7.1.1
@@ -48,11 +51,20 @@ catalogs:
   script:
     taze: ^21.3.0
   types:
-    '@types/node': ^26.6.3
-    '@types/sanitize-html': ^2.16.2
+    "@types/node": ^26.6.3
+    "@types/sanitize-html": ^2.16.2
+
+minimumReleaseAgeExclude:
+  - "@surimi/common@0.9.0"
+  - "@surimi/compiler@0.9.0"
+  - "@surimi/conditional@0.9.0"
+  - "@surimi/core@0.9.0"
+  - "@surimi/theme@0.9.0"
+  - surimi@0.9.0
+  - vite-plugin-surimi@0.9.0
 
 onlyBuiltDependencies:
-  - '@parcel/watcher'
+  - "@parcel/watcher"
   - esbuild
   - puppeteer
   - sharp

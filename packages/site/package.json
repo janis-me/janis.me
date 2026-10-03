@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts"
+    ]
+  },
   "scripts": {
     "astro": "astro",
     "build": "astro build",
@@ -33,8 +41,8 @@
     "postcss": "catalog:build",
     "sanitize-html": "catalog:build",
     "sanitize.css": "catalog:ui",
-    "sass": "catalog:build",
     "sharp": "catalog:build",
-    "typescript": "catalog:build"
+    "typescript": "catalog:build",
+    "surimi": "catalog:ui"
   }
 }
