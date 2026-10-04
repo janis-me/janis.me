@@ -1,10 +1,10 @@
 ---
 layout: $layouts/Blog.astro
-title: How I built scss-validate - the Sass validation library!
+title: Input validation in SCSS (the scss-validate package)
 createdAt: 2025-05-31
 updatedAt: 2025-06-04
 published: true
-tags: ['sass', 'coding']
+tags: ["sass", "coding"]
 ---
 
 I just published the first few versions of [scss-validate](https://scss-validate.janis.me), a Sass validation library that helps you write better Sass code by providing easy ways to validate user input.
@@ -15,16 +15,14 @@ but they didn't allow me to validate maps and nested data the way I wanted to: I
 Zod, a popular validation library for javascript/typescript, allows you to define schemas and validate data like this:
 
 ```typescript
-import { z } from 'zod/v4';
+import { z } from "zod/v4";
 
 const User = z.object({
   name: z.string(),
 });
 
 // some untrusted data...
-const input = {
-  /* stuff */
-};
+const input = {/* stuff */};
 
 // the parsed result is validated and type safe!
 const data = User.parse(input);
@@ -33,14 +31,14 @@ const data = User.parse(input);
 You cannot do it quite this elegantly in Sass, because you cannot build functional factories like `.number().min(1).label("age")`. Also, while you can specify functions as part of maps like this:
 
 ```scss
-@use 'sass:meta';
+@use "sass:meta";
 
 @function something() {
   @return 42;
 }
 
 $map: (
-  'something': meta.get-function('something'),
+  "something": meta.get-function("something"),
 );
 ```
 
@@ -49,13 +47,13 @@ you cannot call the function 'right away' like you would do in js. Instead, you 
 What you can do, is return maps from function calls, and these maps can contain a bunch of parameters you can use to do 'dynamic' functino calls. That's the approach I went for. It kinda looks like this:
 
 ```scss
-@use 'sass:meta';
-@use 'scss-validate' as s;
+@use "sass:meta";
+@use "scss-validate" as s;
 
 $number-schema: s.number(
   $min: 1,
   $max: 100,
-  $label: 'age',
+  $label: "age",
 );
 
 @debug $number-schema;
@@ -79,15 +77,15 @@ Now, when passing it to the `s.validate()` function, it will call the given func
 
 ```scss
 @each $key, $validator in $validators {
-  $fn: map.get($validator, 'fn');
-  $arg: map.get($validator, 'arg');
+  $fn: map.get($validator, "fn");
+  $arg: map.get($validator, "arg");
 
   // Call the validator function with the value and the argument.
   $res: meta.call($fn, $arg, $value);
 
   // Only save and process the result, if the validator returned an error (string).
-  @if $res != null and meta.type-of($res) == 'string' {
-    $validation-errors: list.append($validation-errors, '#{$label} #{$res}');
+  @if $res != null and meta.type-of($res) == "string" {
+    $validation-errors: list.append($validation-errors, "#{$label} #{$res}");
   }
 }
 ```
@@ -104,7 +102,7 @@ So, I just defined all available validators for each 'type' in a module, prefixe
   $res: [];
 
   @each $key, $fn in $all-functions {
-    @if sass-string.index($key, '#{$module}-') == 1 {
+    @if sass-string.index($key, "#{$module}-") == 1 {
       $key: sass-string.slice($key, sass-string.length($module) + 2);
       $res: sass-list.append($res, $key);
     }
@@ -122,7 +120,7 @@ Then, you can just loop over all keyword arguments and check if the validator ex
 @function number($label: null, $args...) {
   $kvargs: meta.keywords($args);
   // $_number-aliases defines aliases so you can pass either 'min' or 'gte' and it would call the same function.
-  $allowed-validators: validators.list('number', $_number-aliases);
+  $allowed-validators: validators.list("number", $_number-aliases);
 
   @each $key, $value in $kvargs {
     @if list.index($allowed-validators, $key) == null {
@@ -130,9 +128,9 @@ Then, you can just loop over all keyword arguments and check if the validator ex
     }
   }
 
-  $validators: validators.get('number', $_number-aliases, $args...);
+  $validators: validators.get("number", $_number-aliases, $args...);
 
-  @return ('type': 'number', 'label': $label, 'validators': $validators);
+  @return ("type": "number", "label": $label, "validators": $validators);
 }
 ```
 
@@ -147,11 +145,11 @@ The `validators.get` function simply returns a map of all validators with their 
   @each $key, $arg in $kwargs {
     @if $arg != null {
       $fn-key: $key;
-      @if meta.function-exists('#{$module}-#{$key}', $module: $module) {
-        $fn-key: '#{$module}-#{$key}';
+      @if meta.function-exists("#{$module}-#{$key}", $module: $module) {
+        $fn-key: "#{$module}-#{$key}";
       } @else if sass-map.has-key($aliases, $key) {
         $alias: sass-map.get($aliases, $key);
-        $fn-key: '#{$module}-#{$alias}';
+        $fn-key: "#{$module}-#{$alias}";
       } @else {
         @error '[scss-validate] Internal error: Validator function `#{$key}` does not exist for numbers.';
       }
@@ -159,9 +157,9 @@ The `validators.get` function simply returns a map of all validators with their 
       $fn: meta.get-function($fn-key, $module: $module);
 
       $validator: (
-        '#{$key}': (
-            'fn': $fn,
-            'arg': $arg,
+        "#{$key}": (
+            "fn": $fn,
+            "arg": $arg,
           ),
       );
       $validators: sass-map.merge($validators, $validator);
