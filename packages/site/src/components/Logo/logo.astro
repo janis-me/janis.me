@@ -1,38 +1,17 @@
-<div class="logo">
-	<svg width="384" height="384" viewBox="0 0 384 384" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<mask id="mask0_4_57" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="382" height="382">
-			<rect y="192" width="271.529" height="271.529" rx="3" transform="rotate(-45 0 192)" fill="#D9D9D9" />
-		</mask>
-		<g mask="url(#mask0_4_57)">
-			<rect x="-42.7812" y="-15.2057" width="468.127" height="136.524" rx="3" fill="#D7E3FC" />
-			<rect
-				width="467.892"
-				height="138.022"
-				rx="3"
-				transform="matrix(0.99831 0.0581186 -0.0753181 0.997159 -32.3853 37.7428)"
-				fill="#CCDBFD"
-			/>
-			<rect
-				width="467.824"
-				height="138.048"
-				rx="3"
-				transform="matrix(0.997819 -0.0660117 0.0855187 0.996337 -49.9617 120.312)"
-				fill="#C1D3FE"
-			/>
-			<rect
-				width="467.656"
-				height="136.702"
-				rx="3"
-				transform="matrix(0.996609 0.0822843 -0.106512 0.994311 -32.5286 151.204)"
-				fill="#B6CCFE"
-			/>
-			<rect
-				width="467.823"
-				height="143.031"
-				rx="3"
-				transform="matrix(0.997808 -0.0661785 0.085734 0.996318 -44.2178 256.543)"
-				fill="#ABC4FF"
-			/>
-		</g>
-	</svg>
-</div>
+---
+import type { HTMLAttributes } from 'astro/types';
+import './logo.css';
+
+type Props = HTMLAttributes<'svg'> & { title?: string };
+
+const { title = 'janis.me logo', class: className, ...attrs } = Astro.props;
+---
+
+<svg viewBox="0 0 384 384" role="img" class:list={['logo', className]} {...attrs}>
+	<title>{title}</title>
+	<path d="M0 0H384V384H0Z" />
+	<path d="M0 40L384 62V384H0Z" />
+	<path d="M0 117L384 92V384H0Z" />
+	<path d="M0 154L384 186V384H0Z" />
+	<path d="M0 254L384 228V384H0Z" />
+</svg>

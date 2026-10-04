@@ -1,7 +1,11 @@
 import { media, select } from 'surimi';
-import { createTheme, defineTokens } from 'surimi/theme';
+import { createTheme, defineTokens, type Token } from 'surimi/theme';
+import { colors, type Shade } from '#styles/colors.css.ts';
 
-type Palette = Record<keyof typeof janis, string>;
+const { gray, sky, ice, raisin, bone, yellow } = colors;
+
+// Shades are absolute in every theme: 50 is lightest, 950 darkest.
+type Ramp = Record<Shade, Token>;
 
 const space = {
 	1: '1px',
@@ -22,81 +26,57 @@ const space = {
 	80: '80px',
 } as const;
 
-const janis = {
-	background: '#fafafa',
-	text: '#212529',
-	code: '#e4e4e4',
-	gray1: '#fdfdfd',
-	gray2: '#f9f9f9',
-	gray3: '#e4e4e4',
-	gray4: '#e8e8e8',
-	gray5: '#e1e1e1',
-	gray6: '#d9d9d9',
-	gray7: '#cecece',
-	gray8: '#bbbbbb',
-	gray9: '#8d8d8d',
-	gray10: '#828282',
-	gray11: '#636363',
-	gray12: '#202020',
-} as const;
+type Palette = {
+	bg: Ramp & Record<'base' | 'muted' | 'emphasis' | 'code', Token>;
+	fg: Ramp & Record<'base' | 'muted', Token>;
+	border: Record<'base' | 'strong', Token>;
+	primary: Ramp & Record<'base' | 'subtle' | 'fg', Token>;
+	secondary: Ramp & Record<'base' | 'subtle' | 'fg', Token>;
+};
+
+const light = {
+	bg: { ...gray, base: gray[50], muted: gray[200], emphasis: gray[200], code: gray[100] },
+	fg: { ...gray, base: gray[900], muted: gray[600] },
+	border: { base: gray[400], strong: gray[500] },
+	primary: { ...gray, base: gray[900], subtle: gray[200], fg: gray[50] },
+	secondary: { ...gray, base: gray[600], subtle: gray[100], fg: gray[50] },
+} satisfies Palette;
 
 const dark = {
-	text: '#fafafa',
-	background: '#212529',
-	code: '#2f3438',
-	gray1: '#0f1114',
-	gray2: '#17191c',
-	gray3: '#2f3438',
-	gray4: '#252a2f',
-	gray5: '#2b3137',
-	gray6: '#343a41',
-	gray7: '#41484f',
-	gray8: '#5a6168',
-	gray9: '#686f76',
-	gray10: '#757c83',
-	gray11: '#adb4bc',
-	gray12: '#eceef1',
-} as const satisfies Palette;
+	bg: { ...gray, base: gray[900], muted: gray[800], emphasis: gray[800], code: gray[900] },
+	fg: { ...gray, base: gray[50], muted: gray[300] },
+	border: { base: gray[600], strong: gray[500] },
+	primary: { ...gray, base: gray[50], subtle: gray[800], fg: gray[900] },
+	secondary: { ...gray, base: gray[400], subtle: gray[800], fg: gray[900] },
+} satisfies Palette;
+
+const janis = {
+	bg: { ...raisin, base: raisin[950], muted: raisin[900], emphasis: raisin[950], code: raisin[975] },
+	fg: { ...ice, base: ice[100], muted: ice[200] },
+	border: { base: raisin[800], strong: raisin[500] },
+	primary: { ...ice, base: ice[300], subtle: raisin[925], fg: raisin[975] },
+	secondary: { ...bone, base: bone[200], subtle: raisin[925], fg: raisin[975] },
+} satisfies Palette;
 
 const lucie = {
-	text: '#032b43',
-	background: '#8ecae6',
-	code: '#98d5f4',
-	gray1: '#e3f4fa',
-	gray2: '#c5e7f8',
-	gray3: '#84b2d6',
-	gray4: '#acdcf5',
-	gray5: '#98d5f4',
-	gray6: '#b3e0f7',
-	gray7: '#78a5c7',
-	gray8: '#0f5279',
-	gray9: '#032b43',
-	gray10: '#518ca6',
-	gray11: '#3a6b81',
-	gray12: '#022331',
-} as const satisfies Palette;
+	bg: { ...sky, base: sky[100], muted: sky[200], emphasis: sky[200], code: sky[100] },
+	fg: { ...sky, base: sky[900], muted: sky[700] },
+	border: { base: sky[400], strong: sky[400] },
+	primary: { ...sky, base: sky[900], subtle: sky[200], fg: sky[50] },
+	secondary: { ...sky, base: sky[700], subtle: sky[100], fg: sky[50] },
+} satisfies Palette;
 
 const sannie = {
-	text: '#ccc162',
-	background: '#111113',
-	code: '#252419',
-	gray1: '#12110c',
-	gray2: '#191913',
-	gray3: '#252419',
-	gray4: '#302f1e',
-	gray5: '#3b3923',
-	gray6: '#494529',
-	gray7: '#595530',
-	gray8: '#6f6939',
-	gray9: '#ccc162',
-	gray10: '#c1b657',
-	gray11: '#d3c978',
-	gray12: '#efeabd',
-} as const satisfies Palette;
+	bg: { ...bone, base: gray[975], muted: bone[900], emphasis: bone[800], code: bone[900] },
+	fg: { ...yellow, base: yellow[300], muted: yellow[400] },
+	border: { base: yellow[600], strong: yellow[400] },
+	primary: { ...yellow, base: yellow[300], subtle: bone[900], fg: gray[975] },
+	secondary: { ...bone, base: bone[200], subtle: bone[800], fg: gray[975] },
+} satisfies Palette;
 
 export const theme = defineTokens({
 	space,
-	color: janis,
+	color: light,
 	font: {
 		mono: "'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif",
 	},
@@ -104,8 +84,9 @@ export const theme = defineTokens({
 
 // Exported as plain data, so Astro can render the theme picker from the same source.
 export const colorSchemes = {
-	janis: 'light',
+	light: 'light',
 	dark: 'dark',
+	janis: 'dark',
 	lucie: 'light',
 	sannie: 'dark',
 } as const;
@@ -113,7 +94,7 @@ export const colorSchemes = {
 export type ThemeName = keyof typeof colorSchemes;
 export const themeNames = Object.keys(colorSchemes) as ThemeName[];
 
-const palettes = { dark, lucie, sannie } satisfies Record<Exclude<ThemeName, 'janis'>, Palette>;
+const palettes = { dark, janis, lucie, sannie } satisfies Record<Exclude<ThemeName, 'light'>, Palette>;
 
 select(':root').style({ colorScheme: 'light' });
 

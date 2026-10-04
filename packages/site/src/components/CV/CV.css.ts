@@ -34,14 +34,14 @@ cv.style({
 	gridAutoRows: 'min-content',
 	width: '100%',
 	height: '100%',
-	color: color.text,
+	color: color.fg.base,
 });
 
 for (const name of areas) {
 	area(name).style({ gridArea: name });
 }
 
-section.use(surface).style({
+section.not(':first-of-type').use(surface).style({
 	borderTop: line.solid,
 });
 
@@ -53,7 +53,7 @@ section
 		padding: `0 ${space[16]}`,
 		fontSize: '1em',
 		fontWeight: 'bold',
-		borderBottom: line.muted,
+		borderBottom: line.strong,
 	});
 
 section.child('.body').use(inset);

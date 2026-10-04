@@ -8,6 +8,7 @@ const { space } = theme;
 
 const header = select('.site-header');
 const title = header.descendant('h1');
+const logo = title.descendant('.logo');
 
 const picker = header.descendant('.theme-picker');
 const trigger = picker.child('summary');
@@ -21,7 +22,12 @@ header.use(surface, spread).style({
 	borderBottom: line.solid,
 });
 
-title.use(flush);
+title.use(flush, row);
+
+logo.style({
+	width: space[40],
+	height: space[40],
+});
 
 picker.style({
 	position: 'relative',
@@ -85,7 +91,7 @@ select(`${option}[aria-pressed="true"]::before`).style({
 });
 
 upTo('desktop').select(header).style({ paddingInline: space[32] });
-upTo('desktop').select(title).style({ fontSize: '1.5em' });
+upTo('desktop').select(logo).style({ width: space[32], height: space[32] });
 
 upTo('tablet').select(header).style({ paddingInline: space[16] });
-upTo('tablet').select(title).style({ fontSize: '1.2em' });
+upTo('tablet').select(logo).style({ width: space[24], height: space[24] });

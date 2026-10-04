@@ -1,4 +1,5 @@
 ---
+import Logo from '#components/Logo/logo.astro';
 import { themeNames } from '#styles/theme.css.ts';
 import './Header.css';
 
@@ -7,7 +8,7 @@ const options = themeNames.map(name => ({ value: name, label: name }));
 
 <header class="site-header">
 	<a href="/">
-		<h1>janis.me</h1>
+		<h1><Logo /></h1>
 	</a>
 
 	<details class="theme-picker">

@@ -29,7 +29,7 @@ article.use(gutter);
 heading.child('p').style({
 	margin: `${space[16]} 0 ${space[8]} 0`,
 	fontSize: '0.8em',
-	color: color.gray11,
+	color: color.fg.muted,
 });
 
 heading.child('h2').use(flush);

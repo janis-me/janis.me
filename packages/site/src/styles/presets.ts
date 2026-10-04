@@ -4,9 +4,9 @@ import { theme } from '#styles/theme.css.ts';
 const { color, space } = theme;
 
 export const line = {
-	solid: `1px solid ${color.gray8}`,
-	dashed: `1px dashed ${color.gray8}`,
-	muted: `1px dashed ${color.gray9}`,
+	solid: `1px solid ${color.border.base}`,
+	dashed: `1px dashed ${color.border.base}`,
+	strong: `1px dashed ${color.border.strong}`,
 } as const;
 
 export const row = style({
@@ -31,8 +31,8 @@ export const flush = style({
 });
 
 export const surface = style({
-	backgroundColor: color.background,
-	color: color.text,
+	backgroundColor: color.bg.base,
+	color: color.fg.base,
 });
 
 export const framed = surface.extend({
@@ -43,14 +43,14 @@ export const chip = row.extend({
 	display: 'inline-flex',
 	justifyContent: 'center',
 	padding: `0 ${space[4]}`,
-	border: line.muted,
-	backgroundColor: color.gray3,
+	border: line.strong,
+	backgroundColor: color.secondary.subtle,
 	fontSize: '0.8rem',
 });
 
 export const control = style({
 	font: 'inherit',
-	color: color.text,
+	color: color.fg.base,
 	backgroundColor: 'transparent',
 	border: line.dashed,
 	padding: `${space[2]} ${space[8]}`,

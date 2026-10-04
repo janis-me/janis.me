@@ -4,14 +4,14 @@ import { theme } from '#styles/theme.css.ts';
 const { color, space } = theme;
 
 export const focusRing = mixin(':focus-visible').style({
-	outline: `1px dashed ${color.text}`,
+	outline: `1px dashed ${color.primary.base}`,
 	outlineOffset: space[2],
 });
 
 export const hoverFill = mixin(':hover').style({
-	backgroundColor: color.gray3,
+	backgroundColor: color.bg.muted,
 });
 
 export const pressedFill = mixin('[aria-pressed="true"]').style({
-	backgroundColor: color.gray4,
+	backgroundColor: color.bg.emphasis,
 });

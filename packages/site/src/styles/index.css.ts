@@ -29,23 +29,23 @@ select('html', 'body').style({
 html
 	.style({
 		fontSize: '16px',
-		scrollbarColor: `${color.text} ${color.background}`,
+		scrollbarColor: `${color.primary.base} ${color.bg.base}`,
 	})
 	.selection()
 	.style({
-		background: color.text,
-		color: color.background,
+		background: color.primary.base,
+		color: color.primary.fg,
 	});
 
 body.style({
 	fontFamily: font.mono,
-	color: color.text,
-	backgroundColor: color.background,
+	color: color.fg.base,
+	backgroundColor: color.bg.base,
 	backgroundImage: [
-		`linear-gradient(${color.gray3} 2px, transparent 2px)`,
-		`linear-gradient(90deg, ${color.gray3} 2px, transparent 2px)`,
-		`linear-gradient(${color.gray3} 1px, transparent 1px)`,
-		`linear-gradient(90deg, ${color.gray3} 1px, ${color.background} 1px)`,
+		`linear-gradient(${color.bg.muted} 2px, transparent 2px)`,
+		`linear-gradient(90deg, ${color.bg.muted} 2px, transparent 2px)`,
+		`linear-gradient(${color.bg.muted} 1px, transparent 1px)`,
+		`linear-gradient(90deg, ${color.bg.muted} 1px, ${color.bg.base} 1px)`,
 	].join(', '),
 	backgroundSize: '50px 50px, 50px 50px, 10px 10px, 10px 10px',
 	backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
@@ -67,7 +67,7 @@ const link = select('a');
 link
 	.style({
 		cursor: 'pointer',
-		color: color.text,
+		color: color.fg.base,
 		textDecoration: 'underline',
 		textDecorationStyle: 'dashed',
 		textUnderlineOffset: space[4],

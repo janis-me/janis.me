@@ -10,7 +10,7 @@ const lines = block.descendant('.line');
 
 // Shiki writes colors inline, so overrides need !important.
 select('code', '.astro-code').style({
-	backgroundColor: `${color.code} !important`,
+	backgroundColor: `${color.bg.code} !important`,
 });
 
 const shikiDark = style({ color: 'var(--shiki-dark) !important' });
@@ -45,7 +45,8 @@ block.before().style({
 	fontSize: '0.8em',
 	border: line.dashed,
 	borderBottom: 'none',
-	backgroundColor: color.gray4,
+	color: color.fg.muted,
+	backgroundColor: color.bg.emphasis,
 });
 
 block.descendant('code').style({
@@ -67,7 +68,7 @@ const focused = select('.astro-code:has(.highlighted)');
 const hl = focused.descendant('.line.highlighted');
 
 select(`${hl}`, `${hl} span`).style({
-	backgroundColor: `${color.gray4} !important`,
+	backgroundColor: `${color.bg.emphasis} !important`,
 });
 
 focused.descendant('.line:not(.highlighted)').style({
