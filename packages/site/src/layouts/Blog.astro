@@ -1,5 +1,4 @@
 ---
-import { ChevronLeftIcon } from '$components/icons';
 import type { BlogProps } from '$content.config';
 import Layout from '$layouts/Layout.astro';
 import './Blog.css';
@@ -9,29 +8,28 @@ interface Props {
 }
 
 const { content } = Astro.props;
-const { title, createdAt, updatedAt, tags } = content;
+const { title, description, createdAt, updatedAt, tags } = content;
 
 const createdDate = new Date(createdAt);
 const updatedDate = updatedAt != createdAt ? new Date(updatedAt) : null;
+
+const eyebrow = [
+	createdDate.toLocaleDateString(),
+	updatedDate && `updated ${updatedDate.toLocaleDateString()}`,
+	tags?.join(', '),
+]
+	.filter(Boolean)
+	.join(' · ');
 ---
 
-<Layout title={title} description="janis.me/blog - a blog made for programming, probably full of food">
-	<div class="post">
-		<nav>
-			<a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>See my other articles</span></a>
-		</nav>
-		<article>
-			<hgroup>
-				<p>
-					{createdDate.toLocaleDateString()}
-					{updatedDate ? `- updated at ${updatedDate.toLocaleDateString()}` : ''}
-					-
-					{tags?.join(', ')}
-				</p>
-				<h2>{title}</h2>
-			</hgroup>
-			<slot />
-			<p>~ Cheers</p>
-		</article>
-	</div>
+<Layout
+	title={`${title} - janis.me`}
+	description={description ?? 'janis.me/blog - a blog made for programming, probably full of food'}
+	heading={{ eyebrow, title, subtitle: description }}
+	back={{ href: '/blog', label: 'See my other articles' }}
+>
+	<article class="post">
+		<slot />
+		<p>~ Cheers</p>
+	</article>
 </Layout>

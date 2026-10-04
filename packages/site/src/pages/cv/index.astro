@@ -3,6 +3,14 @@ import CV from '#components/CV/CV.astro';
 import Layout from '#layouts/Layout.astro';
 ---
 
-<Layout title="cv - janis.me">
+<Layout
+	title="cv - janis.me"
+	heading={{
+		eyebrow: 'Curriculum vitae',
+		title: 'Janis Jansen',
+		subtitle: 'Typescript ■ React ■ SCSS ■ Python ■ SQL ■ Three.js ■ Go ■ WASM ■ Vue ■ Solid',
+	}}
+	back={{ href: '/', label: 'Back home' }}
+>
 	<CV />
 </Layout>

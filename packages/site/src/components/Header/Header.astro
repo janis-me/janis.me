@@ -4,12 +4,26 @@ import { themeNames } from '#styles/theme.css.ts';
 import './Header.css';
 
 const options = themeNames.map(name => ({ value: name, label: name }));
+
+const pageLinks = [
+	{ url: '', label: 'Home' },
+	{ url: 'blog', label: 'Blog' },
+	{ url: 'cv', label: 'CV' },
+	{ url: 'contact', label: 'Contact' },
+] as const;
+
+const currentPage = Astro.url.pathname.split('/')[1] ?? '';
 ---
 
 <header class="site-header">
-	<a href="/">
-		<h1><Logo /></h1>
-	</a>
+	<a href="/" class="home"><Logo title="janis.me - home" /></a>
+
+	<nav class="site-nav">
+		{pageLinks.map(link => (
+			// biome-ignore lint/a11y/useAnchorContent: `set:text` fills it; children would get formatter whitespace.
+			<a href={`/${link.url}`} aria-current={link.url === currentPage ? 'page' : undefined} set:text={link.label} />
+		))}
+	</nav>
 
 	<details class="theme-picker">
 		<summary aria-label="Theme" title="Theme"><span>janis</span></summary>

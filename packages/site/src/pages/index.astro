@@ -3,6 +3,13 @@ import AboutHero from '#components/AboutHero/AboutHero.astro';
 import Layout from '#layouts/Layout.astro';
 ---
 
-<Layout title="home - janis.me">
+<Layout
+	title="home - janis.me"
+	heading={{
+		eyebrow: "Hi, I'm Janis",
+		title: "You've reached janis.me",
+		subtitle: 'Full-stack developer from Germany, turning next-gen web tech into something real and useful.',
+	}}
+>
 	<AboutHero />
 </Layout>

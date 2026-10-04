@@ -35,6 +35,20 @@ export const surface = style({
 	color: color.fg.base,
 });
 
+// Graph paper: 50px major lines over 10px minor lines.
+export const gridPaper = style({
+	backgroundColor: color.bg.base,
+	backgroundImage: [
+		`linear-gradient(${color.bg.muted} 2px, transparent 2px)`,
+		`linear-gradient(90deg, ${color.bg.muted} 2px, transparent 2px)`,
+		`linear-gradient(${color.bg.muted} 1px, transparent 1px)`,
+		`linear-gradient(90deg, ${color.bg.muted} 1px, ${color.bg.base} 1px)`,
+	].join(', '),
+	backgroundSize: '50px 50px, 50px 50px, 10px 10px, 10px 10px',
+	backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
+	backgroundRepeat: 'repeat',
+});
+
 export const framed = surface.extend({
 	border: line.solid,
 });
@@ -55,6 +69,13 @@ export const control = style({
 	border: line.dashed,
 	padding: `${space[2]} ${space[8]}`,
 	cursor: 'pointer',
+});
+
+export const eyebrow = style({
+	color: color.primary.base,
+	fontSize: '0.8rem',
+	textTransform: 'uppercase',
+	letterSpacing: '0.1em',
 });
 
 export const ellipsis = style({

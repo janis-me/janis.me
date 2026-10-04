@@ -2,6 +2,8 @@ import { config, icon } from '@fortawesome/fontawesome-svg-core';
 import { faBluesky, faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {
 	faCircleChevronLeft,
+	faCircleChevronRight,
+	faCircleChevronUp,
 	faDroplet,
 	faDropletSlash,
 	faMoon,
@@ -12,6 +14,8 @@ import {
 config.autoAddCss = false;
 
 export const ChevronLeftIcon = icon(faCircleChevronLeft);
+export const ChevronRightIcon = icon(faCircleChevronRight);
+export const ChevronUpIcon = icon(faCircleChevronUp);
 export const DropletIcon = icon(faDroplet);
 export const DropletSlashIcon = icon(faDropletSlash);
 export const MoonIcon = icon(faMoon);

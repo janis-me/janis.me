@@ -1,85 +1,77 @@
 ---
+import LinkCard from '#components/LinkCard/LinkCard.astro';
 import './AboutHero.css';
+
+const cards = [
+	{ href: '/blog', label: 'Read the blog' },
+	{ href: '/cv', label: 'See the CV' },
+	{ href: '/contact', label: 'Say hi' },
+];
 ---
 
 <div class="about-hero">
-	<h2>You've reached `janis.me`</h2>
-	<p>
-		I'm Janis, a full-stack developer from Germany, passionate about turning next-gen web tech into something real and
-		useful.
-		<br>
-		<br>
-		I started programming profesionally <span class="strikethrough">7</span>
-		<span class="strikethrough">8</span>
-		9 years ago, first building data-science apps and insights dashboards. Then, I ended up building cloud-based CAE
-		software and interactive 3D programs. Most recently, I started working on conversational AI at
-		<a href="https://cognigy.com">cognigy</a>. Always looking for new ways to innovate and make things happen!
-		<br>
-		<br>
-		I made my dream of living on the countryside come true, have two cats and play the base guitar (much to the dismay
-		of my girlfriend).
-	</p>
-	<div>
-		<h3>Some stuff I worked on (mini-CV):</h3>
+	<section class="tile" data-span="4">
+		<h2>About</h2>
+		<p>
+			I build complex, data-heavy web apps across the whole stack, from the database to (mostly) pixel-perfect UI.
+			Always looking for new ways to make things happen.
+		</p>
+	</section>
+
+	<section class="tile stat" data-span="2">
+		<strong><span class="strikethrough">7</span> <span class="strikethrough">8</span> 9</strong>
+		<p>years of programming professionally</p>
+	</section>
+
+	<section class="tile accent" data-span="3">
+		<h2>Now</h2>
+		<p>
+			Conversational AI at <a href="https://cognigy.com" target="_blank" rel="noopener">Cognigy</a>, the agent-based CX
+			platform. Recently acquired by <a href="https://www.nice.com/" target="_blank" rel="noopener">NiCE</a> for $955M.
+		</p>
+	</section>
+
+	<section class="tile" data-span="3">
+		<h2>Off the clock</h2>
+		<p>Living on the countryside with two cats. Playing bass guitar, much to the dismay of my girlfriend.</p>
+	</section>
+
+	<section class="tile" data-span="6">
+		<h2>Before</h2>
 		<ul>
 			<li>
-				<b>
-					<a href="https://divecae.com" target="_blank" rel="noopener">Dive</a>
-				</b>
-				- the leading cloud-native CAE platform. Users can simulate and analyze massive thermofluid systems on cloud
-				GPUs,
-				<b>directly in their browser</b>. Built with the power of WASM, WebGL/threejs, React and WebSockets.
+				<a href="https://divecae.com" target="_blank" rel="noopener">Dive</a>: cloud-native CAE. Thermofluid simulations
+				on cloud GPUs, right in the browser, with WASM, WebGL and WebSockets.
 			</li>
 			<li>
-				<b>
-					<a href="https://cognigy.com" target="_blank" rel="noopener">Cognigy</a>
-				</b>
-				- the leader in Agent-based AI Customer support / CX. Allows building low-code conversation flows, configuration
-				of Agents with support for all big LLM and TTS providers, third-party integrations, Natural language
-				understanding and much more. <b>update:</b> has just been acquired by
-				<a href="https://www.nice.com/" target="_blank" rel="noopener">NiCE</a>
-				for $955 million.
-			</li>
-			<li>
-				<b>
-					<a href="https://handlery.dev" target="_blank" rel="noopener">handlery.dev</a>
-				</b>
-				- event handling library for typescript, using decorators and auto-generated types. Use it will any event
-				emitter library you want. It works with all of them.
-			</li>
-			<li>
-				<b>
-					<a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>
-				</b>
-				- type-safe CSS in TypeScript. Themes, media queries and mixins, compiled away to plain CSS. This site runs on
-				it.
-			</li>
-			<li>
-				<b>
-					<a href="https://licensephobia.com" target="_blank" rel="noopener">Licensephobia (WIP)</a>
-				</b>
-				- never be afraid of OpenSource licenses again. Check your dependency files (npm, pip, cargo...) and know
-				exactly what rights you have.
-			</li>
-			<li>
-				<b>
-					<a href="https://youtube.com/@roulzhq" target="_blank" rel="noopener">ROULZ (youtube)</a>
-				</b>
-				- Tech content, making easy to follow deep-dives into interesting topics.
-			</li>
-			<li>
-				<b>
-					<a href="https://sms-group.com" target="_blank" rel="noopener">SMS Group</a>
-				</b>
-				- enabled SMS's physical and mathematical models to run in the cloud, built new ML-based prediction models for
-				steel casting, and a material-mix optimizer for electric arc furnaces.
-			</li>
-			<li>
-				<b>
-					<a href="https://caddly.roulz.com/" target="_blank" rel="noopener">Caddly</a>
-				</b>
-				- A config file builder for the caddy webserver
+				<a href="https://sms-group.com" target="_blank" rel="noopener">SMS Group</a>: physical models in the cloud, ML
+				predictions for steel casting.
 			</li>
 		</ul>
-	</div>
+	</section>
+
+	<section class="tile" data-span="4">
+		<h2>Open source</h2>
+		<ul>
+			<li>
+				<a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>: type-safe CSS in TypeScript. This site
+				runs on it.
+			</li>
+			<li>
+				<a href="https://handlery.dev" target="_blank" rel="noopener">handlery.dev</a>: typed event handling with
+				decorators.
+			</li>
+			<li><a href="https://caddly.roulz.com/" target="_blank" rel="noopener">Caddly</a>: config builder for Caddy.</li>
+		</ul>
+	</section>
+
+	<section class="tile" data-span="2">
+		<h2>Side quests</h2>
+		<ul>
+			<li><a href="https://licensephobia.com" target="_blank" rel="noopener">Licensephobia</a> (WIP)</li>
+			<li><a href="https://youtube.com/@roulzhq" target="_blank" rel="noopener">ROULZ</a> on YouTube</li>
+		</ul>
+	</section>
+
+	{cards.map(card => <LinkCard {...card} data-span="2" />)}
 </div>

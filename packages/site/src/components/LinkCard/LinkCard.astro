@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { ChevronRightIcon } from '#components/icons';
+import './LinkCard.css';
+
+type Props = HTMLAttributes<'a'> & { href: string; label: string };
+
+const { href, label, class: className, ...attrs } = Astro.props;
+---
+
+<a href={href} class:list={['link-card', className]} {...attrs}>
+	<span set:text={label} />
+	<Fragment set:html={ChevronRightIcon.html} />
+</a>

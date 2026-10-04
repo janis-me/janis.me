@@ -1,24 +1,22 @@
 import { select } from 'surimi';
 import { upTo } from '#styles/media.ts';
-import { ellipsis, flush, inset, line, row, surface } from '#styles/presets.ts';
+import { flush, inset, line, row, surface } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
 const { color, space } = theme;
 
 // Every area is a direct `.section` child of `.cv` with a matching class.
-const areas = ['title', 'subtitle', 'intro', 'education', 'experience', 'random', 'other', 'outro'] as const;
+const areas = ['intro', 'education', 'experience', 'random', 'other', 'outro'] as const;
 type Area = (typeof areas)[number];
 
 const layouts = {
 	wide: [
-		['title', 'title'],
-		['subtitle', 'subtitle'],
 		['intro', 'intro'],
 		['education', 'experience'],
 		['random', 'other'],
 		['outro', 'outro'],
 	],
-	narrow: [['title'], ['subtitle'], ['intro'], ['education'], ['experience'], ['other'], ['random'], ['outro']],
+	narrow: [['intro'], ['education'], ['experience'], ['other'], ['random'], ['outro']],
 } satisfies Record<string, Area[][]>;
 
 const toTemplate = (rows: Area[][]) => rows.map(cells => `"${cells.join(' ')}"`).join(' ');
@@ -59,14 +57,6 @@ section
 section.child('.body').use(inset);
 
 select(`${cv} p`, `${cv} h2`, `${cv} ul`).use(flush);
-
-area('title').use(inset).style({
-	borderTop: 'none',
-});
-
-area('subtitle').use(ellipsis, inset).style({
-	width: '100%',
-});
 
 select(`${area('education')}`, `${area('random')}`).style({
 	borderRight: line.solid,

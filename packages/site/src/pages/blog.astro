@@ -24,7 +24,15 @@ const groupedPosts = sortedPosts.reduce(
 );
 ---
 
-<Layout title="blog - janis.me">
+<Layout
+	title="blog - janis.me"
+	heading={{
+		eyebrow: 'Blog',
+		title: 'Mostly programming, probably full of food',
+		subtitle: 'Concise posts on web tech, CSS and whatever else I end up building.',
+	}}
+	back={{ href: '/', label: 'Back home' }}
+>
 	<div class="posts">
 		<p>
 			This blog is mostly about programming, but I will certainly make some random posts from time to time. I hope these

@@ -1,5 +1,5 @@
-import { fontFace, select, viewTransition } from 'surimi';
-import { below, upTo } from '#styles/media.ts';
+import { fontFace, media, select, viewTransition } from 'surimi';
+import { below } from '#styles/media.ts';
 import { focusRing } from '#styles/mixins.ts';
 import { theme } from '#styles/theme.css.ts';
 import 'sanitize.css';
@@ -20,15 +20,15 @@ fontFace({
 const html = select('html');
 const body = select('body');
 
-select('html', 'body').style({
+body.style({
 	margin: '0',
-	width: '100vw',
-	height: '100vh',
+	minHeight: '100dvh',
 });
 
 html
 	.style({
-		fontSize: '16px',
+		// Browser default (16px unless the user changed it). Never shrink it per breakpoint.
+		fontSize: '100%',
 		scrollbarColor: `${color.primary.base} ${color.bg.base}`,
 	})
 	.selection()
@@ -41,21 +41,12 @@ body.style({
 	fontFamily: font.mono,
 	color: color.fg.base,
 	backgroundColor: color.bg.base,
-	backgroundImage: [
-		`linear-gradient(${color.bg.muted} 2px, transparent 2px)`,
-		`linear-gradient(90deg, ${color.bg.muted} 2px, transparent 2px)`,
-		`linear-gradient(${color.bg.muted} 1px, transparent 1px)`,
-		`linear-gradient(90deg, ${color.bg.muted} 1px, ${color.bg.base} 1px)`,
-	].join(', '),
-	backgroundSize: '50px 50px, 50px 50px, 10px 10px, 10px 10px',
-	backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
-	backgroundRepeat: 'repeat',
+	display: 'flex',
+	flexDirection: 'column',
 });
 
-body.style({
-	overflow: 'hidden',
-	display: 'grid',
-	gridTemplateRows: `${space[64]} auto`,
+media().prefersReducedMotion('no-preference').select(html).style({
+	scrollBehavior: 'smooth',
 });
 
 select('p').style({
@@ -97,12 +88,4 @@ select('.strikethrough').style({
 
 below('desktop').select(list).style({
 	paddingLeft: space[16],
-});
-
-upTo('tablet').select(html).style({
-	fontSize: '14px',
-});
-
-upTo('phone').select(html).style({
-	fontSize: '12px',
 });

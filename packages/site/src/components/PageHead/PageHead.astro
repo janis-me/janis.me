@@ -1,0 +1,19 @@
+---
+import './PageHead.css';
+
+export interface Props {
+	title: string;
+	eyebrow?: string | undefined;
+	subtitle?: string | undefined;
+}
+
+const { title, eyebrow, subtitle } = Astro.props;
+---
+
+<header class="page-head">
+	<hgroup>
+		{eyebrow && <p class="eyebrow" set:text={eyebrow} />}
+		<h1 set:text={title} />
+		{subtitle && <p class="subtitle" set:text={subtitle} />}
+	</hgroup>
+</header>

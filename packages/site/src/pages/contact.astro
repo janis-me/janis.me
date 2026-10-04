@@ -5,7 +5,11 @@ import Layout from '#layouts/Layout.astro';
 import '#styles/pages/contact.css';
 ---
 
-<Layout title="contact - janis.me">
+<Layout
+	title="contact - janis.me"
+	heading={{ eyebrow: 'Contact', title: 'Say hi', subtitle: 'Mail is best, Bluesky works too.' }}
+	back={{ href: '/', label: 'Back home' }}
+>
 	<div class="contact">
 		<p>
 			You can reach me via:

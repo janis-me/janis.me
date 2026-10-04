@@ -1,0 +1,36 @@
+---
+import { ChevronLeftIcon, ChevronUpIcon } from '#components/icons';
+import './PageBar.css';
+
+export interface Props {
+	back?: { href: string; label: string } | undefined;
+}
+
+const { back } = Astro.props;
+---
+
+<nav class:list={['page-bar', !back && 'floating']} aria-label="Page">
+	{back && (
+		<a href={back.href}>
+			<Fragment set:html={ChevronLeftIcon.html} />
+			<span set:text={back.label} />
+		</a>
+	)}
+	<a href="#top" class="to-top">
+		<span>Back to top</span>
+		<Fragment set:html={ChevronUpIcon.html} />
+	</a>
+</nav>
+
+<script>
+const head = document.querySelector('.page-head');
+const bar = document.querySelector('.page-bar');
+
+if (head && bar) {
+	// The sticky site header covers the top 64px.
+	const observer = new IntersectionObserver(([entry]) => bar.toggleAttribute('data-scrolled', !entry?.isIntersecting), {
+		rootMargin: '-64px 0px 0px 0px',
+	});
+	observer.observe(head);
+}
+</script>

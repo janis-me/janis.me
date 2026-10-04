@@ -1,48 +1,64 @@
 import { select } from 'surimi';
-import { below } from '#styles/media.ts';
-import { flush, inset, line } from '#styles/presets.ts';
+import { upTo } from '#styles/media.ts';
+import { eyebrow, flush, line } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
-const { space } = theme;
+const { color, space } = theme;
+
+const spans = [2, 3, 4, 6] as const;
 
 const hero = select('.about-hero');
-const title = hero.child('h2');
-const intro = hero.child('p');
-const timeline = hero.child('div');
+const tile = hero.child('.tile');
 
 hero.style({
 	display: 'grid',
-	gridTemplateAreas: '"title title" "intro timeline"',
-	gridTemplateColumns: '1fr 2fr',
+	gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
+	gap: space[12],
+	padding: space[12],
 });
 
-title.use(flush, inset).style({
-	gridArea: 'title',
-	borderBottom: line.dashed,
+tile.style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: space[8],
+	padding: space[16],
+	border: line.dashed,
 });
 
-intro.use(flush, inset).style({
-	gridArea: 'intro',
-	borderRight: line.dashed,
+for (const span of spans) {
+	select(`${hero} > [data-span="${span}"]`).style({ gridColumn: `span ${span}` });
+}
+
+tile.child('h2').use(flush, eyebrow);
+
+select(`${tile} > p`, `${tile} > ul`).use(flush);
+
+tile.child('ul').style({ paddingLeft: space[16] });
+
+tile.descendant('li').adjacent('li').style({ marginTop: space[4] });
+
+// Big number, label underneath.
+const stat = select(`${hero} > .stat`);
+
+stat.style({ justifyContent: 'center' });
+
+stat.child('strong').style({
+	color: color.primary.base,
+	fontSize: '2rem',
+	lineHeight: '1',
 });
 
-timeline.use(inset).style({
-	gridArea: 'timeline',
+stat.child('p').style({ color: color.fg.muted, fontSize: '0.875rem' });
+
+select(`${hero} > .accent`).style({
+	backgroundColor: color.primary.subtle,
+	border: line.solid,
 });
 
-timeline.child('h3').use(flush).style({
-	fontSize: '1rem',
-});
+// Two columns: small tiles pair up, everything else spans the row.
+upTo('tablet').select(hero).style({ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gridAutoFlow: 'dense' });
+upTo('tablet').select(tile).style({ gridColumn: '1 / -1' });
+upTo('tablet').select(`${hero} > [data-span="2"]`).style({ gridColumn: 'span 1' });
+upTo('tablet').select(`${hero} > .link-card:last-child`).style({ gridColumn: '1 / -1' });
 
-timeline.descendant('li').style({
-	margin: `${space[2]} 0`,
-});
-
-below('tablet').select(hero).style({
-	gridTemplateAreas: '"title title" "intro intro" "timeline timeline"',
-});
-
-below('tablet').select(intro).style({
-	borderRight: 'none',
-	borderBottom: line.dashed,
-});
+upTo('phone').select(`${hero} > [data-span="2"]`).style({ gridColumn: '1 / -1' });
