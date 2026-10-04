@@ -1,5 +1,5 @@
-import { mixin, select } from 'surimi';
-import { focusRing } from '#styles/mixins.ts';
+import { select } from 'surimi';
+import { focusRing, hoverBorder } from '#styles/mixins.ts';
 import { gridPaper, line, spread } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
@@ -7,7 +7,7 @@ const { color, space } = theme;
 
 const card = select('.link-card');
 
-card.use(gridPaper, spread, focusRing).style({
+card.use(gridPaper, spread, focusRing, hoverBorder).style({
 	gap: space[8],
 	minHeight: '4rem',
 	padding: space[16],
@@ -17,8 +17,6 @@ card.use(gridPaper, spread, focusRing).style({
 	textDecoration: 'none',
 	transition: 'border-color 0.15s',
 });
-
-card.use(mixin(':hover').style({ borderColor: color.primary.base }));
 
 card.child('span').style({ textDecoration: 'underline', textDecorationStyle: 'dashed' });
 

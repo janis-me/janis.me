@@ -12,6 +12,10 @@ export const hoverFill = mixin(':hover').style({
 	backgroundColor: color.bg.muted,
 });
 
+export const hoverBorder = mixin(':hover').style({
+	borderColor: color.primary.base,
+});
+
 export const pressedFill = mixin('[aria-pressed="true"]').style({
 	backgroundColor: color.bg.emphasis,
 });

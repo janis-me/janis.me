@@ -57,8 +57,9 @@ export const chip = row.extend({
 	display: 'inline-flex',
 	justifyContent: 'center',
 	padding: `0 ${space[4]}`,
-	border: line.strong,
-	backgroundColor: color.secondary.subtle,
+	border: line.dashed,
+	color: color.fg.muted,
+	backgroundColor: color.bg.muted,
 	fontSize: '0.8rem',
 });
 

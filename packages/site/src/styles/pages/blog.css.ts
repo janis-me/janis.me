@@ -1,23 +1,36 @@
 import { select } from 'surimi';
 import { upTo } from '#styles/media.ts';
-import { chip, flush, gutter } from '#styles/presets.ts';
+import { eyebrow, flush, gridPaper, line, spread } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
-const { space } = theme;
+const { color, space } = theme;
 
 const posts = select('.posts');
-const tag = posts.descendant('.tag');
+const year = posts.child('.year');
+const divider = year.child('.year-divider');
 
-posts.use(gutter);
-
-select(`${posts} > h2`, `${posts} > ul`).use(flush);
-
-posts.descendant('h3').style({ margin: `${space[4]} 0` });
-posts.descendant('li').style({ lineHeight: '2' });
-
-tag.use(chip).style({
-	height: space[24],
-	marginRight: space[6],
+posts.style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: space[32],
 });
 
-upTo('phone').select(tag).style({ display: 'none' });
+year.style({
+	display: 'grid',
+	gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+	gap: space[12],
+});
+
+// Mini paper card, full row, heads each year.
+divider.use(gridPaper, spread).style({
+	gridColumn: '1 / -1',
+	gap: space[16],
+	padding: `${space[8]} ${space[16]}`,
+	border: line.solid,
+});
+
+divider.child('h2').use(flush, eyebrow).style({ fontSize: '1rem', fontWeight: '600' });
+
+divider.child('span').style({ color: color.fg.muted, fontSize: '0.8rem' });
+
+upTo('tablet').select(year).style({ gridTemplateColumns: 'minmax(0, 1fr)' });

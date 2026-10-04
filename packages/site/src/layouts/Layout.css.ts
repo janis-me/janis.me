@@ -16,10 +16,18 @@ column.style({
 	maxWidth: '100ch',
 });
 
-frame.use(framed).style({
+frame.style({
 	flexGrow: '1',
 	margin: `${space[32]} auto`,
 });
+
+select('.frame.framed').use(framed);
+
+// No box: the page bar stands alone, cards sit right below it.
+const bare = select('.frame.bare');
+
+bare.child('.page-bar').style({ marginInline: '0', marginTop: '0' });
+bare.child('.page-bar:not(.floating)').style({ marginBottom: space[12] });
 
 footer.use(surface, spread).style({
 	gap: space[16],

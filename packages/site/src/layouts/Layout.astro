@@ -15,9 +15,11 @@ interface Props {
 	description?: string | undefined;
 	heading: PageHeadProps;
 	back?: PageBarProps['back'];
+	/** `framed`: bordered box for prose. `bare`: no box, for pages that bring their own cards. */
+	container?: 'framed' | 'bare';
 }
 
-const { title, description, heading, back } = Astro.props;
+const { title, description, heading, back, container = 'framed' } = Astro.props;
 
 const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 ---
@@ -50,7 +52,7 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 		<Header />
 		<PageHead {...heading} />
 
-		<main class="frame">
+		<main class:list={['frame', container]}>
 			<PageBar back={back} />
 			<slot />
 		</main>

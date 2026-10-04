@@ -2,7 +2,7 @@ import { media, select } from 'surimi';
 import { createTheme, defineTokens, type Token } from 'surimi/theme';
 import { colors, type Shade } from '#styles/colors.css.ts';
 
-const { gray, sky, ice, raisin, bone, yellow } = colors;
+const { gray, sage, bark, ice, raisin, bone, yellow } = colors;
 
 // Shades are absolute in every theme: 50 is lightest, 950 darkest.
 type Ramp = Record<Shade, Token>;
@@ -32,7 +32,14 @@ type Palette = {
 	border: Record<'base' | 'strong', Token>;
 	primary: Ramp & Record<'base' | 'subtle' | 'fg', Token>;
 	secondary: Ramp & Record<'base' | 'subtle' | 'fg', Token>;
+	logo: Stripes;
 };
+
+// Logo stripes, top to bottom.
+type Stripes = Record<1 | 2 | 3 | 4 | 5, Token>;
+
+const stripes = (ramp: Ramp, shades: readonly [Shade, Shade, Shade, Shade, Shade] = [100, 200, 300, 400, 500]) =>
+	Object.fromEntries(shades.map((shade, i) => [i + 1, ramp[shade]])) as Stripes;
 
 const light = {
 	bg: { ...gray, base: gray[50], muted: gray[200], emphasis: gray[200], code: gray[100] },
@@ -40,6 +47,7 @@ const light = {
 	border: { base: gray[400], strong: gray[500] },
 	primary: { ...gray, base: gray[900], subtle: gray[200], fg: gray[50] },
 	secondary: { ...gray, base: gray[600], subtle: gray[100], fg: gray[50] },
+	logo: stripes(gray),
 } satisfies Palette;
 
 const dark = {
@@ -48,6 +56,7 @@ const dark = {
 	border: { base: gray[600], strong: gray[500] },
 	primary: { ...gray, base: gray[50], subtle: gray[800], fg: gray[900] },
 	secondary: { ...gray, base: gray[400], subtle: gray[800], fg: gray[900] },
+	logo: stripes(gray),
 } satisfies Palette;
 
 const janis = {
@@ -56,22 +65,36 @@ const janis = {
 	border: { base: raisin[800], strong: raisin[500] },
 	primary: { ...ice, base: ice[300], subtle: raisin[925], fg: raisin[975] },
 	secondary: { ...bone, base: bone[200], subtle: raisin[925], fg: raisin[975] },
+	logo: stripes(ice),
 } satisfies Palette;
 
+// Light counterpart of janis: ice page, deep blue text and logo.
 const lucie = {
-	bg: { ...sky, base: sky[100], muted: sky[200], emphasis: sky[200], code: sky[100] },
-	fg: { ...sky, base: sky[900], muted: sky[700] },
-	border: { base: sky[400], strong: sky[400] },
-	primary: { ...sky, base: sky[900], subtle: sky[200], fg: sky[50] },
-	secondary: { ...sky, base: sky[700], subtle: sky[100], fg: sky[50] },
+	bg: { ...ice, base: ice[100], muted: ice[200], emphasis: ice[200], code: ice[50] },
+	fg: { ...ice, base: ice[900], muted: ice[700] },
+	border: { base: ice[400], strong: ice[500] },
+	primary: { ...ice, base: ice[600], subtle: ice[200], fg: ice[50] },
+	secondary: { ...raisin, base: raisin[600], subtle: ice[200], fg: ice[50] },
+	logo: stripes(ice, [500, 600, 700, 800, 900]),
 } satisfies Palette;
 
+// Pastel forest: sage page and accents, bark-brown text.
 const sannie = {
+	bg: { ...sage, base: sage[100], muted: sage[200], emphasis: sage[300], code: sage[50] },
+	fg: { ...bark, base: bark[900], muted: bark[700] },
+	border: { base: sage[400], strong: sage[500] },
+	primary: { ...sage, base: sage[700], subtle: sage[200], fg: sage[50] },
+	secondary: { ...bark, base: bark[600], subtle: bark[100], fg: bark[50] },
+	logo: stripes(sage, [400, 500, 600, 700, 800]),
+} satisfies Palette;
+
+const pepper = {
 	bg: { ...bone, base: gray[975], muted: bone[900], emphasis: bone[800], code: bone[900] },
 	fg: { ...yellow, base: yellow[300], muted: yellow[400] },
 	border: { base: yellow[600], strong: yellow[400] },
 	primary: { ...yellow, base: yellow[300], subtle: bone[900], fg: gray[975] },
 	secondary: { ...bone, base: bone[200], subtle: bone[800], fg: gray[975] },
+	logo: stripes(yellow),
 } satisfies Palette;
 
 export const theme = defineTokens({
@@ -88,13 +111,14 @@ export const colorSchemes = {
 	dark: 'dark',
 	janis: 'dark',
 	lucie: 'light',
-	sannie: 'dark',
+	sannie: 'light',
+	pepper: 'dark',
 } as const;
 
 export type ThemeName = keyof typeof colorSchemes;
 export const themeNames = Object.keys(colorSchemes) as ThemeName[];
 
-const palettes = { dark, janis, lucie, sannie } satisfies Record<Exclude<ThemeName, 'light'>, Palette>;
+const palettes = { dark, janis, lucie, sannie, pepper } satisfies Record<Exclude<ThemeName, 'light'>, Palette>;
 
 select(':root').style({ colorScheme: 'light' });
 

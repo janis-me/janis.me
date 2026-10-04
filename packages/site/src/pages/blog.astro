@@ -1,61 +1,42 @@
 ---
 import { getCollection } from 'astro:content';
+import PostCard from '#components/PostCard/PostCard.astro';
 import Layout from '#layouts/Layout.astro';
 import '#styles/pages/blog.css';
 
-const posts = await getCollection('blog', ({ data }) => {
-	return data.published === true;
-});
+const posts = await getCollection('blog', ({ data }) => data.published === true);
 
-const sortedPosts = posts.sort((a, b) => {
-	return b.data.createdAt.getTime() - a.data.createdAt.getTime();
-});
+posts.sort((a, b) => b.data.createdAt.getTime() - a.data.createdAt.getTime());
 
-const groupedPosts = sortedPosts.reduce(
-	(acc, post) => {
-		const year = post.data.createdAt.getFullYear();
-		if (!acc[year]) {
-			acc[year] = [];
-		}
-		acc[year].push(post);
-		return acc;
-	},
-	{} as Record<string, typeof posts>,
-);
+const years = Map.groupBy(posts, post => post.data.createdAt.getFullYear());
 ---
 
 <Layout
 	title="blog - janis.me"
 	heading={{
 		eyebrow: 'Blog',
-		title: 'Mostly programming, probably full of food',
-		subtitle: 'Concise posts on web tech, CSS and whatever else I end up building.',
+		title: 'Mostly programming and some food',
+		subtitle: 'I post whenever I wrote a nice piece of code',
 	}}
 	back={{ href: '/', label: 'Back home' }}
+	container="bare"
 >
 	<div class="posts">
-		<p>
-			This blog is mostly about programming, but I will certainly make some random posts from time to time. I hope these
-			posts will be fairly concise, as I am not an avid writer and reading long articles is not in the nature of most
-			people anymore.
-			<br>
-			If you end up liking what you read, I set up an <a href="/rss.xml">RSS feed</a>!
-		</p>
-		<h2>My blog posts:</h2>
-		<ul>
-			{Object.entries(groupedPosts).map(([year, posts]) => (
-					<h3>{year}</h3>
-					<>
-						{posts.map(post => (
-							<li>
-								<a href={`/blog/${post.id}`}>{post.data.title}</a> ({post.data.createdAt.toLocaleDateString()})
-								{post.data.tags.map(i => (
-									<span class="tag">{i}</span>
-								))}
-							</li>
-						))}
-					</>
-			))}
-		</ul>
+		{[...years].map(([year, yearPosts]) => (
+			<section class="year" aria-labelledby={`year-${year}`}>
+				<header class="year-divider">
+					<h2 id={`year-${year}`}>{year}</h2>
+					<span set:text={`${yearPosts.length} ${yearPosts.length === 1 ? 'post' : 'posts'}`} />
+				</header>
+				{yearPosts.map(post => (
+					<PostCard
+						href={`/blog/${post.id}`}
+						title={post.data.title}
+						date={post.data.createdAt}
+						tags={post.data.tags}
+					/>
+				))}
+			</section>
+		))}
 	</div>
 </Layout>

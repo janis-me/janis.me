@@ -1,0 +1,29 @@
+---
+import './PostCard.css';
+
+export interface Props {
+	href: string;
+	title: string;
+	date: Date;
+	tags?: string[] | undefined;
+}
+
+const { href, title, date, tags = [] } = Astro.props;
+---
+
+<a href={href} class="post-card">
+	<span class="meta">
+		<time
+			datetime={date.toISOString()}
+			set:text={date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
+		/>
+		{tags.length > 0 && (
+			<span class="tags">
+				{tags.map(tag => (
+					<span class="tag" set:text={tag} />
+				))}
+			</span>
+		)}
+	</span>
+	<h3 set:text={title} />
+</a>

@@ -14,7 +14,6 @@ hero.style({
 	display: 'grid',
 	gridTemplateColumns: 'repeat(6, minmax(0, 1fr))',
 	gap: space[12],
-	padding: space[12],
 });
 
 tile.style({
