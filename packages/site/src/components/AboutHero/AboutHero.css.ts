@@ -47,7 +47,7 @@ stat.child('strong').style({
 	lineHeight: '1',
 });
 
-stat.child('p').style({ color: color.fg.muted, fontSize: '0.875rem' });
+stat.child('p').style({ fontSize: '0.875rem' });
 
 select(`${hero} > .accent`).style({
 	backgroundColor: color.primary.subtle,

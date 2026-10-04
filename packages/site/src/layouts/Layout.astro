@@ -4,8 +4,10 @@ import '#styles/index.css';
 import '#styles/code.css';
 import './Layout.css';
 import Header from '#components/Header/Header.astro';
+import Notice from '#components/Notice/Notice.astro';
 import PageBar, { type Props as PageBarProps } from '#components/PageBar/PageBar.astro';
 import PageHead, { type Props as PageHeadProps } from '#components/PageHead/PageHead.astro';
+
 import SocialIcons from '#components/SocialIcons/SocialIcons.astro';
 import { themeNames } from '#styles/theme.css.ts';
 
@@ -17,9 +19,10 @@ interface Props {
 	back?: PageBarProps['back'];
 	/** `framed`: bordered box for prose. `bare`: no box, for pages that bring their own cards. */
 	container?: 'framed' | 'bare';
+	hideNotice?: boolean;
 }
 
-const { title, description, heading, back, container = 'framed' } = Astro.props;
+const { title, description, heading, back, container = 'framed', hideNotice } = Astro.props;
 
 const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 ---
@@ -55,6 +58,7 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 		<main class:list={['frame', container]}>
 			<PageBar back={back} />
 			<slot />
+			{!hideNotice && <Notice />}
 		</main>
 
 		<footer class="site-footer">
