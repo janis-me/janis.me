@@ -1,12 +1,12 @@
 {
-  "name": "@janis.me/typescript-config",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "exports": {
-    "./base.json": "./base.json"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+	"name": "@janis.me/typescript-config",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./base.json": "./base.json"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
 }

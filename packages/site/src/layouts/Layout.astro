@@ -22,58 +22,60 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={metaDescription} />
-    <meta
-      name="keywords"
-      content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf, carnageous, janis-me, janis.me"
-    />
-    <meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<meta name="generator" content={Astro.generator}>
+		<meta name="description" content={metaDescription}>
+		<meta
+			name="keywords"
+			content="Janis Jansen, fullstack, developer Düsseldorf, softwareentwickler Düsseldorf, carnageous, janis-me, janis.me"
+		>
+		<meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]">
+		<link rel="sitemap" href="/sitemap-index.xml">
 
-    <title>{title}</title>
+		<title>{title}</title>
 
-    <link rel="preload" as="font" type="font/woff2" href={openSansWoff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={openSansWoff2} crossorigin="anonymous">
 
-    <script is:inline define:vars={{ themeNames }}>
-      const stored = localStorage.getItem('theme');
-      if (themeNames.includes(stored)) document.documentElement.dataset.theme = stored;
-    </script>
-  </head>
+		<script is:inline define:vars={{ themeNames }}>
+		const stored = localStorage.getItem('theme');
+		if (themeNames.includes(stored)) document.documentElement.dataset.theme = stored;
+		</script>
+	</head>
 
-  <body>
-    <Header />
+	<body>
+		<Header />
 
-    <div class="frame">
-          <nav class="site-nav">
-            <div class="pages">
-              {pageLinks.map(i =>
-                // prettier-ignore
-                <a href={`/${i.url}`} aria-current={currentUrl.replaceAll('/', '') === i.url ? 'page' : undefined}>{i.label}</a>,
-              )}
-            </div>
-            <div class="socials">
-              <SocialIcons />
-            </div>
-          </nav>
-          <main>
-            <slot />
-          </main>
-          <footer class="site-footer">
-            <p>
-              <span class="extra">You're looking at static HTML -</span>
-              made with <a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>,
-              <a href="https://github.com/remarkjs/remark" target="_blank" rel="noopener">remark</a>
-              and <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
-              <span class="extra">
-                - <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener">view source</a>
-              </span>
-            </p>
-          </footer>
-    </div>
-  </body>
+		<div class="frame">
+			<nav class="site-nav">
+				<div class="pages">
+					{pageLinks.map(i => (
+						// prettier-ignore
+						<a href={`/${i.url}`} aria-current={currentUrl.replaceAll('/', '') === i.url ? 'page' : undefined}>
+							{i.label}
+						</a>
+					))}
+				</div>
+				<div class="socials">
+					<SocialIcons />
+				</div>
+			</nav>
+			<main>
+				<slot />
+			</main>
+			<footer class="site-footer">
+				<p>
+					<span class="extra">You're looking at static HTML -</span>
+					made with <a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>,
+					<a href="https://github.com/remarkjs/remark" target="_blank" rel="noopener">remark</a>
+					and <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+					<span class="extra">
+						- <a href="https://github.com/janis-me/janis.me" target="_blank" rel="noopener">view source</a>
+					</span>
+				</p>
+			</footer>
+		</div>
+	</body>
 </html>

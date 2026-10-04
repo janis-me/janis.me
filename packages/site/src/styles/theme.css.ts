@@ -1,7 +1,7 @@
 import { media, select } from 'surimi';
 import { createTheme, defineTokens } from 'surimi/theme';
 
-type Palette = Record<keyof typeof light, string>;
+type Palette = Record<keyof typeof janis, string>;
 
 const space = {
 	1: '1px',
@@ -22,7 +22,7 @@ const space = {
 	80: '80px',
 } as const;
 
-const light = {
+const janis = {
 	background: '#fafafa',
 	text: '#212529',
 	code: '#e4e4e4',
@@ -96,7 +96,7 @@ const sannie = {
 
 export const theme = defineTokens({
 	space,
-	color: light,
+	color: janis,
 	font: {
 		mono: "'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif",
 	},
@@ -104,7 +104,7 @@ export const theme = defineTokens({
 
 // Exported as plain data, so Astro can render the theme picker from the same source.
 export const colorSchemes = {
-	light: 'light',
+	janis: 'light',
 	dark: 'dark',
 	lucie: 'light',
 	sannie: 'dark',
@@ -113,7 +113,7 @@ export const colorSchemes = {
 export type ThemeName = keyof typeof colorSchemes;
 export const themeNames = Object.keys(colorSchemes) as ThemeName[];
 
-const palettes = { dark, lucie, sannie } satisfies Record<Exclude<ThemeName, 'light'>, Palette>;
+const palettes = { dark, lucie, sannie } satisfies Record<Exclude<ThemeName, 'janis'>, Palette>;
 
 select(':root').style({ colorScheme: 'light' });
 

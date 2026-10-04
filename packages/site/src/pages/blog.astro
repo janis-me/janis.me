@@ -25,29 +25,29 @@ const groupedPosts = sortedPosts.reduce(
 ---
 
 <Layout title="blog - janis.me">
-  <div class="posts">
-    <p>
-      This blog is mostly about programming, but I will certainly make some random posts from time to time. I hope these posts will be fairly concise, as I am not an avid writer and reading long articles is not in the nature of most people anymore.
-      <br />
-      If you end up liking what you read, I set up an <a href="/rss.xml">RSS feed</a>!
-    </p>
-    <h2>My blog posts:</h2>
-    <ul>
-      {
-        Object.entries(groupedPosts).map(([year, posts]) => (
-            <h3>{year}</h3>
-            <>
-              {posts.map(post => (
-                <li>
-                  <a href={`/blog/${post.id}`}>{post.data.title}</a> ({post.data.createdAt.toLocaleDateString()})
-                  {post.data.tags.map(i => (
-                    <span class="tag">{i}</span>
-                  ))}
-                </li>
-              ))}
-            </>
-        ))
-      }
-    </ul>
-  </div>
+	<div class="posts">
+		<p>
+			This blog is mostly about programming, but I will certainly make some random posts from time to time. I hope these
+			posts will be fairly concise, as I am not an avid writer and reading long articles is not in the nature of most
+			people anymore.
+			<br>
+			If you end up liking what you read, I set up an <a href="/rss.xml">RSS feed</a>!
+		</p>
+		<h2>My blog posts:</h2>
+		<ul>
+			{Object.entries(groupedPosts).map(([year, posts]) => (
+					<h3>{year}</h3>
+					<>
+						{posts.map(post => (
+							<li>
+								<a href={`/blog/${post.id}`}>{post.data.title}</a> ({post.data.createdAt.toLocaleDateString()})
+								{post.data.tags.map(i => (
+									<span class="tag">{i}</span>
+								))}
+							</li>
+						))}
+					</>
+			))}
+		</ul>
+	</div>
 </Layout>

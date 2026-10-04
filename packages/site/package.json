@@ -1,45 +1,45 @@
 {
-  "name": "janis.me",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "imports": {
-    "#*": [
-      "./src/*",
-      "./src/*.ts",
-      "./src/*.tsx",
-      "./src/*/index.ts"
-    ]
-  },
-  "scripts": {
-    "astro": "astro",
-    "build": "astro build",
-    "dev": "astro dev",
-    "preview": "astro preview",
-    "format": "biome format --write",
-    "lint": "biome lint --fix",
-    "check": "biome check --fix"
-  },
-  "devDependencies": {
-    "@astrojs/rss": "catalog:build",
-    "@astrojs/sitemap": "catalog:build",
-    "@brandonaaron/astro-script-embed": "catalog:build",
-    "@fontsource/ibm-plex-mono": "catalog:fonts",
-    "@fortawesome/fontawesome-svg-core": "catalog:fonts",
-    "@fortawesome/free-brands-svg-icons": "catalog:fonts",
-    "@fortawesome/free-solid-svg-icons": "catalog:fonts",
-    "@janis.me/typescript-config": "workspace:*",
-    "@shikijs/transformers": "catalog:build",
-    "@types/node": "catalog:types",
-    "@types/sanitize-html": "catalog:types",
-    "astro": "catalog:build",
-    "astro-webmanifest": "catalog:build",
-    "cssnano": "catalog:build",
-    "postcss": "catalog:build",
-    "sanitize-html": "catalog:build",
-    "sanitize.css": "catalog:ui",
-    "sharp": "catalog:build",
-    "typescript": "catalog:build",
-    "surimi": "catalog:ui"
-  }
+	"name": "janis.me",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#*": [
+			"./src/*",
+			"./src/*.ts",
+			"./src/*.tsx",
+			"./src/*/index.ts"
+		]
+	},
+	"scripts": {
+		"astro": "astro",
+		"build": "astro build",
+		"dev": "astro dev",
+		"preview": "astro preview",
+		"format": "biome format --write",
+		"lint": "biome lint --fix",
+		"check": "biome check --fix"
+	},
+	"devDependencies": {
+		"@astrojs/rss": "catalog:build",
+		"@astrojs/sitemap": "catalog:build",
+		"@brandonaaron/astro-script-embed": "catalog:build",
+		"@fontsource/ibm-plex-mono": "catalog:fonts",
+		"@fortawesome/fontawesome-svg-core": "catalog:fonts",
+		"@fortawesome/free-brands-svg-icons": "catalog:fonts",
+		"@fortawesome/free-solid-svg-icons": "catalog:fonts",
+		"@janis.me/typescript-config": "workspace:*",
+		"@shikijs/transformers": "catalog:build",
+		"@types/node": "catalog:types",
+		"@types/sanitize-html": "catalog:types",
+		"astro": "catalog:build",
+		"astro-webmanifest": "catalog:build",
+		"cssnano": "catalog:build",
+		"postcss": "catalog:build",
+		"sanitize-html": "catalog:build",
+		"sanitize.css": "catalog:ui",
+		"sharp": "catalog:build",
+		"typescript": "catalog:build",
+		"surimi": "catalog:ui"
+	}
 }

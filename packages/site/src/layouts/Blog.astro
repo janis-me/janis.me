@@ -16,21 +16,22 @@ const updatedDate = updatedAt != createdAt ? new Date(updatedAt) : null;
 ---
 
 <Layout title={title} description="janis.me/blog - a blog made for programming, probably full of food">
-  <div class="post">
-    <nav>
-      <a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>See my other articles</span></a>
-    </nav>
-    <article>
-      <hgroup>
-        <p>
-          {createdDate.toLocaleDateString()}
-          {updatedDate ? `- updated at ${updatedDate.toLocaleDateString()}` : ''} -
-          {tags?.join(', ')}
-        </p>
-        <h2>{title}</h2>
-      </hgroup>
-      <slot />
-      <p>~ Cheers</p>
-    </article>
-  </div>
+	<div class="post">
+		<nav>
+			<a href="/blog"> <Fragment set:html={ChevronLeftIcon.html} /><span>See my other articles</span></a>
+		</nav>
+		<article>
+			<hgroup>
+				<p>
+					{createdDate.toLocaleDateString()}
+					{updatedDate ? `- updated at ${updatedDate.toLocaleDateString()}` : ''}
+					-
+					{tags?.join(', ')}
+				</p>
+				<h2>{title}</h2>
+			</hgroup>
+			<slot />
+			<p>~ Cheers</p>
+		</article>
+	</div>
 </Layout>

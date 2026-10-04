@@ -1,0 +1,59 @@
+{
+	"lsp": {
+		"biome": {
+			"settings": {
+				"require_config_file": true
+			}
+		}
+	},
+	"languages": {
+		"Astro": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"CSS": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"GraphQL": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"HTML": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"JSON": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"JSONC": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"JavaScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"JSX": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"Svelte": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"TSX": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"TypeScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		},
+		"Vue.js": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"format_on_save": "on"
+		}
+	}
+}

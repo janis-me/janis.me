@@ -2,78 +2,76 @@
 import { themeNames } from '#styles/theme.css.ts';
 import './Header.css';
 
-const options = [{ value: '', label: 'system' }, ...themeNames.map(name => ({ value: name, label: name }))];
+const options = themeNames.map(name => ({ value: name, label: name }));
 ---
 
 <header class="site-header">
-  <a href="/">
-    <h1>janis.me</h1>
-  </a>
+	<a href="/">
+		<h1>janis.me</h1>
+	</a>
 
-  <details class="theme-picker">
-    <summary aria-label="Theme" title="Theme"><span>system</span></summary>
-    <menu>
-      {
-        options.map(option => (
-          <li>
-            <button type="button" value={option.value} aria-pressed="false">
-              {option.label}
-            </button>
-          </li>
-        ))
-      }
-    </menu>
-  </details>
+	<details class="theme-picker">
+		<summary aria-label="Theme" title="Theme"><span>janis</span></summary>
+		<menu>
+			{options.map(option => (
+				<li>
+					<button type="button" value={option.value} aria-pressed="false">
+						{option.label}
+					</button>
+				</li>
+			))}
+		</menu>
+	</details>
 </header>
 
 <script>
-  const STORAGE_KEY = 'theme';
-  const root = document.documentElement;
-  const picker = document.querySelector<HTMLDetailsElement>('.theme-picker');
+const STORAGE_KEY = 'theme';
+const root = document.documentElement;
+const picker = document.querySelector<HTMLDetailsElement>('.theme-picker');
 
-  if (picker) {
-    const label = picker.querySelector('summary > span');
-    const buttons = [...picker.querySelectorAll<HTMLButtonElement>('menu button')];
+if (picker) {
+	const label = picker.querySelector('summary > span');
+	const buttons = [...picker.querySelectorAll<HTMLButtonElement>('menu button')];
 
-    const sync = () => {
-      const current = root.dataset.theme ?? '';
-      for (const button of buttons) {
-        const active = button.value === current;
-        button.setAttribute('aria-pressed', String(active));
-        if (active && label) label.textContent = button.textContent?.trim() ?? '';
-      }
-    };
+	const sync = () => {
+		const current = root.dataset.theme ?? '';
+		for (const button of buttons) {
+			const active = button.value === current;
+			button.setAttribute('aria-pressed', String(active));
+			if (active && label) label.textContent = button.textContent?.trim() ?? '';
+		}
+	};
 
-    const apply = (theme: string) => {
-      if (theme) {
-        root.dataset.theme = theme;
-        localStorage.setItem(STORAGE_KEY, theme);
-      } else {
-        delete root.dataset.theme;
-        localStorage.removeItem(STORAGE_KEY);
-      }
-      sync();
-    };
+	const apply = (theme: string) => {
+		if (theme) {
+			root.dataset.theme = theme;
+			localStorage.setItem(STORAGE_KEY, theme);
+		} else {
+			delete root.dataset.theme;
+			localStorage.removeItem(STORAGE_KEY);
+		}
+		sync();
+	};
 
-    for (const button of buttons) {
-      button.addEventListener('click', () => {
-        apply(button.value);
-        picker.open = false;
-        picker.querySelector('summary')?.focus();
-      });
-    }
+	for (const button of buttons) {
+		button.addEventListener('click', () => {
+			apply(button.value);
+			picker.open = false;
+			picker.querySelector('summary')?.focus();
+		});
+	}
 
-    document.addEventListener('click', event => {
-      if (picker.open && !picker.contains(event.target as Node)) picker.open = false;
-    });
+	document.addEventListener('click', event => {
+		if (picker.open && !picker.contains(event.target as Node)) picker.open = false;
+	});
 
-    picker.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && picker.open) {
-        picker.open = false;
-        picker.querySelector('summary')?.focus();
-      }
-    });
+	picker.addEventListener('keydown', event => {
+		if (event.key === 'Escape' && picker.open) {
+			picker.open = false;
+			picker.querySelector('summary')?.focus();
+		}
+	});
 
-    sync();
-  }
+	sync();
+}
 </script>

@@ -26,10 +26,8 @@ const profileLinks = [
 ] as const;
 ---
 
-{
-  profileLinks.map(i => (
-    <a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
-      <Fragment set:html={i.icon.html} />
-    </a>
-  ))
-}
+{profileLinks.map(i => (
+	<a href={i.url} target="_blank" rel="noopener" aria-label={`Visit my ${i.label} profile`}>
+		<Fragment set:html={i.icon.html} />
+	</a>
+))}
