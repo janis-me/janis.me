@@ -1,6 +1,6 @@
 import { select } from 'surimi';
-import { focusRing, hoverBorder } from '#styles/mixins.ts';
-import { chip, eyebrow, flush, line, row, surface } from '#styles/presets.ts';
+import { slideFill } from '#styles/mixins.ts';
+import { chip, eyebrow, flush, linkBox, row } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
 const { space } = theme;
@@ -8,19 +8,18 @@ const { space } = theme;
 const card = select('.post-card');
 const meta = card.child('.meta');
 
-card.use(surface, focusRing, hoverBorder).style({
+card.use(linkBox, ...slideFill).style({
 	display: 'flex',
 	flexDirection: 'column',
-	gap: space[12],
-	padding: space[16],
-	border: line.dashed,
+	gap: space[8],
 	textDecoration: 'none',
-	transition: 'border-color 0.15s',
 });
 
 meta.use(row).style({ gap: space[8], flexWrap: 'wrap' });
 
-meta.child('time').use(eyebrow);
+meta.child('time').use(eyebrow).style({ transition: 'color 0.2s ease-out' });
+
+select(`${card}:is(:hover, :focus-visible) time`).style({ color: 'inherit' });
 
 meta.child('.tags').use(row).style({ gap: space[4], flexWrap: 'wrap', marginLeft: 'auto' });
 

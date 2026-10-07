@@ -1,5 +1,6 @@
 import { select } from 'surimi';
 import { upTo } from '#styles/media.ts';
+import { slideFill } from '#styles/mixins.ts';
 import { ellipsis, line, row, spread, surface } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
@@ -39,10 +40,12 @@ bar.before().style({
 	backgroundColor: color.bg.base,
 });
 
-link.use(row).style({
+link.use(row, ...slideFill).style({
 	gap: space[8],
+	paddingInline: space[4],
+	marginInline: `calc(-1 * ${space[4]})`,
 	textDecoration: 'none',
-	transition: 'opacity 0.15s, visibility 0.15s',
+	transition: 'background-size 0.2s ease-out, color 0.2s ease-out, opacity 0.15s, visibility 0.15s',
 });
 
 link.style({ minWidth: '0' });

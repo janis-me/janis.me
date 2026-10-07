@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'a'> & { href: string };
+
+const { href, ...attrs } = Astro.props;
+
+const external = /^https?:\/\//.test(href);
+const content = (await Astro.slots.render('default')).trim();
+---
+
+{/* biome-ignore lint/a11y/useAnchorContent: `set:html` fills it with the trimmed slot. */}
+<a href={href} {...external && { target: '_blank', rel: 'noopener' }} {...attrs} set:html={content} />

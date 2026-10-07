@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import mailImage from '#assets/mail.png'; // Image is 1600x900
+import Link from '#components/Link/Link.astro';
 import Layout from '#layouts/Layout.astro';
 import '#styles/pages/contact.css';
 ---
@@ -17,7 +18,7 @@ import '#styles/pages/contact.css';
 				src={mailImage}
 				alt="My email. Sorry, only an image. You can reach out to me on linkedin if you need to."
 			/>
-			or hit me up on <a href="https://bsky.app/profile/janis.me" target="_blank" rel="noopener">Bluesky</a>
+			or hit me up on <Link href="https://bsky.app/profile/janis.me">Bluesky</Link>
 		</p>
 	</div>
 </Layout>

@@ -7,6 +7,7 @@ export const line = {
 	solid: `1px solid ${color.border.base}`,
 	dashed: `1px dashed ${color.border.base}`,
 	strong: `1px dashed ${color.border.strong}`,
+	primary: `1px dashed ${color.primary.base}`,
 } as const;
 
 export const row = style({
@@ -51,6 +52,21 @@ export const gridPaper = style({
 
 export const framed = surface.extend({
 	border: line.solid,
+});
+
+export const box = surface.extend({
+	padding: space[16],
+	border: line.dashed,
+});
+
+export const linkBox = box.extend({
+	border: line.primary,
+});
+
+export const highlight = style({
+	backgroundColor: color.primary.base,
+	borderColor: color.primary.base,
+	color: color.primary.fg,
 });
 
 export const chip = row.extend({

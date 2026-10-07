@@ -6,9 +6,10 @@ import { theme } from '#styles/theme.css.ts';
 const { space } = theme;
 
 const frame = select('.frame');
+const notice = select('.site-notice');
 const footer = select('.site-footer');
-// Page head content lines up with the frame below it.
-const column = select('.frame', '.page-head > hgroup');
+const column = select('.frame', '.site-notice', '.page-head > hgroup');
+const boxed = select('.frame', '.site-notice');
 
 // Reading measure. Both share the body font, so `ch` resolves the same for each.
 column.style({
@@ -18,7 +19,11 @@ column.style({
 
 frame.style({
 	flexGrow: '1',
-	margin: `${space[32]} auto`,
+	margin: `${space[32]} auto ${space[12]}`,
+});
+
+notice.style({
+	margin: `0 auto ${space[32]}`,
 });
 
 select('.frame.framed').use(framed);
@@ -49,6 +54,8 @@ upTo('tablet').select(footer.descendant('.extra')).style({ display: 'none' });
 // Mobile: full-bleed, every edge (logo, heading, content, footer) on the same 16px gutter.
 upTo('tablet').select(column).style({ width: '100%', maxWidth: 'none' });
 upTo('tablet')
-	.select(frame)
-	.style({ width: `calc(100% - 2 * ${space[16]})`, marginBlock: space[16] });
+	.select(boxed)
+	.style({ width: `calc(100% - 2 * ${space[16]})` });
+upTo('tablet').select(frame).style({ marginTop: space[16] });
+upTo('tablet').select(notice).style({ marginBottom: space[16] });
 upTo('tablet').select('.page-head > hgroup').style({ paddingInline: space[16] });

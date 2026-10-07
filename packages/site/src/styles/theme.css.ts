@@ -63,7 +63,7 @@ const janis = {
 	bg: { ...raisin, base: raisin[950], muted: raisin[900], emphasis: raisin[950], code: raisin[975] },
 	fg: { ...ice, base: ice[100], muted: ice[200] },
 	border: { base: raisin[800], strong: raisin[500] },
-	primary: { ...ice, base: ice[300], subtle: raisin[925], fg: raisin[975] },
+	primary: { ...ice, base: ice[300], subtle: ice[800], fg: raisin[975] },
 	secondary: { ...bone, base: bone[200], subtle: raisin[925], fg: raisin[975] },
 	logo: stripes(ice),
 } satisfies Palette;
@@ -92,7 +92,7 @@ const pepper = {
 	bg: { ...bone, base: gray[975], muted: bone[900], emphasis: bone[800], code: bone[900] },
 	fg: { ...yellow, base: yellow[300], muted: yellow[400] },
 	border: { base: yellow[600], strong: yellow[400] },
-	primary: { ...yellow, base: yellow[300], subtle: bone[900], fg: gray[975] },
+	primary: { ...yellow, base: yellow[300], subtle: yellow[950], fg: gray[975] },
 	secondary: { ...bone, base: bone[200], subtle: bone[800], fg: gray[975] },
 	logo: stripes(yellow),
 } satisfies Palette;

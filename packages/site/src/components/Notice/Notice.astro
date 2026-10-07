@@ -1,11 +1,12 @@
 ---
+import Card from '#components/Card/Card.astro';
 import './Notice.css';
 ---
 
-<div class="notice">
+<Card as="aside" variant="highlight" class="site-notice" aria-label="About this site">
 	<p>
 		This page has about ten lines of javascript to make it accessible and color-friendly. It is made with absolutely no
 		Ai, tracking, dynamic rendering, cookies or ads. It's just static HTML and CSS. I wrote all content, markup, styles,
 		even the CSS engine. I made the logo but not the icons.
 	</p>
-</div>
+</Card>

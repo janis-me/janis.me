@@ -1,4 +1,6 @@
 ---
+import Card from '#components/Card/Card.astro';
+import Link from '#components/Link/Link.astro';
 import LinkCard from '#components/LinkCard/LinkCard.astro';
 import './AboutHero.css';
 
@@ -10,78 +12,66 @@ const cards = [
 ---
 
 <div class="about-hero">
-	<section class="tile" data-span="4">
-		<h2>About</h2>
+	<Card title="About" data-span="4">
 		<p>
-			Hey! This website is about writing high-quality code, building apps, cooking, cats and a lot of CSS and
+			Hey! This website is about writing high-quality code, building apps, cooking, cats.. but mostly CSS and
 			typescript. I'm Janis, a full-stack dev from Germany.
 		</p>
-	</section>
+	</Card>
 
-	<section class="tile stat" data-span="2">
-		<strong><span class="strikethrough">8</span> <span class="strikethrough">9</span> 10</strong>
-		<p>years of professional experience. Oof.</p>
-	</section>
+	<Card variant="paper" title="10+" data-span="2">
+		<p>Years of programming professionally. +3 coding unprofessionally.</p>
+	</Card>
 
-	<section class="tile accent" data-span="3">
-		<h2>Currently</h2>
+	<Card title="Currently" variant="highlight" data-span="3">
 		<p>
-			Engineering at <a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a>. Teaching machines to
-			sing, handling a lot of data and automating the hell out of everyday work.
+			Engineering at <Link href="https://elevenlabs.io">ElevenLabs</Link>. Teaching machines to sing, handling a lot of
+			data and automating the hell out of everyday work.
 		</p>
-	</section>
+	</Card>
 
-	<section class="tile" data-span="3">
-		<h2>Off the clock</h2>
+	<Card title="Off the clock" data-span="3">
 		<p>Living on the countryside with two cats. Playing bass guitar, much to the dismay of my neighbours.</p>
-	</section>
+	</Card>
 
-	<section class="tile" data-span="6">
-		<h2>Before</h2>
+	<Card title="Before" data-span="6">
 		<ul>
 			<li>
-				Conversational AI at <a href="https://cognigy.com" target="_blank" rel="noopener">Cognigy</a>, the agent-based
-				CX platform. Recently acquired for $1bn.
+				Conversational AI at <Link href="https://cognigy.com">Cognigy</Link>, the agent-based CX platform. Recently
+				acquired for $1bn.
 			</li>
 			<li>
-				<a href="https://divecae.com" target="_blank" rel="noopener">Dive</a>: cloud-native thermofluid simulations. CAE
-				right in the browser, with WASM, WebGL and many, many equations.
+				<Link href="https://divecae.com">Dive</Link>: cloud-native thermofluid simulations. CAE right in the browser,
+				with WASM, WebGL and many, many equations.
 			</li>
 			<li>
-				<a href="https://sms-group.com" target="_blank" rel="noopener">SMS Digital</a>: physical models in the cloud, ML
-				predictions for steelmaking.
+				<Link href="https://sms-group.com">SMS Digital</Link>: physical models in the cloud, ML predictions for
+				steelmaking.
 			</li>
 		</ul>
-	</section>
+	</Card>
 
-	<section class="tile" data-span="4">
-		<h2>Open source</h2>
+	<Card title="Open source" data-span="4">
 		<ul>
 			<li>
-				<a href="https://surimi.dev" target="_blank" rel="noopener">surimi</a>: type-safe, zero-runtime CSS in
-				TypeScript. It's what powers this site.
+				<Link href="https://surimi.dev">surimi</Link>: type-safe, zero-runtime CSS in TypeScript. It's what powers this
+				site.
 			</li>
-			<li>
-				<a href="https://handlery.dev" target="_blank" rel="noopener">handlery.dev</a>: typed event handling with
-				decorators.
-			</li>
-			<li><a href="https://caddly.roulz.com/" target="_blank" rel="noopener">Caddly</a>: config builder for Caddy.</li>
+			<li><Link href="https://handlery.dev">handlery.dev</Link>: typed event handling with decorators.</li>
+			<li><Link href="https://caddly.roulz.com/">Caddly</Link>: config builder for Caddy.</li>
 		</ul>
-	</section>
+	</Card>
 
-	<section class="tile" data-span="2">
-		<h2>Side quests</h2>
+	<Card title="Side quests" data-span="2">
 		<ul>
-			<li><a href="https://licensephobia.com" target="_blank" rel="noopener">Licensephobia</a> (WIP)</li>
-			<li><a href="https://youtube.com/@janis-me" target="_blank" rel="noopener">janis.me</a> on YouTube</li>
+			<li><Link href="https://licensephobia.com">Licensephobia</Link> (WIP)</li>
+			<li><Link href="https://youtube.com/@janis-me">janis.me</Link> on YouTube</li>
 			<li>
 				Painting the
-				<a href="https://warhammer40k.fandom.com/wiki/Adeptus_Mechanicus" target="_blank" rel="noopener"
-					>Adeptus Mechanicus</a
-				>
+				<Link href="https://warhammer40k.fandom.com/wiki/Adeptus_Mechanicus">Adeptus Mechanicus</Link>
 			</li>
 		</ul>
-	</section>
+	</Card>
 
 	{cards.map(card => <LinkCard {...card} data-span="2" />)}
 </div>

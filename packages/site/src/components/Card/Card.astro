@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import './Card.css';
+
+type Props = HTMLAttributes<'section'> & {
+	as?: 'section' | 'aside' | 'article' | 'div';
+	title?: string;
+	variant?: 'plain' | 'highlight' | 'paper';
+};
+
+const { as: Tag = 'section', title, variant = 'plain', class: className, ...attrs } = Astro.props;
+---
+
+<Tag class:list={['card', variant !== 'plain' && variant, className]} {...attrs}>
+	{title && <h2 class="card-title">{title}</h2>}
+	<slot />
+</Tag>

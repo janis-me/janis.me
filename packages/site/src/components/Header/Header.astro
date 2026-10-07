@@ -68,10 +68,19 @@ if (picker) {
 		sync();
 	};
 
+	const switchTo = (theme: string) => {
+		const update = () => {
+			apply(theme);
+			picker.open = false;
+		};
+		if (!document.startViewTransition) return update();
+		root.toggleAttribute('data-theme-switch', true);
+		document.startViewTransition(update).finished.finally(() => root.removeAttribute('data-theme-switch'));
+	};
+
 	for (const button of buttons) {
 		button.addEventListener('click', () => {
-			apply(button.value);
-			picker.open = false;
+			switchTo(button.value);
 			picker.querySelector('summary')?.focus();
 		});
 	}

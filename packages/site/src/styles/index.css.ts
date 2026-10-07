@@ -1,12 +1,27 @@
-import { fontFace, media, select, viewTransition } from 'surimi';
+import { fontFace, keyframes, media, select, viewTransition } from 'surimi';
 import { below } from '#styles/media.ts';
-import { focusRing } from '#styles/mixins.ts';
+import { focusRing, slideFill } from '#styles/mixins.ts';
 import { theme } from '#styles/theme.css.ts';
 import 'sanitize.css';
 
 const { color, space, font } = theme;
 
 viewTransition.navigation('auto');
+
+const themeWipe = keyframes('theme-wipe')
+	.from({ clipPath: 'polygon(100% 0, 100% 0, 100% 0)' })
+	.to({ clipPath: 'polygon(-100% 0, 100% 0, 100% 200%)' });
+
+select('html[data-theme-switch]::view-transition-old(root)').style({ animation: 'none' });
+
+select('html[data-theme-switch]::view-transition-new(root)').style({
+	animation: `${themeWipe} 0.6s cubic-bezier(0.65, 0, 0.35, 1)`,
+});
+
+media()
+	.prefersReducedMotion('reduce')
+	.select('html[data-theme-switch]::view-transition-new(root)')
+	.style({ animation: 'none' });
 
 fontFace({
 	fontFamily: 'IBM Plex Mono',
@@ -53,21 +68,34 @@ select('p').style({
 	textWrap: 'pretty',
 });
 
+media().prefersReducedMotion('reduce').select('*', '::before', '::after').style({
+	transitionDuration: '0s !important',
+});
+
 const link = select('a');
 
-link
-	.style({
-		cursor: 'pointer',
-		color: color.fg.base,
-		textDecoration: 'underline',
-		textDecorationStyle: 'dashed',
-		textUnderlineOffset: space[4],
-	})
-	.use(focusRing);
-
-link.has('svg, h1, h2, h3, h4, h5, h6').style({
-	textDecoration: 'none',
+link.use(...slideFill, focusRing).style({
+	cursor: 'pointer',
+	color: color.fg.base,
+	textDecoration: 'underline',
+	textDecorationStyle: 'dashed',
+	textDecorationColor: color.primary.base,
+	textUnderlineOffset: space[4],
+	boxDecorationBreak: 'clone',
 });
+
+select(':is(p, li) > a').style({
+	paddingInline: space[4],
+});
+
+const iconLink = link.has('svg, h1, h2, h3, h4, h5, h6');
+
+iconLink.style({
+	textDecoration: 'none',
+	backgroundImage: 'none',
+});
+
+select(`${iconLink}:hover`).style({ color: color.primary.base });
 
 const list = select('ul');
 

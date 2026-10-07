@@ -1,6 +1,6 @@
 import { select } from 'surimi';
 import { upTo } from '#styles/media.ts';
-import { focusRing, hoverFill, pressedFill } from '#styles/mixins.ts';
+import { focusRing, pressedFill, slideFill } from '#styles/mixins.ts';
 import { control, line, row, spread, surface } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
@@ -49,7 +49,7 @@ picker.style({
 	position: 'relative',
 });
 
-trigger.use(control, row, hoverFill, focusRing).style({
+trigger.use(control, row, ...slideFill, focusRing).style({
 	gap: space[8],
 	minWidth: '10ch',
 	justifyContent: 'space-between',
@@ -86,7 +86,7 @@ menu.child('li').adjacent('li').style({
 	borderTop: line.dashed,
 });
 
-option.use(row, hoverFill, pressedFill, focusRing).style({
+option.use(row, pressedFill, ...slideFill, focusRing).style({
 	gap: space[8],
 	width: '100%',
 	padding: `${space[4]} ${space[8]}`,

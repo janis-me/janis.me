@@ -1,9 +1,9 @@
 import { select } from 'surimi';
-import { focusRing, hoverBorder } from '#styles/mixins.ts';
-import { eyebrow, gridPaper, gutter, line } from '#styles/presets.ts';
+import { slideFill } from '#styles/mixins.ts';
+import { eyebrow, gutter, linkBox } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
-const { color, space } = theme;
+const { space } = theme;
 
 const post = select('.post');
 
@@ -19,19 +19,18 @@ post.descendant('img').style({
 // Markdown: `<a class="video-link" href="https://youtube.com/...">Title</a>`. Plain link, no embed, no tracking.
 const video = post.descendant('.video-link');
 
-video.use(gridPaper, focusRing, hoverBorder).style({
+video.use(linkBox, ...slideFill).style({
 	display: 'flex',
 	flexDirection: 'column',
-	gap: space[4],
+	gap: space[8],
 	marginBlock: space[16],
-	padding: space[16],
-	border: line.dashed,
-	color: color.fg.base,
 	fontWeight: '600',
-	transition: 'border-color 0.15s',
 });
 
 video.before().use(eyebrow).style({
 	content: '"▶ Watch the video"',
 	fontWeight: '400',
+	transition: 'color 0.2s ease-out',
 });
+
+select(`${video}:is(:hover, :focus-visible)::before`).style({ color: 'inherit' });
