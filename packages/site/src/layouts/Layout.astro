@@ -4,7 +4,6 @@ import '#styles/index.css';
 import '#styles/code.css';
 import './Layout.css';
 import Header from '#components/Header/Header.astro';
-import Link from '#components/Link/Link.astro';
 import Notice from '#components/Notice/Notice.astro';
 import PageBar, { type Props as PageBarProps } from '#components/PageBar/PageBar.astro';
 import PageHead, { type Props as PageHeadProps } from '#components/PageHead/PageHead.astro';
@@ -39,6 +38,8 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 		>
 		<meta name="robots" content="index, follow, max-snippet:[120], max-image-preview:[large]">
 		<link rel="sitemap" href="/sitemap-index.xml">
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)}>
+		<link rel="alternate" type="application/rss+xml" title="janis.me blog" href="/rss.xml">
 
 		<title>{title}</title>
 
@@ -62,12 +63,7 @@ const metaDescription = description || 'Janis Jansen - Fullstack dev & creator';
 		<Notice />
 
 		<footer class="site-footer">
-			<p>
-				<span class="extra">You're looking at static HTML -</span>
-				made with <Link href="https://surimi.dev">surimi</Link>
-				and <Link href="https://astro.build">Astro</Link>
-				<span class="extra">- <Link href="https://github.com/janis-me/janis.me">view source</Link></span>
-			</p>
+			<p>Thanks for being here! <span class="extra">Yeah. No cookie banner, no TOS. Crazy.</span></p>
 			<div class="socials">
 				<SocialIcons />
 			</div>

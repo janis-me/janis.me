@@ -21,7 +21,11 @@ const currentPage = Astro.url.pathname.split('/')[1] ?? '';
 	<nav class="site-nav">
 		{pageLinks.map(link => (
 			// biome-ignore lint/a11y/useAnchorContent: `set:text` fills it; children would get formatter whitespace.
-			<a href={`/${link.url}`} aria-current={link.url === currentPage ? 'page' : undefined} set:text={link.label} />
+			<a
+				href={link.url ? `/${link.url}/` : '/'}
+				aria-current={link.url === currentPage ? 'page' : undefined}
+				set:text={link.label}
+			/>
 		))}
 	</nav>
 

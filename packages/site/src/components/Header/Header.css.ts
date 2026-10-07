@@ -4,7 +4,7 @@ import { focusRing, pressedFill, slideFill } from '#styles/mixins.ts';
 import { control, line, row, spread, surface } from '#styles/presets.ts';
 import { theme } from '#styles/theme.css.ts';
 
-const { space } = theme;
+const { color, space } = theme;
 
 const header = select('.site-header');
 const home = header.child('.home');
@@ -33,9 +33,13 @@ nav.use(row).style({
 	marginLeft: 'auto',
 });
 
+nav.child('a').style({ padding: `${space[4]} ${space[4]}` });
+
 nav.child('a[aria-current="page"]').style({
+	backgroundSize: '100% 100%',
+	color: color.primary.fg,
+	textDecorationColor: 'currentColor',
 	textDecorationStyle: 'solid',
-	textDecorationThickness: '2px',
 });
 
 home.use(row);
@@ -111,6 +115,5 @@ upTo('desktop').select(logo).style({ width: space[32], height: space[32] });
 
 upTo('tablet').select(header).style({ paddingInline: space[16], gap: space[12] });
 upTo('tablet').select(nav).style({ gap: space[8] });
-// The logo already links home.
-upTo('phone').select(nav.child('a[href="/"]')).style({ display: 'none' });
+upTo('phone').select(nav).style({ gap: space[4], fontSize: '0.875rem' });
 upTo('tablet').select(logo).style({ width: space[24], height: space[24] });

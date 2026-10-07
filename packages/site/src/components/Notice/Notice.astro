@@ -1,12 +1,16 @@
 ---
 import Card from '#components/Card/Card.astro';
+import Link from '#components/Link/Link.astro';
+
 import './Notice.css';
 ---
 
 <Card as="aside" variant="highlight" class="site-notice" aria-label="About this site">
 	<p>
-		This page has about ten lines of javascript to make it accessible and color-friendly. It is made with absolutely no
-		Ai, tracking, dynamic rendering, cookies or ads. It's just static HTML and CSS. I wrote all content, markup, styles,
-		even the CSS engine. I made the logo but not the icons.
+		You're looking at static HTML, made with
+		<Link href="https://surimi.dev">surimi</Link>
+		and <Link href="https://astro.build">Astro</Link>. It's got <b>absolutely zero</b> AI, tracking, dynamic rendering,
+		cookies or ads. I wrote all content, markup, styles, even the CSS engine.
+		<span class="extra"><Link href="https://github.com/janis-me/janis.me">view source</Link></span>
 	</p>
 </Card>

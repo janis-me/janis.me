@@ -30,7 +30,7 @@ const years = Map.groupBy(posts, post => post.data.createdAt.getFullYear());
 				</header>
 				{yearPosts.map(post => (
 					<PostCard
-						href={`/blog/${post.id}`}
+						href={`/blog/${post.id}/`}
 						title={post.data.title}
 						date={post.data.createdAt}
 						tags={post.data.tags}

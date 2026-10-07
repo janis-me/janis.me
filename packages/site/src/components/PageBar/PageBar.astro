@@ -1,5 +1,4 @@
 ---
-import { ChevronLeftIcon, ChevronUpIcon } from '#components/icons';
 import './PageBar.css';
 
 export interface Props {
@@ -12,13 +11,11 @@ const { back } = Astro.props;
 <nav class:list={['page-bar', !back && 'floating']} aria-label="Page">
 	{back && (
 		<a href={back.href}>
-			<Fragment set:html={ChevronLeftIcon.html} />
 			<span set:text={back.label} />
 		</a>
 	)}
 	<a href="#top" class="to-top">
 		<span>Back to top</span>
-		<Fragment set:html={ChevronUpIcon.html} />
 	</a>
 </nav>
 

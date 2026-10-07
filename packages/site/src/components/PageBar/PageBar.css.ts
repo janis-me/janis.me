@@ -72,7 +72,6 @@ hidden.child('.to-top').style({
 	opacity: '0',
 });
 
-// Without a back link the bar only exists for "back to top": no space in the flow, hidden until needed.
 select('.page-bar.floating').style({
 	marginBottom: `calc(-1 * ${height})`,
 	transition: 'opacity 0.15s, visibility 0.15s',

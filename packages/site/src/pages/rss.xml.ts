@@ -16,7 +16,7 @@ export async function GET(_: unknown) {
 				pubDate: post.data.createdAt,
 				description: post.data.description,
 				content: sanitizeHtml(post.rendered?.html as string),
-				link: `/blog/${post.id}`,
+				link: `/blog/${post.id}/`,
 			})),
 		),
 		customData: `<language>en</language>`,
