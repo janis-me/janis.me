@@ -95,6 +95,15 @@ export const eyebrow = style({
 	letterSpacing: '0.1em',
 });
 
+export const visuallyHidden = style({
+	position: 'absolute',
+	width: '1px',
+	height: '1px',
+	overflow: 'hidden',
+	clipPath: 'inset(50%)',
+	whiteSpace: 'nowrap',
+});
+
 export const ellipsis = style({
 	overflow: 'hidden',
 	textOverflow: 'ellipsis',

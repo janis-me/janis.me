@@ -1,8 +1,8 @@
 import { select } from 'surimi';
 import { upTo } from '#styles/media.ts';
 import { focusRing, pressedFill, slideFill } from '#styles/mixins.ts';
-import { control, line, row, spread, surface } from '#styles/presets.ts';
-import { theme } from '#styles/theme.css.ts';
+import { control, line, row, spread, surface, visuallyHidden } from '#styles/presets.ts';
+import { theme, themeNames } from '#styles/theme.css.ts';
 
 const { color, space } = theme;
 
@@ -60,6 +60,14 @@ trigger.use(control, row, ...slideFill, focusRing).style({
 	listStyle: 'none',
 	userSelect: 'none',
 });
+
+const label = trigger.child('.theme-label');
+trigger.child('.visually-hidden').use(visuallyHidden);
+label.style({ display: 'none' });
+
+for (const name of themeNames) {
+	select(`[data-theme="${name}"] ${label}[data-for="${name}"]`).style({ display: 'inline' });
+}
 
 select(`${trigger}::-webkit-details-marker`).style({
 	display: 'none',

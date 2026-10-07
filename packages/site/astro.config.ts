@@ -40,7 +40,7 @@ export default defineConfig({
 		}),
 		webmanifest({
 			name: 'janis.me - my personal website',
-			icon: 'src/assets/astronaut.svg',
+			icon: 'src/assets/favicon.png',
 			short_name: 'janis.me',
 			description: 'Janis Jansen - Fullstack dev & creator',
 			start_url: '/',

@@ -30,7 +30,14 @@ const currentPage = Astro.url.pathname.split('/')[1] ?? '';
 	</nav>
 
 	<details class="theme-picker">
-		<summary aria-label="Theme" title="Theme"><span>janis</span></summary>
+		<summary title="Theme">
+			<span class="visually-hidden">Theme:</span>
+			{options.map(option => (
+				<span class="theme-label" data-for={option.value}>
+					{option.label}
+				</span>
+			))}
+		</summary>
 		<menu>
 			{options.map(option => (
 				<li>
@@ -49,28 +56,24 @@ const root = document.documentElement;
 const picker = document.querySelector<HTMLDetailsElement>('.theme-picker');
 
 if (picker) {
-	const label = picker.querySelector('summary > span');
 	const buttons = [...picker.querySelectorAll<HTMLButtonElement>('menu button')];
 
 	const sync = () => {
 		const current = root.dataset.theme ?? '';
-		for (const button of buttons) {
-			const active = button.value === current;
-			button.setAttribute('aria-pressed', String(active));
-			if (active && label) label.textContent = button.textContent?.trim() ?? '';
-		}
+		for (const button of buttons) button.setAttribute('aria-pressed', String(button.value === current));
 	};
 
 	const apply = (theme: string) => {
-		if (theme) {
-			root.dataset.theme = theme;
-			localStorage.setItem(STORAGE_KEY, theme);
-		} else {
-			delete root.dataset.theme;
-			localStorage.removeItem(STORAGE_KEY);
-		}
+		root.dataset.theme = theme;
+		localStorage.setItem(STORAGE_KEY, theme);
 		sync();
 	};
+
+	matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+		if (localStorage.getItem(STORAGE_KEY)) return;
+		root.dataset.theme = event.matches ? 'dark' : 'light';
+		sync();
+	});
 
 	const switchTo = (theme: string) => {
 		const update = () => {

@@ -101,7 +101,7 @@ export const theme = defineTokens({
 	space,
 	color: light,
 	font: {
-		mono: "'IBM Plex Mono', Tahoma, Geneva, Verdana, sans-serif",
+		mono: "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace",
 	},
 });
 
